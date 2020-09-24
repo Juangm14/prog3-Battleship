@@ -14,7 +14,7 @@ public class MainP1 {
 	    Coordinate c4 = new Coordinate(5,15);
 	    Coordinate c5 = new Coordinate(c4);
 	    Coordinate c6 = new Coordinate(2,5);
-
+	    
 	    System.out.println(c1);
 	    System.out.println(c2);
 	    System.out.println(c3);
@@ -27,6 +27,7 @@ public class MainP1 {
         
         sumada.add(c3);
         sumada.add(c6);
+        
         
 	    System.out.println(c3 + "+" + c6 + "=" + sumada);
 
@@ -43,8 +44,8 @@ public class MainP1 {
 	    ArrayList<Coordinate> v2 = new ArrayList<Coordinate>();
 	    
 	    for (int i=0; i<8; i++) {
-	                v2.add(new Coordinate(i, i));
-	                System.out.println(v2.get(i));
+	        v2.add(new Coordinate(i, i));
+	        System.out.println(v2.get(i));
 	    }
 	}
 }
