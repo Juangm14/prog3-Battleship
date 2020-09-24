@@ -23,13 +23,15 @@ public class MainP1 {
 	    System.out.println(c6);
 
 
-        Coordinate sumada = new Coordinate (0, 0);
-        		   sumada.add(c3);
-        		   sumada.add(c6);
+        Coordinate sumada = new Coordinate(0,0);
         
-	    System.out.println(c3+"+"+c6+"="+sumada);
+        sumada.add(c3);
+        sumada.add(c6);
+        
+	    System.out.println(c3 + "+" + c6 + "=" + sumada);
 
         Coordinate[] v = new Coordinate[5];
+        
 	    for (int i=0; i<5; i++) {
 	        v[i]= new Coordinate(i,4-i);
 	    }
@@ -39,6 +41,7 @@ public class MainP1 {
 	    }
 
 	    ArrayList<Coordinate> v2 = new ArrayList<Coordinate>();
+	    
 	    for (int i=0; i<8; i++) {
 	                v2.add(new Coordinate(i, i));
 	                System.out.println(v2.get(i));

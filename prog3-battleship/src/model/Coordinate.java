@@ -1,6 +1,5 @@
 package model;
 
-import java.awt.image.ComponentSampleModel;
 
 /**
  * 
@@ -11,7 +10,7 @@ import java.awt.image.ComponentSampleModel;
 
 public class Coordinate {
 	
-	private int components[];
+	private int[] components;
 
 	public Coordinate(int x, int y){
 	
@@ -40,10 +39,11 @@ public class Coordinate {
 	}
 	
 	public boolean equals(Coordinate c){
-		for (int i=0;i<components.length;i++)
-			if (components[i] != c.components[i]) 
+		for (int i=0;i<components.length;i++) {
+			if (components[i] != c.components[i]) {
 				return false;
-		
+			}
+		}
 		return true;
 	}
 	
@@ -81,7 +81,7 @@ public class Coordinate {
 	
 	protected void set(int component,int value) {
 		
-		if (component>=0 && component<components.length) {
+		if (component >= 0 && component < components.length) {
 		      components[component] = value;
 		   }
 		   else
