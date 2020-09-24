@@ -47,11 +47,12 @@ public class Coordinate {
 	      System.err.println( "Error in Coordinate.set, component " + component + " is out of range" );
 	}
 	
-	public final boolean equal(final Coordinate c) {
-		   for (int i=0;i<components.length;i++)
+	public final boolean equals(final Coordinate c){
+		   for (int i = 0; i < components.length; i++) {
 		      if (components[i] != c.components[i]){
 		    	  return false;
 		      }
+		   }
 		   
 		   return true;
 	}
@@ -64,7 +65,7 @@ public class Coordinate {
 		   for (int i=0;i<components.length;i++){
 		      concatenation += components[i];
 		      if (i<components.length-1) // no es la última
-		         concatenation += ",";
+		         concatenation += ", ";
 		   }
 		   concatenation += ")";
 		   return concatenation;

@@ -63,6 +63,7 @@ public class CoordinatePreTest {
 	 */
 	@Test
 	public void testCoordinateConstructorCopy() {
+		
 		fail("Realiza el tes del constructor copia");
 	}
 
@@ -127,6 +128,7 @@ public class CoordinatePreTest {
 		assertEquals ("(0, -70)",lcoor.get(1).toString());
 		assertEquals ("(-70, -2)",lcoor.get(2).toString());
 		assertEquals ("(-2, 20)",lcoor.get(3).toString());
+
 	}
 
 	/* Se toma una Coordinate y se comprueba todas las posibles condiciones bajo 
