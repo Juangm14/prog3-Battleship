@@ -20,16 +20,16 @@ public class Coordinate {
 	   components[1]=y;
 	}
 	
-	public Coordinate( Coordinate c) {
+	public Coordinate(Coordinate c) {
 		
-		components = new int[2];
+		components = new int [2];
 			
 		for (int i=0;i<components.length;i++)
 			components[i]=c.components[i];
 	}
 	
 	public final int get(int component){
-	   if (component>=0 && component<components.length) {
+	   if (component >= 0 && component < components.length) {
 	      return components[component];
 	   }
 	   else
@@ -48,6 +48,10 @@ public class Coordinate {
 	}
 	
 	public final boolean equals(final Coordinate c){
+		
+		if(c == null) {
+			return false;
+		}
 		   for (int i = 0; i < components.length; i++) {
 		      if (components[i] != c.components[i]){
 		    	  return false;
@@ -90,3 +94,4 @@ public class Coordinate {
 		}
 
 };
+

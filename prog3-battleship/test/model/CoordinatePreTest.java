@@ -10,7 +10,7 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
-/* Para realizar los test se sugiere usar métodos de la librería de junit como:
+/* Para realizar los test se sugiere usar mÃ©todos de la librerÃ­a de junit como:
  * assertEquals, assertNotEquals, assertSame; assertNotSame, assertTrue; assertFalse
  */
 public class CoordinatePreTest {
@@ -64,13 +64,14 @@ public class CoordinatePreTest {
 	@Test
 	public void testCoordinateConstructorCopy() {
 		
+		
 		fail("Realiza el tes del constructor copia");
 	}
 
-	/* Se comprueba que el método get(int) para cada componente de una Coordinate 
+	/* Se comprueba que el mÃ©todo get(int) para cada componente de una Coordinate 
 	 * funciona correctamente.
 	 * Modificar los valores de las componentes de la Coordinate anterior con el 
-	 * método set(int, int) y comprobar con get(int) que los valores de sus 
+	 * mÃ©todo set(int, int) y comprobar con get(int) que los valores de sus 
 	 * componentes han cambiado a dichos valores.
 	 */
 	@Test
@@ -84,7 +85,7 @@ public class CoordinatePreTest {
 	/* Se suman las Coordinate creadas en el setUp() y comprueba, conforme se van 
 	 * sumando, que los valores de sus componentes van tomando los valores correctos 
 	 * y que el Coordinate que devuelve no es el mismo que el Coordinate que invoca 
-	 * al método.
+	 * al mÃ©todo.
 	 */
 	@Test  //{0,0,-70,-2,20}
 	public void testAdd() {
@@ -98,11 +99,11 @@ public class CoordinatePreTest {
 		   caux1 = caux1.add(lcoor.get(i+1));	  
 		   sumx += (vcoor[i+1]);
 		   sumy += (vcoor[i+2]);
-		   /*Usa aquí los métodos de junit adecuados para comprobar:
+		   /*Usa aquÃ­ los mÃ©todos de junit adecuados para comprobar:
 		    * - que sumx y sumy son iguales a los componentes '0' y '1' 
 		    *   respectivamente de caux1.
 		    * - que el Coordinate que devuelve 'add' no es el mismo que
-	        *   el Coordinate que invocó al método.
+	        *   el Coordinate que invocÃ³ al mÃ©todo.
 		    */
 		   fail ("Realiza las comprobaciones sugeridas anteriormente");
 		}
@@ -111,7 +112,7 @@ public class CoordinatePreTest {
 	/* Resta las Coordinate creadas en el setUp() y comprueba, conforme se van restando, 
 	 * que los valores de sus componentes van tomando los valores correctos y que el 
 	 * Coordinate que devuelve no es el mismo que el Coordinate que invoca 
-	 * al método.
+	 * al mÃ©todo.
 	 */
 	@Test
 	public void testSubtract() {
@@ -119,7 +120,7 @@ public class CoordinatePreTest {
 	}
 
 	
-	/* Se comprueba, para el método toString(), que las Coordinate creadas en el setUp() 
+	/* Se comprueba, para el mÃ©todo toString(), que las Coordinate creadas en el setUp() 
 	 * tienen el formato correcto.
 	 */
 	@Test
@@ -128,11 +129,10 @@ public class CoordinatePreTest {
 		assertEquals ("(0, -70)",lcoor.get(1).toString());
 		assertEquals ("(-70, -2)",lcoor.get(2).toString());
 		assertEquals ("(-2, 20)",lcoor.get(3).toString());
-
 	}
 
 	/* Se toma una Coordinate y se comprueba todas las posibles condiciones bajo 
-	 * las cuales, nuestra función equals() devuelve true o false
+	 * las cuales, nuestra funciÃ³n equals() devuelve true o false
 	 */
 	@Test
 	public void testEqualsObject() {
