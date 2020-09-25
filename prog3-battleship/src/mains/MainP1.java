@@ -1,6 +1,13 @@
 package mains;
 
 import java.util.ArrayList;
+/**
+ * 
+ * 
+ *@author Juan Garía Martínez 20085694R
+ *
+ *
+**/
 
 import model.Coordinate;
 

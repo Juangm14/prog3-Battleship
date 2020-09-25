@@ -23,7 +23,7 @@ public class Coordinate {
 	public Coordinate(Coordinate c) {
 		
 		components = new int [2];
-			
+		
 		for (int i=0;i<components.length;i++)
 			components[i]=c.components[i];
 	}
