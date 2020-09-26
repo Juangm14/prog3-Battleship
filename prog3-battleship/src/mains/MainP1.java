@@ -33,7 +33,7 @@ public class MainP1 {
         Coordinate sumada =c3.add(c6);	
         
 	    System.out.println(c3 + "+" + c6 + "=" + sumada);
-
+	    
         Coordinate[] v = new Coordinate[5];
         
 	    for (int i=0; i<5; i++) {

@@ -151,13 +151,12 @@ public class Coordinate {
 	 * Devuleve la resta de ambas coordenadas
 	 */
 	public final Coordinate subtract(final Coordinate c){
-		   Coordinate new_c = this; 
+		   Coordinate new_c = new Coordinate(this); 
 		        
 		   for (int i=0; i<components.length; i++)
 		      new_c.set(i, new_c.get(i) - c.get(i));
 		                
 		   return new_c;
 		}
-
 };
 
