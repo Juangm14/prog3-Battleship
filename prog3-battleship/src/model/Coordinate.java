@@ -3,7 +3,10 @@ package model;
 
 /**
  * 
- * @author Juan Garcia Martinez
+ *@author Juan Garcia Martinez
+ *@ClaseCoordinate
+ *La clase Coordinate trata de crear unas Coordenadas las cuales puedan ser sumadas, restadas,
+ *ver si son iguales, consultar su valor e incluso editarlas.
  *
  * 
  */
@@ -12,6 +15,14 @@ public class Coordinate {
 	
 	private int[] components;
 	
+	/**
+	 * Constructor que da los valores iniciales(Se los das en el main) a una Coordenada
+	 * 
+	 * @param x
+	 * Primer valor de la coordenada
+	 * @param y
+	 * Segundo valor de la coordenada
+	 */
 	public Coordinate(int x, int y){
 
 	   components = new int[2];
@@ -19,15 +30,29 @@ public class Coordinate {
 	   components[0]=x;
 	   components[1]=y;
 	}
-	
-	public Coordinate(Coordinate c) {
+	/**
+	 * Constructor copia
+	 * 
+	 * @param c
+	 * Coordenada de la que se va a hacer una copia
+	 */
+	public Coordinate(final Coordinate c) {
 		
 		components = new int [2];
 		
 		for (int i=0;i<components.length;i++)
 			components[i]=c.components[i];
 	}
-	
+	/**
+	 * Coge un valor Coordenada de la posicion que tu elijas.
+	 * 
+	 * @param component
+	 * Posicion del elemento (x o y) que se quiere coger(entre 0 y 1) de una determinada Coordenada.
+	 * @return
+	 * Devuelve el valor x o y de la coordenada, en caso de estar fuera de rango salta un error 
+	 * y devueleve -1
+	 * 
+	 */
 	public final int get(int component){
 	   if (component >= 0 && component < components.length) {
 	      return components[component];
@@ -37,7 +62,16 @@ public class Coordinate {
 
 	   return -1;
 	}
-	
+	/**
+	 * Sustituye una de las componentes de Coordenadas con el valor que le pases
+	 * 
+	 * @param component
+	 * Posicion del elemento (x o y) que se quiere modificar y en caso de no entrar dentro del rango
+	 * de las coordenadas saltara un error.
+	 * @param value
+	 * Sustuira al elemento anteriormente selecciondo
+	 * 
+	 */
 	protected void set(int component,int value)
 	{
 	   if (component>=0 && component<components.length) {
@@ -47,6 +81,16 @@ public class Coordinate {
 	      System.err.println( "Error in Coordinate.set, component " + component + " is out of range" );
 	}
 	
+	/**
+	 *Busca alguna Coordenada que sea igual a la que le has pasado y devuelve un Boolean
+	 *sobre el resultado de su busqueda
+	 * 
+	 * @param c
+	 * Coordenada la cual se comparara para ver si existe alguna con el mismo valor
+	 * @return
+	 * Retornara true si la encuentra y false si la Coordenada pasada es null o no la ha encontrado.
+	 *
+	 */
 	public final boolean equals(final Coordinate c){
 		
 		if(c == null) {
@@ -61,6 +105,9 @@ public class Coordinate {
 		   return true;
 	}
 	
+	/**
+	 *Trasformamos una coordenada en un String
+	 */
 	public final String toString(){
 		   String concatenation = "";
 		   
@@ -75,6 +122,16 @@ public class Coordinate {
 		   return concatenation;
 	}
 	
+	/**
+	 * 
+	 * Suma 2 coordenadas que indiques
+	 * 
+	 * @param c
+	 * Coordenada que se quiere sumar con la coordenada que llama al metodo.
+	 * @return
+	 * Devuelve la suma de ambas coordenadas
+	 */
+	
 	public final Coordinate add(final Coordinate c){
 		   Coordinate new_c = this;
 		        
@@ -84,6 +141,15 @@ public class Coordinate {
 		   return new_c;
 	}
 	
+	/**
+	 * 
+	 * Resta dos coordenadas que indiques
+	 * 
+	 * @param c
+	 * Coordenada que se quiere restar con la coordenada que llama al metodo
+	 * @return
+	 * Devuleve la resta de ambas coordenadas
+	 */
 	public final Coordinate subtract(final Coordinate c){
 		   Coordinate new_c = this; 
 		        

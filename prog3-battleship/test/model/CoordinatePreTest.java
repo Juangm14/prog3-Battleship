@@ -37,7 +37,7 @@ public class CoordinatePreTest {
 	@Test
 	public void testHashCode() {
 		Coordinate c1 = lcoor.get(2);
-		Coordinate c2 = new Coordinate(c1);
+		Coordinate c2 = (c1);
 		
 		assertEquals (c1,c2);
 		assertEquals (c1.hashCode(), c2.hashCode());
@@ -64,8 +64,13 @@ public class CoordinatePreTest {
 	@Test
 	public void testCoordinateConstructorCopy() {
 		
+		//Test ME
+		Coordinate a = new Coordinate(14, 13);
+		Coordinate b = a;
 		
-		fail("Realiza el tes del constructor copia");
+		assertEquals(a,b);
+		assertEquals(a.hashCode(), b.hashCode());
+
 	}
 
 	/* Se comprueba que el mÃ©todo get(int) para cada componente de una Coordinate 
@@ -79,7 +84,14 @@ public class CoordinatePreTest {
 		Coordinate c = lcoor.get(2);
 		assertEquals("x==-70", -70, c.get(0));
 		assertEquals("x==-2", -2, c.get(1));
-		fail ("Modifica los valores de los componentes de 'c' y comprueba que se han modificado");
+		
+		//Implementado por ME
+		c.set(0, -5);
+		c.set(1, 10);
+		
+		assertEquals(-5, c.get(0));
+		assertEquals(10, c.get(1));
+		
 	}
 
 	/* Se suman las Coordinate creadas en el setUp() y comprueba, conforme se van 
@@ -96,6 +108,8 @@ public class CoordinatePreTest {
 		int sumy = caux1.get(1);
 		for (int i=0; i<DIM-2; i++) {	
 		   caux2 = caux1;
+		   //Duplicamos el objeto para luego comparar si han cambiado cuando hacemos el add o no.
+		   Coordinate c = new Coordinate(caux1);
 		   caux1 = caux1.add(lcoor.get(i+1));	  
 		   sumx += (vcoor[i+1]);
 		   sumy += (vcoor[i+2]);
@@ -105,7 +119,14 @@ public class CoordinatePreTest {
 		    * - que el Coordinate que devuelve 'add' no es el mismo que
 	        *   el Coordinate que invocÃ³ al mÃ©todo.
 		    */
-		   fail ("Realiza las comprobaciones sugeridas anteriormente");
+		   
+		   //Sumx y sumy iguales(ME):
+		   assertEquals(sumx, caux1.get(0));
+		   assertEquals(sumy, caux1.get(1));
+		   
+		   //Coordinate de add no sea igual al Coordinate que invoca el metodo(ME)
+		   assertNotEquals(c, caux1);
+
 		}
 	}
 
@@ -116,7 +137,27 @@ public class CoordinatePreTest {
 	 */
 	@Test
 	public void testSubtract() {
-		fail("Realiza la resta de los Coordinate propuesta");
+		Coordinate caux1 = lcoor.get(0);
+		Coordinate caux2;
+		
+		int subx = caux1.get(0);
+		int suby = caux1.get(1);
+		for (int i=0; i<DIM-2; i++){	
+		   caux2 = caux1;
+		   //Duplicamos el objeto para luego comparar si han cambiado cuando hacemos el subtract
+		   Coordinate c = new Coordinate(caux1);
+		   caux1 = caux1.subtract(lcoor.get(i+1));	  
+		   subx -= (vcoor[i+1]);
+		   suby -= (vcoor[i+2]);
+		   
+		   //subx y suby sean iguales(ME):
+		   assertEquals(subx, caux1.get(0));
+		   assertEquals(suby, caux1.get(1));
+		   
+		   //Coordinate de subtract no sea igual al Coordinate que invoca el metodo(ME)
+		   assertNotEquals(c, caux1);
+		}
+
 	}
 
 	
@@ -150,7 +191,13 @@ public class CoordinatePreTest {
 		 *  3. equals() devuelve true cuando comparo dos objetos Coordinate distintos
 		 *     y los valores de sus componentes respectivos son iguales.
 		 */
-		fail ("Completa el test equals()");
+		//1
+		Coordinate c1 = new Coordinate(20,20);
+		assertFalse(c.equals(c1));
+		//2
+		assertTrue(c.equals(lcoor.get(0)));
+		//3
+		
 	}
 
 }
