@@ -41,7 +41,7 @@ public class Coordinate {
 		components = new int [2];
 		
 		for (int i=0;i<components.length;i++)
-			components[i]=c.components[i];
+			components[i] = c.components[i];
 	}
 	/**
 	 * Coge un valor Coordenada de la posicion que tu elijas.
@@ -79,6 +79,18 @@ public class Coordinate {
 	   }
 	   else
 	      System.err.println( "Error in Coordinate.set, component " + component + " is out of range" );
+	}
+	
+	public Set<Coordinate> adjacentCoordinates() {
+		
+		
+	}
+	
+	public Coordinate Copy() {
+		
+		Coordinate copia = new Coordinate(this);
+		
+		return copia;
 	}
 	
 	/**
@@ -120,6 +132,10 @@ public class Coordinate {
 		   }
 		   concatenation += ")";
 		   return concatenation;
+	}
+	
+	public int hashCode() {
+			
 	}
 	
 	/**
