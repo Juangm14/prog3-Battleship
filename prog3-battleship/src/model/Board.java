@@ -24,5 +24,39 @@ public class Board {
 		
 	}
 	
+	public boolean add(Ship ship, Coordinate position) {
+		
+	}
 	
+	public Ship getShip(Coordinate c) {
+		
+	}
+	
+	public boolean isSeen(Coordinate c) {
+		
+	}
+	
+	public CellStatus hit(Coordinate c) {
+		
+	}
+	
+	public boolean areAllCraftsDestoryed() {
+		
+	}
+	
+	public set<Coordinate> getNeighborhood(Ship ship, Coordinate position){
+		
+	}
+	
+	public set<Coordinate> getNeighborhood(Ship ship) {
+		
+	}
+	
+	public String show(boolean unveil) {
+		
+	}
+	
+	public String toString(){
+		
+	}
 }
