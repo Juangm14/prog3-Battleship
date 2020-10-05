@@ -15,6 +15,7 @@ public class Ship {
 	
 	public Coordinate getPosition() {
 		
+		
 	}
 	
 	public void setPosition(Coordinate position) {
@@ -25,5 +26,43 @@ public class Ship {
 		
 	}
 	
+	public Orientation getOrientation() {
+		
+	}
 	
+	public char getSymbol() {
+		
+	}
+	
+	public int[][] getShape(){
+		
+	}
+	
+	public int getShapeIndex(Coordinate c) {
+		
+	}
+	
+	public set<Coordinate> getAbsolutePositions(Coordinate c){
+		
+	}
+	
+	public set<Coordinate> getAbsolutePositions() {
+		
+	}
+	
+	public boolean hit(Coordinate c) {
+		
+	}
+	
+	public boolean isShotDown(Coordinate c) {
+	
+	}
+	
+	public boolean isHit(Coordinate c) {
+		
+	}
+	
+	public String toString() {
+		
+	}
 }
