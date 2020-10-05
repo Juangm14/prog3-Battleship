@@ -13,6 +13,10 @@ package model;
 
 public class Coordinate {
 	
+	/**
+	 * @components
+	 *  componentes de la coordenada (x e y)
+	 */
 	private int[] components;
 	
 	/**
@@ -82,6 +86,7 @@ public class Coordinate {
 	}
 	
 	public Set<Coordinate> adjacentCoordinates() {
+		
 		
 		
 	}
