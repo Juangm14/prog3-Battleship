@@ -24,7 +24,7 @@ public class Board {
 		
 	}
 	
-	public boolean add(Ship ship, Coordinate position) {
+	public boolean addShip(Ship ship, Coordinate position) {
 		
 	}
 	
