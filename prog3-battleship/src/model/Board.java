@@ -10,7 +10,7 @@ public class Board {
 	
     public static char HIT_SYMBOL = '•';//Simbolo si cierta posicion ha sido alcanzada por un torpedo
     public static char WATER_SYMBOL = ' ';//Simbolo si cierta posicion no existe un barco
-    public static char NOT_SEEN = '?';//Simbolo si no se ha visto cierta posicion
+    public static char NOTSEEN_SYMBOL = '?';//Simbolo si no se ha visto cierta posicion
     private static int MAX_BOARD_SIZE = 20;//Maximo tamaño del tablero
     private static int MIN_BOARD_SIZE = 5;//Minimo tamaño del tablero
 	
@@ -249,11 +249,11 @@ public class Board {
 								mapa += WATER_SYMBOL;
 							}
 						}else {
-							mapa += NOT_SEEN;
+							mapa += NOTSEEN_SYMBOL;
 						}
 				
 					}else {
-						mapa += NOT_SEEN;
+						mapa += NOTSEEN_SYMBOL;
 					}
 				}
 			}
