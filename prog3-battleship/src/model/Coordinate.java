@@ -1,5 +1,8 @@
 package model;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 
@@ -13,12 +16,13 @@ package model;
 
 public class Coordinate {
 	
+	final static int TAM_COMPONENTS = 2;
 	/**
 	 * @components
 	 *  componentes de la coordenada (x e y)
 	 */
-	private int[] components;
-	
+	private int[] components = new int[TAM_COMPONENTS];
+
 	/**
 	 * Constructor que da los valores iniciales(Se los das en el main) a una Coordenada
 	 * 
@@ -29,8 +33,7 @@ public class Coordinate {
 	 */
 	public Coordinate(int x, int y){
 
-	   components = new int[2];
-	   //Aqui el valor de x se lo damos a la primera posicion de la coordenada e y a la segunda.
+	   //Aqui el valor de x se lo damos a la primera posicion de la coordenada e y a la segunda.	
 	   components[0]=x;
 	   components[1]=y;
 	}
@@ -41,11 +44,11 @@ public class Coordinate {
 	 * Coordenada de la que se va a hacer una copia
 	 */
 	public Coordinate(final Coordinate c) {
+
 		
-		components = new int [2];
-		
-		for (int i=0;i<components.length;i++)
+		for(int i = 0; i < c.components.length;i++) {
 			components[i] = c.components[i];
+		}
 	}
 	/**
 	 * Coge un valor Coordenada de la posicion que tu elijas.
@@ -87,7 +90,28 @@ public class Coordinate {
 	
 	public Set<Coordinate> adjacentCoordinates() {
 		
+		Set<Coordinate> adyacentes = new HashSet<Coordinate>();
 		
+		Coordinate c0 = new Coordinate (-1, -1).add(this);
+		Coordinate c1 = new Coordinate (0, -1).add(this);
+		Coordinate c2 = new Coordinate (1, -1).add(this);
+		Coordinate c3 = new Coordinate (-1, 0).add(this);
+		Coordinate c4 = new Coordinate (1, 0).add(this);
+		Coordinate c5 = new Coordinate (-1, 1).add(this);
+		Coordinate c6 = new Coordinate (0, 1).add(this);
+		Coordinate c7 = new Coordinate (1, 1).add(this);
+		
+		
+		adyacentes.add(c0);
+		adyacentes.add(c1);
+		adyacentes.add(c2);
+		adyacentes.add(c3);
+		adyacentes.add(c4);
+		adyacentes.add(c5);
+		adyacentes.add(c6);
+		adyacentes.add(c7);
+		
+		return adyacentes;
 		
 	}
 	
@@ -98,30 +122,18 @@ public class Coordinate {
 		return copia;
 	}
 	
-	/**
-	 *Busca alguna Coordenada que sea igual a la que le has pasado y devuelve un Boolean
-	 *sobre el resultado de su busqueda
-	 * 
-	 * @param c
-	 * Coordenada la cual se comparara para ver si existe alguna con el mismo valor
-	 * @return
-	 * Retornara true si la encuentra y false si la Coordenada pasada es null o no la ha encontrado.
-	 *
-	 */
-	public final boolean equals(final Coordinate c){
-		
-		if(c == null) {
+	@Override
+	public boolean equals(final Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Coordinate)) {
 			return false;
 		}
-		   for (int i = 0; i < components.length; i++) {
-		      if (components[i] != c.components[i]){
-		    	  return false;
-		      }
-		   }
-		   
-		   return true;
-	}
-	
+		Coordinate other = (Coordinate) obj;
+		return Arrays.equals(components, other.components);
+	}	
+
 	/**
 	 *Trasformamos una coordenada en un String
 	 */
@@ -138,9 +150,12 @@ public class Coordinate {
 		   concatenation += ")";
 		   return concatenation;
 	}
-	
+
 	public int hashCode() {
-			
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.hashCode(components);
+		return result;
 	}
 	
 	/**
