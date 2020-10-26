@@ -88,7 +88,7 @@ public class Ship {
 	 * @param position: Coordenada para establecer la posicion del barco.
 	 */
 	public void setPosition(Coordinate position) {
-		this.position = position;
+		this.position = new Coordinate(position);
 	}
 	/**
 	 * 

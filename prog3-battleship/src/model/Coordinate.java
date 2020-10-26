@@ -115,7 +115,7 @@ public class Coordinate {
 		
 	}
 	
-	public Coordinate Copy() {
+	public Coordinate copy() {
 		
 		Coordinate copia = new Coordinate(this);
 		

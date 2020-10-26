@@ -29,7 +29,7 @@ public class Board {
 		if(size >= MIN_BOARD_SIZE && size <= MAX_BOARD_SIZE) {
 			this.size = size;
 		}else {
-			size = MIN_BOARD_SIZE;
+			this.size = MIN_BOARD_SIZE;
 			System.err.println("No esta dentro del rango del tablero");
 		}
 		
