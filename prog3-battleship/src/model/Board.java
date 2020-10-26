@@ -177,7 +177,7 @@ public class Board {
 	 * @return conjunto de coordenadas vecinas
 	 */
 	public Set<Coordinate> getNeighborhood(Ship ship, Coordinate position){
-		Set<Coordinate>	coordenadasAbsolutas =	ship.getAbsolutePositions();
+		Set<Coordinate>	coordenadasAbsolutas =	ship.getAbsolutePositions(position);
 		Set<Coordinate> neighborhood = new HashSet<>();
 		
 		for(Coordinate absoluta:coordenadasAbsolutas) {
