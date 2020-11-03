@@ -266,9 +266,12 @@ public class BoardTest {
 					c=new Coordinate(2,i);
 					listHits.add(c);
 					board.hit(c);
-			}		
+			}
+			
 			Set<Coordinate> boardSet = (Set<Coordinate>)getBoardField(board,"seen");	
 			int i;
+			System.out.println(boardSet);
+			System.out.println(listHits);
 			for (Coordinate caux: boardSet) {
 				  i = listHits.indexOf(caux);
 				  if (i != -1)   assertNotSame("Composición", caux, listHits.get(i)); 
@@ -411,7 +414,7 @@ public class BoardTest {
 				if ((j>9))
 					assertFalse("x,y = "+i+","+j,neighborhood.contains(new Coordinate(i,j)));
 				else 
-					assertTrue("x,y = "+i+","+j,neighborhood.contains(new Coordinate(i,j)));	
+					assertTrue("x,y = "+i+","+j,neighborhood.contains(new Coordinate(i,j)));
 			}
 		}
 	}

@@ -101,15 +101,14 @@ public class Coordinate {
 		Coordinate c6 = new Coordinate (0, 1).add(this);
 		Coordinate c7 = new Coordinate (1, 1).add(this);
 		
-		
-		adyacentes.add(c0);
-		adyacentes.add(c1);
-		adyacentes.add(c2);
-		adyacentes.add(c3);
-		adyacentes.add(c4);
-		adyacentes.add(c5);
-		adyacentes.add(c6);
 		adyacentes.add(c7);
+		adyacentes.add(c6);
+		adyacentes.add(c5);
+		adyacentes.add(c4);
+		adyacentes.add(c3);
+		adyacentes.add(c2);
+		adyacentes.add(c1);
+		adyacentes.add(c0);
 		
 		return adyacentes;
 		

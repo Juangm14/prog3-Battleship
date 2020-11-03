@@ -134,30 +134,28 @@ public class Board {
 			System.err.println("Error HIT: La coordenada no entra dentro del rango del tablero.");
 			return CellStatus.WATER;
 		}else {
-			seen.add(c);
-			
-			if (!coordenadasTablero.contains(c)) {
-				seen.add(c);
-				return CellStatus.WATER;
-			}else if(ship.isHit(c)) {
-				return CellStatus.WATER;
-			}else if(ship.hit(c)) {
-				if(ship.isShotDown()) {
-					Set<Coordinate> vecinos = getNeighborhood(ship);
-					for(Coordinate vecino:vecinos) {
-						seen.add(vecino);
-					}
-					
-					destroyedCrafts++;
-					return CellStatus.DESTROYED;
-				}else {
-					return CellStatus.HIT;
-				}
-			}else {
-				return CellStatus.WATER;
-			}		
+			seen.add(new Coordinate(c));
 		}
+		
+		if (!coordenadasTablero.contains(c)) {
+			return CellStatus.WATER;
+		}else if(ship.isHit(c)) {
+			return CellStatus.WATER;
+		}else if(ship.hit(c)) {
+			if(ship.isShotDown()) {
+				for(Coordinate vecino:getNeighborhood(ship, ship.getPosition())) {
+						seen.add(new Coordinate(vecino));
+				}
+				destroyedCrafts++;
+				return CellStatus.DESTROYED;
+			}else {
+				return CellStatus.HIT;
+			}
+		}else {
+			return CellStatus.WATER;
+		}	
 	}
+	
 	/**
 	 * Comprobamos si todos los barcos han sido destruidos.
 	 * @return true si todos los barcos han sido destruidos y false en caso contrario
@@ -182,11 +180,9 @@ public class Board {
 		
 		for(Coordinate absoluta:coordenadasAbsolutas) {
 			Set<Coordinate> adyacentes = absoluta.adjacentCoordinates();
-			if(checkCoordinate(absoluta)) {
-				for(Coordinate vecino:adyacentes) {
-					if(checkCoordinate(vecino) && !neighborhood.contains(vecino) && !coordenadasAbsolutas.contains(vecino)) {
-						neighborhood.add(vecino);
-					}
+			for(Coordinate vecino:adyacentes) {
+				if(checkCoordinate(vecino) && !neighborhood.contains(vecino) && !coordenadasAbsolutas.contains(vecino)) {
+					neighborhood.add(vecino);
 				}
 			}
 		}				
@@ -232,15 +228,14 @@ public class Board {
 					}
 				}
 			}
-			
 		}else {
 			for(int i = 0; i < size; i++){
 				if(i != 0) {
 					mapa += "\n";
 				}
 				for(int j = 0; j < size; j++) {
-					if(tablero.contains(new Coordinate(j, i))) {
-						if(isSeen(new Coordinate(j, i))) {
+					if(isSeen(new Coordinate(j, i))) {
+						if(tablero.contains(new Coordinate(j, i))) {
 							if(board.get(new Coordinate(j, i)).isShotDown()) {
 								mapa += board.get(new Coordinate(j, i)).getSymbol();
 							}else if(board.get(new Coordinate(j, i)).isHit(new Coordinate(j, i))) {
@@ -249,7 +244,7 @@ public class Board {
 								mapa += WATER_SYMBOL;
 							}
 						}else {
-							mapa += NOTSEEN_SYMBOL;
+							mapa += WATER_SYMBOL;
 						}
 				
 					}else {
@@ -258,7 +253,6 @@ public class Board {
 				}
 			}
 		}
-		
 		return mapa;
 	}
 	
@@ -267,4 +261,4 @@ public class Board {
 		
 		return cadena;
 	}
-}
+	}
