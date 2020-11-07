@@ -3,7 +3,6 @@ package model;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import model.ship.Coordinate2D;
 import model.exceptions.*;
 
 public abstract class Craft {
@@ -102,11 +101,16 @@ public abstract class Craft {
 		if(c != null) {
 			for(int i = 0;i < shape[orientation.ordinal()].length; i++) {
 				if(shape[orientation.ordinal()][i] == CRAFT_VALUE || shape[orientation.ordinal()][i] == HIT_VALUE) {
+					
+					Coordinate copia = c.copy();
+					
 					int xCoord = i%BOUNDING_SQUARE_SIZE + c.get(0);
 					int yCoord = i/BOUNDING_SQUARE_SIZE + c.get(1);
 					
-					Coordinate x= new Coordinate2D(xCoord,yCoord);
-					absolutePositions.add(x);
+					copia.set(0, xCoord);
+					copia.set(1, yCoord);
+					
+					absolutePositions.add(copia);
 				}
 			}
 		}

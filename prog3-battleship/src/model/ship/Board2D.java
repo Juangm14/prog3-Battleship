@@ -32,8 +32,6 @@ public class Board2D extends Board {
 		}else {
 			return false;
 		}
-		
-
 	}
 	/**
 	 * 
