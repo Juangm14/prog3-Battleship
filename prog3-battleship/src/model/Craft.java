@@ -1,68 +1,39 @@
-/**
- * @author Juan García Martínez
- */
-
 package model;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
+import model.ship.Coordinate2D;
+import model.exceptions.*;
 
-public class Ship {
+public abstract class Craft {
+
+	private int BOUNDING_SQUARE_SIZE = 5;
+	private int HIT_VALUE = -1;
+	private int CRAFT_VALUE = 1;
+	private char symbol;
 	
-	//Constantes
-	private int BOUNDING_SQUARE_SIZE = 5;//Tamaño de la tablero
-	private int HIT_VALUE = -1;//Cuando una parte del barco es alcanzada.
-	private int CRAFT_VALUE = 1;//Cuando la posicion esta ocupada por un barco
-	
-	private char symbol;//Symbolo con el que representamos el barco en el tablero
-	private String name;//Nombre del barco
-	private Orientation orientation;//Orientacion del barco (Norte, Sur, Este, Oeste)
+	private String name;
+	private Orientation orientation;
 	private Coordinate position;
-	private int shape[][] = new int[][] {
-        { 0, 0, 0, 0, 0,               // NORTH    ·····
-          0, 0, 1, 0, 0,               //          ··#··
-          0, 0, 1, 0, 0,               //          ··#··
-          0, 0, 1, 0, 0,               //          ..#..
-          0, 0, 0, 0, 0},              //          ·····
+	
+	protected int shape[][];
 
-        { 0, 0, 0, 0, 0,               // EAST     ·····
-          0, 0, 0, 0, 0,               //          ·····
-          0, 1, 1, 1, 0,               //          ·###·
-          0, 0, 0, 0, 0,               //          ·····
-          0, 0, 0, 0, 0},              //          ·····
+	public Craft(Orientation o, char s, String n) {
+		orientation = o;
+		symbol = s;
+		name = n;
+		position = null;
+	}
 
-        { 0, 0, 0, 0, 0,               // SOUTH    ·····
-          0, 0, 1, 0, 0,               //          ··#··
-          0, 0, 1, 0, 0,               //          ··#··
-          0, 0, 1, 0, 0,               //          ..#..
-          0, 0, 0, 0, 0},              //          ·····
-
-        { 0, 0, 0, 0, 0,               // WEST     ·····
-          0, 0, 0, 0, 0,               //          ·····
-          0, 1, 1, 1, 0,               //          ·###·
-          0, 0, 0, 0, 0,               //          ·····
-          0, 0, 0, 0, 0}};             //          ·····
-          
 	/**
-	 * Constructor donde se le asignan los valores a los atributos
-	 * @param o Orientacion del barco(ship)
-	 * @param s Symbolo para representar el barco en el tablero
-	 * @param n Nombre del barco
+	 * 
+	 * @return devolvemos el nombre del Barco
 	 */
-          
-    public Ship(Orientation o, char s, String n) {
-    	orientation = o;
-    	symbol = s;
-    	name = n;
-    	position = null;
-    }
-    /**
-     * 
-     * @return devolvemos el nombre del Barco
-     */
 	public String getName() {
 		return name;
 	}
+
 	/**
 	 * 
 	 * @return null, si no sabemos posicion porque no la hemos establecido
@@ -72,10 +43,10 @@ public class Ship {
 		if(position == null) {
 			return null;
 		}else{
-			return new Coordinate(position);
+			return position.copy();
 		}
 	}
-	
+
 	/**
 	 * @return orientacion del barco(Norte, Sur, Este y Oeste)
 	 */
@@ -88,8 +59,9 @@ public class Ship {
 	 * @param position: Coordenada para establecer la posicion del barco.
 	 */
 	public void setPosition(Coordinate position) {
-		this.position = new Coordinate(position);
+		this.position = position.copy();
 	}
+
 	/**
 	 * 
 	 * @return simbolo con el que mostraremos el barco en pantalla.
@@ -97,42 +69,51 @@ public class Ship {
 	public char getSymbol() {
 		return symbol;
 	}
+
 	/**
 	 * 
 	 * @return vector del barco.
 	 */
-	public int[][] getShape(){
+	public int[][] getShape() {
 		return shape;
 	}
+
 	/**
 	 * 
 	 * @param c: Coordenada
 	 * @return calculo del valor de la coordenada que pertenece a shape
 	 */
 	public int getShapeIndex(Coordinate c) {
+		
+		Objects.requireNonNull(c);
+		
 		if(c.get(0) >= 0 && c.get(1) < BOUNDING_SQUARE_SIZE && c.get(1) >= 0 && c.get(0) < BOUNDING_SQUARE_SIZE) {
 			return  c.get(0) + c.get(1) * BOUNDING_SQUARE_SIZE;
 		}
 		return -1;
 	}
-	/*
-	 * A partir de una coordenada position devolvemos un conjunto con las coordenadas absolutas
-	 * @param c: Coordenada
-	 * @return: Devolvemos las posiciones absolutas del barco
-	 */
-	public Set<Coordinate> getAbsolutePositions(Coordinate c){
+
+	public Set<Coordinate> getAbsolutePositions(Coordinate c) {
+		
+		Objects.requireNonNull(c);
+		
 		Set<Coordinate> absolutePositions = new HashSet<Coordinate>();
 		
 		if(c != null) {
 			for(int i = 0;i < shape[orientation.ordinal()].length; i++) {
 				if(shape[orientation.ordinal()][i] == CRAFT_VALUE || shape[orientation.ordinal()][i] == HIT_VALUE) {
-					absolutePositions.add(new Coordinate(i%BOUNDING_SQUARE_SIZE + c.get(0),i/BOUNDING_SQUARE_SIZE + c.get(1)));
+					int xCoord = i%BOUNDING_SQUARE_SIZE + c.get(0);
+					int yCoord = i/BOUNDING_SQUARE_SIZE + c.get(1);
+					
+					Coordinate x= new Coordinate2D(xCoord,yCoord);
+					absolutePositions.add(x);
 				}
 			}
 		}
 		
 		return absolutePositions;
 	}
+
 	/**
 	 * 
 	 * @return coordenadas absolutas del barco, todas las coordenadas que ocupa el mismo. 
@@ -140,27 +121,33 @@ public class Ship {
 	public Set<Coordinate> getAbsolutePositions() {
 		return getAbsolutePositions(position);
 	}
+
 	/**
 	 * Comprobamos si la coordenada que le pasamos esta entre las coordenadas absolutas del barco, en caso de estarlo,
 	 * sacamos la posicion del vector SHAPE y lo alcanzamos, y en caso de no estarla, no hacemos nada.
 	 * @param c coordenada
 	 * @return devolvemos true si la coordenada actual ha sido alcanzada y false en caso contrario.
 	 */
-	
-	public boolean hit(Coordinate c) {
+	public boolean hit(Coordinate c) throws CoordinateAlreadyHitException{
 		
-		Set<Coordinate> thisPosAbsolutas = this.getAbsolutePositions();
-		
-		if(thisPosAbsolutas.contains(c)) {
-			int posShape = getShapeIndex(new Coordinate (c.subtract(position)));
-			
-			if(shape[orientation.ordinal()][posShape] == CRAFT_VALUE) {
-				shape[orientation.ordinal()][posShape] = HIT_VALUE;
-				return true;
-			}
+		if(isHit(c)) {
+			throw new CoordinateAlreadyHitException(c);
 		}
-		return false;
+		else {
+			Set<Coordinate> thisPosAbsolutas = this.getAbsolutePositions();
+			
+			if(thisPosAbsolutas.contains(c)) {
+				int posShape = getShapeIndex((c.subtract(position)).copy());
+				
+				if(shape[orientation.ordinal()][posShape] == CRAFT_VALUE) {
+					shape[orientation.ordinal()][posShape] = HIT_VALUE;
+					return true;
+				}
+			}
+			return false;
+		}
 	}
+
 	/**
 	 * Comprobamos si todas las coordenadas del barco(SHAPE) han sido alcanzadas.
 	 * 
@@ -175,6 +162,7 @@ public class Ship {
 		}
 		return true;
 	}
+
 	/**
 	 * Comprobamos si la coordenda que nos pasan ha sido alcanzada.
 	 * @param c coordenada
@@ -186,7 +174,7 @@ public class Ship {
 		
 		if(thisPosAbsolutas.contains(c)) {
 			
-			int posShape = getShapeIndex(new Coordinate (c.subtract(position)));
+			int posShape = getShapeIndex((c.subtract(position)).copy());
 			
 			if(shape[orientation.ordinal()][posShape] == HIT_VALUE) {
 				return true;
@@ -231,6 +219,5 @@ public class Ship {
 		
 		return imprimirShip;
 	}
-
 
 }

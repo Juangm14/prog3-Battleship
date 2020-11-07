@@ -1,6 +1,8 @@
 package mains;
 
 import model.Board;
+import model.Board2D;
+import model.Board2D;
 import model.Coordinate;
 import model.Orientation;
 import model.Ship;
@@ -20,14 +22,14 @@ public class MainP2 {
 		System.out.println("c1.equals(c3)="+c1.equals(c3));
 		
 		
-		Board b = new Board(10);
+		Board b = new Board2D(10);
 		Ship portaaviones = new Ship(Orientation.EAST,'P',"Dijkstra");
 		Ship submarino = new Ship(Orientation.NORTH,'s',"Boole");
 		Ship destructor = new Ship(Orientation.EAST,'d',"Knuth");
 		
-		b.addShip(portaaviones,new Coordinate(0,0));
-		b.addShip(submarino,new Coordinate(5,5));
-		b.addShip(destructor,new Coordinate(2,3));
+		b.addCraft(portaaviones,new Coordinate(0,0));
+		b.addCraft(submarino,new Coordinate(5,5));
+		b.addCraft(destructor,new Coordinate(2,3));
 		
 		System.out.println(b);
 		System.out.println(portaaviones);

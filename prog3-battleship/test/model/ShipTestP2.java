@@ -1,11 +1,7 @@
 package model;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +11,17 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class ShipTest {
+import model.exceptions.CoordinateAlreadyHitException;
+import model.ship.Coordinate2D;
+import model.ship.Cruiser;
+import model.ship.Ship;
+
+public class ShipTestP2 {
 	final static int BOUNDING_SQUARE_SIZE = 5;
 	static ArrayList<Coordinate> north, east, south, west;
     static String sNorth, sEast, sSouth, sWest;
 	Ship bergantin, goleta, fragata, galeon;
-    final int shape[][] = new int[][] {
+    final static int shape[][] = new int[][] {
 	      { 0, 0, 0, 0, 0,
 	    	0, 0, 1, 0, 0,	
 	    	0, 0, 1, 0, 0,	
@@ -50,15 +51,15 @@ public class ShipTest {
 			south = new ArrayList<Coordinate>();
 			west = new ArrayList<Coordinate>();
 			for (int i=1; i < 4; i++) {
-				north.add(new Coordinate(2,i));
-				east.add(new Coordinate(i,2));
-				south.add(new Coordinate(2,i));
-				west.add(new Coordinate(i,2));
+				north.add(new Coordinate2D(2,i));
+				east.add(new Coordinate2D(i,2));
+				south.add(new Coordinate2D(2,i));
+				west.add(new Coordinate2D(i,2));
 			}
-			 sEast = "Bergantín (EAST)\n -----\n|     |\n|     |\n| BBB |\n|     |\n|     |\n -----";
-			 sNorth ="Goleta (NORTH)\n -----\n|     |\n|  G  |\n|  G  |\n|  G  |\n|     |\n -----";
-			 sSouth ="Galeón (SOUTH)\n -----\n|     |\n|  A  |\n|  A  |\n|  A  |\n|     |\n -----";
-			 sWest = "Fragata (WEST)\n -----\n|     |\n|     |\n| FFF |\n|     |\n|     |\n -----";
+			 sEast = "Cruiser (EAST)\n -----\n|     |\n|     |\n| ØØØ |\n|     |\n|     |\n -----";
+			 sNorth ="Cruiser (NORTH)\n -----\n|     |\n|  Ø  |\n|  Ø  |\n|  Ø  |\n|     |\n -----";
+			 sSouth ="Cruiser (SOUTH)\n -----\n|     |\n|  Ø  |\n|  Ø  |\n|  Ø  |\n|     |\n -----";
+			 sWest = "Cruiser (WEST)\n -----\n|     |\n|     |\n| ØØØ |\n|     |\n|     |\n -----";
 	}	    
 		    
 		    
@@ -66,10 +67,10 @@ public class ShipTest {
 		    
 	@Before
 	public void setUp() throws Exception {
-		bergantin = new Ship(Orientation.EAST,'B',"Bergantín");
-		goleta = new Ship(Orientation.NORTH,'G',"Goleta");
-		fragata = new Ship(Orientation.WEST,'F',"Fragata");
-		galeon = new Ship(Orientation.SOUTH,'A',"Galeón");
+		bergantin = new Cruiser(Orientation.EAST);
+		goleta = new Cruiser(Orientation.NORTH);
+		fragata = new Cruiser(Orientation.WEST);
+		galeon = new Cruiser(Orientation.SOUTH);
 	}
 
 
@@ -81,7 +82,7 @@ public class ShipTest {
 	 */
 	@Test
 	public void testSetPosition() {
-		Coordinate pos = new Coordinate(7,4);
+		Coordinate pos = new Coordinate2D(7,4);
 	     
 		//Comprobamos la composición entre Ship y Coordinate
 		bergantin.setPosition(pos);
@@ -92,7 +93,7 @@ public class ShipTest {
 		
 		
 		//Modificamos posición y comprobamos de nuevo
-		pos = new Coordinate(-17,-2);
+		pos = new Coordinate2D(-17,-2);
 		bergantin.setPosition(pos);	
 		assertEquals(pos, bergantin.getPosition());
 		pos.set(0, 12);
@@ -107,13 +108,14 @@ public class ShipTest {
 	 * tienen la misma referencia.
 	 */
 	@Test
-	public void testGetPosition() {
-		Coordinate pos = bergantin.getPosition();
+	public void testGetPosition() throws NullPointerException {
+		assertEquals(null, bergantin.getPosition());
+		assertNull(bergantin.getPosition());
 		//Inicialmente la position del ship debe ser null 
-		assertNull(pos);
+		
 		
 		//Comprobamos que getPosition hace copia defensiva
-		Coordinate pos1 = new Coordinate(7,4);
+		Coordinate pos1 = new Coordinate2D(7,4);
 		bergantin.setPosition(pos1);
 		Coordinate pos2 = bergantin.getPosition();
 		assertNotSame (pos1, pos2);
@@ -122,8 +124,8 @@ public class ShipTest {
 
 	@Test
 	public void testGetName() {
-		assertEquals ("Bergantín",bergantin.getName());
-		assertEquals ("Fragata",fragata.getName());
+		assertEquals ("Cruiser",bergantin.getName());
+		assertEquals ("Cruiser",fragata.getName());
 	}
 
 	@Test
@@ -136,10 +138,10 @@ public class ShipTest {
 
 	@Test
 	public void testGetSymbol() {
-		assertEquals ('B',bergantin.getSymbol());
-		assertEquals ('G',goleta.getSymbol());
-		assertEquals ('A',galeon.getSymbol());
-		assertEquals ('F',fragata.getSymbol());
+		assertEquals ('Ø',bergantin.getSymbol());
+		assertEquals ('Ø',goleta.getSymbol());
+		assertEquals ('Ø',galeon.getSymbol());
+		assertEquals ('Ø',fragata.getSymbol());
 	}
 
 	/* Se comprueba que la matriz shape del alumno es correcta */
@@ -161,7 +163,7 @@ public class ShipTest {
 		int x;
 		for (int i=0; i<BOUNDING_SQUARE_SIZE; i++)
 			for (int j=0; j<BOUNDING_SQUARE_SIZE; j++) {
-				c = new Coordinate(i,j);
+				c = new Coordinate2D(i,j);
 				x = goleta.getShapeIndex(c);
 				assertTrue ("0<="+x+"<=24", (0<=x) && (x<=24));
 				if ( (x==7)||(x==12)||(x==17) ) {
@@ -190,7 +192,7 @@ public class ShipTest {
 	@Test
 	public void testGetAbsolutePositionsNorth() {
 		
-		Coordinate c1 = new Coordinate(13,27);
+		Coordinate c1 = new Coordinate2D(13,27);
 		Set<Coordinate> pos = goleta.getAbsolutePositions(c1);
 		for (Coordinate c: north)
 			assertTrue("Valores Absolutos posiciones c1+"+c, pos.contains(c.add(c1)));
@@ -201,7 +203,7 @@ public class ShipTest {
 	 */
 	@Test
 	public void testGetAbsolutePositionsEast() {
-		Coordinate c1 = new Coordinate(0,0);
+		Coordinate c1 = new Coordinate2D(0,0);
 		Set<Coordinate> pos = bergantin.getAbsolutePositions(c1);
 		for (Coordinate c: east) {
 			assertTrue("Valores Absolutos posiciones East+c1", pos.contains(c.add(c1)));
@@ -213,7 +215,7 @@ public class ShipTest {
 	 */
 	@Test
 	public void testGetAbsolutePositionsSouth() {
-		Coordinate c1 = new Coordinate(300,700);
+		Coordinate c1 = new Coordinate2D(300,700);
 		Set<Coordinate> pos = galeon.getAbsolutePositions(c1);
 		for (Coordinate c: south)
 			assertTrue("Valores Absolutos posiciones South+c1", pos.contains(c.add(c1)));
@@ -224,7 +226,7 @@ public class ShipTest {
 	 */
 	@Test
 	public void testGetAbsolutePositionsWest() {
-		Coordinate c1 = new Coordinate(-11,-11);
+		Coordinate c1 = new Coordinate2D(-11,-11);
 		Set<Coordinate> pos = fragata.getAbsolutePositions(c1);
 		for (Coordinate c: east) {
 				assertTrue("Valores Absolutos posiciones East+c1", pos.contains(c.add(c1)));
@@ -237,7 +239,7 @@ public class ShipTest {
 	@Test
 	public void testGetAbsolutePositionsShips() {
 		
-		Coordinate c1 = new Coordinate(119,-123);
+		Coordinate c1 = new Coordinate2D(119,-123);
 		getAbsolutePositionsShip(c1,goleta,north);
 		getAbsolutePositionsShip(c1,galeon,south);
 		getAbsolutePositionsShip(c1,fragata,west);
@@ -248,23 +250,28 @@ public class ShipTest {
 	 * hit devuelve false
 	 */
 	@Test
-	public void testHitShipPositionNull() {
-		Coordinate c1 = new Coordinate(2,1);
-		assertFalse(goleta.hit(c1));  
+	public void testHitShipPositionNull() throws CoordinateAlreadyHitException {
+		Coordinate c1 = new Coordinate2D(2,1);
+		try {
+			assertFalse(goleta.hit(c1));
+			fail("Error: No lanzó NullPointerException");
+		} catch (NullPointerException e) {
+			e.getCause();
+		}
 	}
 	
 	/* Se posiciona un Ship en una Coordinate y se realizan disparos al agua.
 	 * Se comprueba que hit devuelve siempre false
 	 */
 	@Test
-	public void testHitWater() {
-		Coordinate c1 = new Coordinate(2,1);
+	public void testHitWater() throws CoordinateAlreadyHitException {
+		Coordinate c1 = new Coordinate2D(2,1);
 		goleta.setPosition(c1);
 		assertFalse(goleta.hit(c1));
 		for (int i=3; i<7; i++) {
 			for (int j=1; j<6; j++)
 			  if ( (i==4) && ((j<2)||(j>4)) ) 
-				  assertFalse(goleta.hit(new Coordinate(i,j)));
+				  assertFalse(goleta.hit(new Coordinate2D(i,j)));
 		}
 	}
 	
@@ -273,12 +280,17 @@ public class ShipTest {
 	 * disparar a las mismas posiciones y se comprueba que hit ahora devuelve false.
 	 */
 	@Test
-	public void testHitShip() {
-		Coordinate c1 = new Coordinate(2,1);
+	public void testHitShip() throws CoordinateAlreadyHitException {
+		Coordinate c1 = new Coordinate2D(2,1);
 		goleta.setPosition(c1);
 		for (int j=2; j<5; j++) {
-		   assertTrue(goleta.hit(new Coordinate(4,j)));
-		   assertFalse(goleta.hit(new Coordinate(4,j)));
+		   assertTrue(goleta.hit(new Coordinate2D(4,j))); 
+		   try {
+				assertFalse("Coordinate(4,"+j+")",goleta.hit(new Coordinate2D(4,j)));
+				fail ("Debió lanzar la excepción CoordinateAlreadyHitException");
+			   } catch (CoordinateAlreadyHitException e) {
+
+			   }
 		}
 	}
 
@@ -288,7 +300,7 @@ public class ShipTest {
 	 * */
 	@Test
 	public void testIsShotDown1() {
-		Coordinate c1 = new Coordinate(2,1);
+		Coordinate c1 = new Coordinate2D(2,1);
 		assertFalse(bergantin.isShotDown());
 		bergantin.setPosition(c1);
 		assertFalse(bergantin.isShotDown());  
@@ -301,11 +313,11 @@ public class ShipTest {
 	 * 
 	 */
 	@Test
-	public void testIsShotDown2() {
-		Coordinate c1 = new Coordinate(2,1);
+	public void testIsShotDown2() throws CoordinateAlreadyHitException {
+		Coordinate c1 = new Coordinate2D(2,1);
 		bergantin.setPosition(c1);
 		for (int j=3; j<6; j++) {
-		   bergantin.hit(new Coordinate(j,3));
+		   bergantin.hit(new Coordinate2D(j,3));
 		   if (j!=5) assertFalse(bergantin.isShotDown());
 		   else assertTrue(bergantin.isShotDown());
 		}
@@ -319,12 +331,16 @@ public class ShipTest {
 	 */
 	@Test
 	public void testIsHit1() {
-		Coordinate c = new Coordinate(2,1);
+		Coordinate c = new Coordinate2D(2,1);
 		//Ship no posicionado
-		assertFalse(bergantin.isHit(c));
-		bergantin.setPosition(c);
-		//Ship posicionado. Coordinate c en agua
-		assertFalse(bergantin.isHit(c));
+		try {
+		      assertFalse(bergantin.isHit(c));
+		      fail ("Debió lanzar NullPointerException");
+			} catch (NullPointerException e) {
+					bergantin.setPosition(c);
+					//Ship posicionado. Coordinate c en agua
+					assertFalse(bergantin.isHit(c));
+			} 
 	}
 	
 	/* Se comprueba que:	
@@ -334,12 +350,12 @@ public class ShipTest {
 	 *     
 	 */
 	@Test
-	public void testIsHit() {
-		Coordinate c = new Coordinate(2,1);
+	public void testIsHit() throws CoordinateAlreadyHitException {
+		Coordinate c = new Coordinate2D(2,1);
 		bergantin.setPosition(c);
 		//Preguntamos en ship antes de disparar y despues de disparar
 		for (int j=3; j<6; j++) {
-		   c = new Coordinate(j,3);
+		   c = new Coordinate2D(j,3);
 		   assertFalse(bergantin.isHit(c));
 		   bergantin.hit(c);
 		   assertTrue(bergantin.isHit(c));

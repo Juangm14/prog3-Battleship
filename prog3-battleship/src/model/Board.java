@@ -1,43 +1,45 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
-public class Board {
-	
-    public static char HIT_SYMBOL = '•';//Simbolo si cierta posicion ha sido alcanzada por un torpedo
-    public static char WATER_SYMBOL = ' ';//Simbolo si cierta posicion no existe un barco
-    public static char NOTSEEN_SYMBOL = '?';//Simbolo si no se ha visto cierta posicion
-    private static int MAX_BOARD_SIZE = 20;//Maximo tamaño del tablero
-    private static int MIN_BOARD_SIZE = 5;//Minimo tamaño del tablero
-	
-	private int size;//Tamaño del tablero
-	private int numCrafts;//Numero de barcos en el tablero
-	private int destroyedCrafts;//Numero de barcos destruidos
-	private Map<Coordinate,Ship> board = new HashMap<>();//Tablero con sus barcos y las posiciones de estos.
-	private Set<Coordinate> seen = new HashSet<>();//Conjunto de coordenadas que han sido vistas
-	
-	/**
-	 * Constructor del tablero
-	 * @param size tamaño del tablero size * size
-	 */
+import model.exceptions.CoordinateAlreadyHitException;
+import model.exceptions.InvalidCoordinateException;
+import model.exceptions.NextToAnotherCraftException;
+import model.exceptions.OccupiedCoordinateException;
+
+public abstract class Board {
+
+	public static char HIT_SYMBOL = '•';
+	public static char WATER_SYMBOL = ' ';
+	public static char NOTSEEN_SYMBOL = '?';
+	public static char Board_SEPARATOR = '|';
+	public static int MAX_BOARD_SIZE = 20;
+	public static int MIN_BOARD_SIZE = 5;
+	private int size;
+	private int numCrafts;
+	private int destroyedCrafts;
+	private Map<Coordinate,Craft> board = new HashMap<>();
+	private Set<Coordinate> seen = new HashSet<>();
+
 	public Board(int size) {
-		
-		if(size >= MIN_BOARD_SIZE && size <= MAX_BOARD_SIZE) {
-			this.size = size;
-		}else {
-			this.size = MIN_BOARD_SIZE;
-			System.err.println("No esta dentro del rango del tablero");
-		}
 		
 		numCrafts = 0;
 		destroyedCrafts = 0;
 		board = new HashMap<>();
 		seen = new HashSet<>();
+		
+		if(size >= MIN_BOARD_SIZE && size <= MAX_BOARD_SIZE) {
+			this.size = size;
+		}else {
+			this.size = MIN_BOARD_SIZE;
+			throw new IllegalArgumentException();
+		}
 	}
+
 	/**
 	 * 
 	 * @return tamaño del tablero
@@ -45,106 +47,102 @@ public class Board {
 	public int getSize() {
 		return size;
 	}
-	/**
-	 * Comprueba si una coordenada dentro del tablero
-	 * @param c coordenada
-	 * @return true si esta dentro del tablero y false en caso contrario.
-	 */
-	public boolean checkCoordinate(Coordinate c) {
-		if(c.get(0) >= 0 && c.get(0) < size && c.get(1) >= 0 && c.get(1) < size){
-			return true;
-		}
-		
-		return false;
-	}
+	
+	abstract public boolean checkCoordinate(Coordinate c);
+	
 	/**
 	 * Añadimos un barco al tablero
 	 * @param ship barco
 	 * @param position coordenada del barco
 	 * @return true si se ha añadido correctamente y false en caso que no se haya podido añadir.
+	 * @throws InvalidCoordinateException 
+	 * @throws OccupiedCoordinateException 
 	 */
-	public boolean addShip(Ship ship, Coordinate position) {
+	public boolean addCraft(Craft craft, Coordinate position) throws InvalidCoordinateException, OccupiedCoordinateException, NextToAnotherCraftException {
 		
-		Set<Coordinate> coordenadasAbsolutas = ship.getAbsolutePositions(position);
+		Set<Coordinate> coordenadasAbsolutas = craft.getAbsolutePositions(position);
 		Set<Coordinate> coordenadasAdyacentes = new HashSet<>();
 		Set<Coordinate> coordenadasBoard = board.keySet();
 		
 		for(Coordinate auxiliarAbsolutas:coordenadasAbsolutas) {
 			if(!checkCoordinate(auxiliarAbsolutas)) {
-				System.err.println("La coordenada no se encuentra dentro del rango del tablero.");
-				return false;
-			}else if(coordenadasBoard.contains(auxiliarAbsolutas)){
-				System.err.println("Hay un barco en una de las coordenadas absolutas.");
-				return false;
+				throw new InvalidCoordinateException(auxiliarAbsolutas);
+			}
+		}
+		
+		for(Coordinate auxiliarAbsolutas:coordenadasAbsolutas) {	
+			if(coordenadasBoard.contains(auxiliarAbsolutas)){
+				throw new OccupiedCoordinateException(auxiliarAbsolutas);
 			}else {
 				for(Coordinate vecino:auxiliarAbsolutas.adjacentCoordinates()) {
-					if(checkCoordinate(vecino)) {
 						coordenadasAdyacentes.add(vecino);
-					}
 				}
 			} 
 		}
 		
 		for(Coordinate vecino:coordenadasAdyacentes) {
 			if(coordenadasBoard.contains(vecino)) {
-				System.err.println("Existe un barco en la vecindad.");
-				return false;
+				throw new NextToAnotherCraftException(vecino);
 			}
 		}
 		
 		for(Coordinate pos:coordenadasAbsolutas) {
-			board.put(pos, ship);
+			board.put(pos, craft);
 		}
 		
 		numCrafts++;
-		ship.setPosition(position);
+		craft.setPosition(position);
 		return true;	
 	}
+
 	/**
 	 * Metodo donde cogemos un barco con cierta coordenada
 	 * @param c coordenada
 	 * @return barco al que pertenece la coordenada que le hemos pasado
 	 */
-	public Ship getShip(Coordinate c) {	
+	public Craft getCraft(Coordinate c) {	
 		return board.get(c);
 	}
+
 	/**
 	 * Metodo con el que vemos si cierta coordenada ha sido vista
 	 * @param c coordenada
 	 * @return si la coordenada que le pasamos ha sido vista devuelve true, sino false
 	 */
 	public boolean isSeen(Coordinate c) {
- 		if(seen.contains(c)) {
+		if(seen.contains(c)) {
 			return true;
 		}
 		return false;
 	}
+
 	/**
 	 * Simula el lanzamiento de un torpedo en una coordenada c del tablero
 	 * @param c coordenada
 	 * @return devuelve agua en caso de que no alcance un objetivo(barco), destroyed si era la ultima coordenada del barco
 	 * y hit si alcanza a una coordenada del barco pero no es la ultima.
+	 * @throws CoordinateAlreadyHitException 
 	 */
-	public CellStatus hit(Coordinate c) {
+	public CellStatus hit(Coordinate c) throws InvalidCoordinateException, CoordinateAlreadyHitException {
 		
-		Ship ship = board.get(c);
+		Craft craft = board.get(c);
 		Set<Coordinate> coordenadasTablero = board.keySet();
 		
 		if(!checkCoordinate(c)) {
-			System.err.println("Error HIT: La coordenada no entra dentro del rango del tablero.");
-			return CellStatus.WATER;
+			throw new InvalidCoordinateException(c);
+
 		}else {
-			seen.add(new Coordinate(c));
+			seen.add(c.copy());
 		}
 		
 		if (!coordenadasTablero.contains(c)) {
 			return CellStatus.WATER;
-		}else if(ship.isHit(c)) {
-			return CellStatus.WATER;
-		}else if(ship.hit(c)) {
-			if(ship.isShotDown()) {
-				for(Coordinate vecino:getNeighborhood(ship, ship.getPosition())) {
-						seen.add(new Coordinate(vecino));
+		}else if(craft.isHit(c)) {
+			throw new CoordinateAlreadyHitException(c);
+		}else if(craft.hit(c)) {
+			if(craft.isShotDown()) {
+				for(Coordinate vecino:getNeighborhood(craft, craft.getPosition())) {
+						seen.add(vecino.copy());
 				}
 				destroyedCrafts++;
 				return CellStatus.DESTROYED;
@@ -155,7 +153,7 @@ public class Board {
 			return CellStatus.WATER;
 		}	
 	}
-	
+
 	/**
 	 * Comprobamos si todos los barcos han sido destruidos.
 	 * @return true si todos los barcos han sido destruidos y false en caso contrario
@@ -167,6 +165,7 @@ public class Board {
 		
 		return false;
 	}
+
 	/**
 	 * Metodo donde cogemos todos los vecinos de un barco, sin incluir las absolutas del barco y las que esten fuera del
 	 * rango del tablero
@@ -174,8 +173,12 @@ public class Board {
 	 * @param position coordenada del barco
 	 * @return conjunto de coordenadas vecinas
 	 */
-	public Set<Coordinate> getNeighborhood(Ship ship, Coordinate position){
-		Set<Coordinate>	coordenadasAbsolutas =	ship.getAbsolutePositions(position);
+	public Set<Coordinate> getNeighborhood(Craft craft, Coordinate position) {
+		
+		Objects.requireNonNull(craft);
+		Objects.requireNonNull(position);
+		
+		Set<Coordinate>	coordenadasAbsolutas =	craft.getAbsolutePositions(position);
 		Set<Coordinate> neighborhood = new HashSet<>();
 		
 		for(Coordinate absoluta:coordenadasAbsolutas) {
@@ -188,77 +191,22 @@ public class Board {
 		}				
 		return neighborhood;
 	}
+
 	/**
 	 * Llamamos a la funcion getNeighborhood con la posicion del barco
 	 * @param ship barco
 	 * @return conjunto de coordenadas vecinas
 	 */
-	public Set<Coordinate> getNeighborhood(Ship ship) {
-			return getNeighborhood(ship, ship.getPosition());	
-	}
-	/**
-	 * 
-	 * @param unveil si es true devolvemos el tablero se muestra el tablero completo y false como lo veria el adversario
-	 * @return cadena de caracteres representando el tablero
-	 */
-	public String show(boolean unveil) {
-		
-		String mapa = "";
-		Set<Coordinate> tablero = board.keySet();
-	
-		if(unveil) {
-			for(int i = 0; i < size; i++){
-				if(i != 0) {
-					mapa += "\n";
-				}
-				for(int j = 0; j < size; j++) {
-					if(tablero.contains(new Coordinate(j, i))) {
-						if(isSeen(new Coordinate(j, i))) {
-							if(board.get(new Coordinate(j, i)).isHit(new Coordinate(j, i))) {
-								mapa += HIT_SYMBOL;
-							}else {
-								mapa += WATER_SYMBOL;
-							}
-						}else {
-							mapa += board.get(new Coordinate(j, i)).getSymbol();
-						}
-				
-					}else {
-						mapa += WATER_SYMBOL;
-					}
-				}
-			}
-		}else {
-			for(int i = 0; i < size; i++){
-				if(i != 0) {
-					mapa += "\n";
-				}
-				for(int j = 0; j < size; j++) {
-					if(isSeen(new Coordinate(j, i))) {
-						if(tablero.contains(new Coordinate(j, i))) {
-							if(board.get(new Coordinate(j, i)).isShotDown()) {
-								mapa += board.get(new Coordinate(j, i)).getSymbol();
-							}else if(board.get(new Coordinate(j, i)).isHit(new Coordinate(j, i))) {
-								mapa += HIT_SYMBOL;
-							}else {
-								mapa += WATER_SYMBOL;
-							}
-						}else {
-							mapa += WATER_SYMBOL;
-						}
-				
-					}else {
-						mapa += NOTSEEN_SYMBOL;
-					}
-				}
-			}
-		}
-		return mapa;
+	public Set<Coordinate> getNeighborhood(Craft craft) {
+			return getNeighborhood(craft, craft.getPosition());	
 	}
 	
-	public String toString(){
+	public abstract String show(boolean unveil);
+	
+	public String toString() {
 		String cadena = "Board " + size + ";"+ " crafts: " + numCrafts + "; destroyed: " + destroyedCrafts;
 		
 		return cadena;
 	}
-	}
+
+}

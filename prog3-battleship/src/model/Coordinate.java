@@ -1,8 +1,8 @@
 package model;
-
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.Objects;
+
 
 /**
  * 
@@ -14,15 +14,14 @@ import java.util.Set;
  * 
  */
 
-public class Coordinate {
+public abstract class Coordinate {
 	
-	final static int TAM_COMPONENTS = 2;
 	/**
 	 * @components
 	 *  componentes de la coordenada (x e y)
 	 */
-	private int[] components = new int[TAM_COMPONENTS];
-
+	private int[] components;
+	
 	/**
 	 * Constructor que da los valores iniciales(Se los das en el main) a una Coordenada
 	 * 
@@ -31,11 +30,8 @@ public class Coordinate {
 	 * @param y
 	 * Segundo valor de la coordenada
 	 */
-	public Coordinate(int x, int y){
-
-	   //Aqui el valor de x se lo damos a la primera posicion de la coordenada e y a la segunda.	
-	   components[0]=x;
-	   components[1]=y;
+	protected Coordinate(int dimensiones){
+		components = new int[dimensiones];
 	}
 	/**
 	 * Constructor copia
@@ -43,8 +39,9 @@ public class Coordinate {
 	 * @param c
 	 * Coordenada de la que se va a hacer una copia
 	 */
-	public Coordinate(final Coordinate c) {
-
+	protected Coordinate(final Coordinate c) {
+		
+		components = new int [c.components.length];
 		
 		for(int i = 0; i < c.components.length;i++) {
 			components[i] = c.components[i];
@@ -60,14 +57,14 @@ public class Coordinate {
 	 * y devueleve -1
 	 * 
 	 */
-	public final int get(int component){
-	   if (component >= 0 && component < components.length) {
-	      return components[component];
-	   }
-	   else
-	      System.err.println( "Error in Coordinate.get, component " + component + " is out of range" );;
-
-	   return -1;
+	public int get(int component) throws IllegalArgumentException{
+		
+		if (component >= 0 && component <= components.length) {
+		      return components[component];
+		}
+		
+		throw new IllegalArgumentException();
+		
 	}
 	/**
 	 * Sustituye una de las componentes de Coordenadas con el valor que le pases
@@ -79,47 +76,23 @@ public class Coordinate {
 	 * Sustuira al elemento anteriormente selecciondo
 	 * 
 	 */
-	protected void set(int component,int value)
-	{
-	   if (component>=0 && component<components.length) {
+	protected void set(int component,int value) throws IllegalArgumentException{
+	   
+		if (component>=0 && component<components.length) {
 	      components[component] = value;
 	   }
-	   else
-	      System.err.println( "Error in Coordinate.set, component " + component + " is out of range" );
+		else {
+			throw new IllegalArgumentException();
+		}
 	}
 	
-	public Set<Coordinate> adjacentCoordinates() {
-		
-		Set<Coordinate> adyacentes = new HashSet<Coordinate>();
-		
-		Coordinate c0 = new Coordinate (-1, -1).add(this);
-		Coordinate c1 = new Coordinate (0, -1).add(this);
-		Coordinate c2 = new Coordinate (1, -1).add(this);
-		Coordinate c3 = new Coordinate (-1, 0).add(this);
-		Coordinate c4 = new Coordinate (1, 0).add(this);
-		Coordinate c5 = new Coordinate (-1, 1).add(this);
-		Coordinate c6 = new Coordinate (0, 1).add(this);
-		Coordinate c7 = new Coordinate (1, 1).add(this);
-		
-		adyacentes.add(c7);
-		adyacentes.add(c6);
-		adyacentes.add(c5);
-		adyacentes.add(c4);
-		adyacentes.add(c3);
-		adyacentes.add(c2);
-		adyacentes.add(c1);
-		adyacentes.add(c0);
-		
-		return adyacentes;
-		
-	}
+	public abstract Set<Coordinate> adjacentCoordinates();
 	
-	public Coordinate copy() {
-		
-		Coordinate copia = new Coordinate(this);
-		
-		return copia;
-	}
+	/**
+	 * 
+	 * @return copia del constructor.
+	 */
+	public abstract Coordinate copy();
 	
 	@Override
 	public boolean equals(final Object obj) {
@@ -132,23 +105,6 @@ public class Coordinate {
 		Coordinate other = (Coordinate) obj;
 		return Arrays.equals(components, other.components);
 	}	
-
-	/**
-	 *Trasformamos una coordenada en un String
-	 */
-	public final String toString(){
-		   String concatenation = "";
-		   
-		   concatenation += "(";
-		   
-		   for (int i=0;i<components.length;i++){
-		      concatenation += components[i];
-		      if (i<components.length-1) // no es la última
-		         concatenation += ", ";
-		   }
-		   concatenation += ")";
-		   return concatenation;
-	}
 
 	public int hashCode() {
 		final int prime = 31;
@@ -167,13 +123,19 @@ public class Coordinate {
 	 * Devuelve la suma de ambas coordenadas
 	 */
 	
-	public final Coordinate add(final Coordinate c){
-		   Coordinate new_c = new Coordinate(this);
-		        
-		   for (int i=0; i<components.length; i++)
-			   new_c.set(i, new_c.get(i) + c.get(i));
-		   	
-		   return new_c;
+	public final Coordinate add(final Coordinate c) {
+		   
+		
+		Coordinate new_c = this.copy();
+		   
+		Objects.requireNonNull(c);
+
+		for (int i=0; i < components.length && i < c.components.length; i++) {
+				   
+			new_c.set(i, new_c.get(i) + c.get(i));
+		}		   
+		   
+		return new_c;
 	}
 	
 	/**
@@ -186,11 +148,17 @@ public class Coordinate {
 	 * Devuleve la resta de ambas coordenadas
 	 */
 	public final Coordinate subtract(final Coordinate c){
-		   Coordinate new_c = new Coordinate(this); 
+		   Coordinate new_c = this.copy(); 
 		        
-		   for (int i=0; i<components.length; i++)
-		      new_c.set(i, new_c.get(i) - c.get(i));
-		                
+		   Objects.requireNonNull(c);
+		   
+		   if(c != null) {
+			   for (int i=0; i < components.length && i < c.components.length; i++) {
+				   
+				   new_c.set(i, new_c.get(i) - c.get(i));
+			   }
+		   }
+
 		   return new_c;
 		}
 };
