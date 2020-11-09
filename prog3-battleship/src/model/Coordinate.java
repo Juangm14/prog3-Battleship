@@ -7,28 +7,17 @@ import java.util.Objects;
 /**
  * 
  *@author Juan Garcia Martinez
- *@ClaseCoordinate
- *La clase Coordinate trata de crear unas Coordenadas las cuales puedan ser sumadas, restadas,
- *ver si son iguales, consultar su valor e incluso editarlas.
  *
  * 
  */
 
 public abstract class Coordinate {
 	
-	/**
-	 * @components
-	 *  componentes de la coordenada (x e y)
-	 */
 	private int[] components;
 	
 	/**
-	 * Constructor que da los valores iniciales(Se los das en el main) a una Coordenada
-	 * 
-	 * @param x
-	 * Primer valor de la coordenada
-	 * @param y
-	 * Segundo valor de la coordenada
+	 * Constructor de coordinate donde se le pasa las dimensiones de la coordenada
+	 * @param dimensiones
 	 */
 	protected Coordinate(int dimensiones){
 		components = new int[dimensiones];
@@ -59,12 +48,11 @@ public abstract class Coordinate {
 	 */
 	public int get(int component) throws IllegalArgumentException{
 		
-		if (component >= 0 && component <= components.length) {
+		if (component >= 0 && component < components.length) {
 		      return components[component];
+		}else {
+			throw new IllegalArgumentException();
 		}
-		
-		throw new IllegalArgumentException();
-		
 	}
 	/**
 	 * Sustituye una de las componentes de Coordenadas con el valor que le pases
@@ -85,7 +73,10 @@ public abstract class Coordinate {
 			throw new IllegalArgumentException();
 		}
 	}
-	
+	/**
+	 * 
+	 * @return coordenadas adyacentes a la coordenada que ha llamado a la funcion, es decir, this.
+	 */
 	public abstract Set<Coordinate> adjacentCoordinates();
 	
 	/**

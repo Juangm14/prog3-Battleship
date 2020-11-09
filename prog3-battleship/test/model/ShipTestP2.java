@@ -108,11 +108,10 @@ public class ShipTestP2 {
 	 * tienen la misma referencia.
 	 */
 	@Test
-	public void testGetPosition() throws NullPointerException {
-		assertEquals(null, bergantin.getPosition());
-		assertNull(bergantin.getPosition());
+	public void testGetPosition() {
+		Coordinate pos = bergantin.getPosition();
 		//Inicialmente la position del ship debe ser null 
-		
+		assertNull(pos);
 		
 		//Comprobamos que getPosition hace copia defensiva
 		Coordinate pos1 = new Coordinate2D(7,4);
@@ -256,7 +255,7 @@ public class ShipTestP2 {
 			assertFalse(goleta.hit(c1));
 			fail("Error: No lanzó NullPointerException");
 		} catch (NullPointerException e) {
-			e.getCause();
+			
 		}
 	}
 	
@@ -334,7 +333,7 @@ public class ShipTestP2 {
 		Coordinate c = new Coordinate2D(2,1);
 		//Ship no posicionado
 		try {
-		      assertFalse(bergantin.isHit(c));
+		      bergantin.isHit(c) ;
 		      fail ("Debió lanzar NullPointerException");
 			} catch (NullPointerException e) {
 					bergantin.setPosition(c);

@@ -6,7 +6,10 @@ import model.CoordinateFactory;
 import model.Craft;
 
 public  class Board3D extends Board{
-
+	/**
+	 * Construrctor del tablero3D
+	 * @param size tamaño del tablero 3D
+	 */
 	public Board3D(int size) {	
 		super(size);
 	}

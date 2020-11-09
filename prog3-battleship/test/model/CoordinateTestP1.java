@@ -33,7 +33,7 @@ public class CoordinateTestP1{
 	@Test
 	public void testHashCode() {
 		Coordinate c1 = lcoor.get(2);
-		Coordinate c2 = CoordinateFactory.createCoordinate(c1.get(0), c1.get(1));
+		Coordinate c2 = new Coordinate2D((Coordinate2D)c1);
 		/* Se comprueba que cuando dos Coordinate son iguales, el resultado 
 		 * del hash ha de ser el mismo.
 		 * Si los Coordinate son distintos el hash puede ser igual o no.
@@ -64,7 +64,7 @@ public class CoordinateTestP1{
 	public void testCoordinateConstructorCopy() {
 		Coordinate ccopy;
 		for (Coordinate caux: lcoor) {
-			ccopy= ((Coordinate2D)caux);
+			ccopy= new Coordinate2D((Coordinate2D)caux);
 			assertEquals(caux.get(0),ccopy.get(0));
 			assertEquals(caux.get(1),ccopy.get(1));	
 		}

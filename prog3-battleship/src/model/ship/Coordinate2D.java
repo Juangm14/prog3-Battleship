@@ -7,12 +7,20 @@ import model.CoordinateFactory;
 
 public class Coordinate2D extends Coordinate{
 
+	/**
+	 * Constructor de la coordenada 2D
+	 * @param x primera posicion de coordenada
+	 * @param y segunda posicion de coordenada
+	 */
 	public Coordinate2D(int x, int y){
 		super(2);
 		set(0,x);
 		set(1,y);
 	}
-	
+	/**
+	 * Costructor de la coordenada 2D
+	 * @param c coordenada que vamos a crear
+	 */
 	public Coordinate2D(Coordinate2D c) {
 		super(c);
 	}

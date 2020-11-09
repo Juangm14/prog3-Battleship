@@ -18,6 +18,12 @@ public abstract class Craft {
 	
 	protected int shape[][];
 
+	/**
+	 * Constructor de barcos
+	 * @param o orientacion del barco
+	 * @param s symbolo del barco
+	 * @param n nombre del barco
+	 */
 	public Craft(Orientation o, char s, String n) {
 		orientation = o;
 		symbol = s;
@@ -92,6 +98,11 @@ public abstract class Craft {
 		return -1;
 	}
 
+	/**
+	 * 
+	 * @param c coordenada de la que se quieren coger las coordenadas absolutas del barco
+	 * @return coodenadas absolutas del barco
+	 */
 	public Set<Coordinate> getAbsolutePositions(Coordinate c) {
 		
 		Objects.requireNonNull(c);
@@ -131,6 +142,7 @@ public abstract class Craft {
 	 * sacamos la posicion del vector SHAPE y lo alcanzamos, y en caso de no estarla, no hacemos nada.
 	 * @param c coordenada
 	 * @return devolvemos true si la coordenada actual ha sido alcanzada y false en caso contrario.
+	 * @throws CoordinateAlreadyHitException
 	 */
 	public boolean hit(Coordinate c) throws CoordinateAlreadyHitException{
 		

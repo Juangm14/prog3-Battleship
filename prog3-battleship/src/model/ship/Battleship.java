@@ -6,7 +6,10 @@ public class Battleship extends Ship{
 
 	private static char s = 'O';
 	private static String n = "Battleship";
-	
+	/**
+	 * Creacion del barco Battleship
+	 * @param o orientacion del barco
+	 */
 	public Battleship(Orientation o) {
 		super(o, s, n);
 		

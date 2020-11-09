@@ -6,7 +6,10 @@ public class Transport extends Aircraft{
 
 	private static char s = '⇋';
 	private static String n = "Transport";
-	
+	/**
+	 * Ceamos otro tipo de aeronave
+	 * @param o orientacion 
+	 */
 	public Transport(Orientation o) {
 		super(o, s, n);
 		

@@ -33,7 +33,7 @@ public class BoardTestP2 {
 	static final int MAX_BOARD_SIZE = 20;
 	static final int  MIN_BOARD_SIZE = 5;
 	final static int DIM = 10;
-	Board2D board;
+	Board board;
 	Ship fragata, galeon, bergantin, goleta;
 	static String sboardEmpty,sboard, sboardHide1, sboardHits1,
 				sboardHits2,sboardHits3, sboardHide2; //= new String();

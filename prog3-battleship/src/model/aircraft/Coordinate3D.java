@@ -6,14 +6,22 @@ import model.Coordinate;
 import model.CoordinateFactory;
 
 public class Coordinate3D extends Coordinate{
-
+	/**
+	 * Constructor de una coordenada3D
+	 * @param x primera coordenada de la aeronave
+	 * @param y segunda coordenada de la aeronave
+	 * @param z tercera coordenada de la aeronave
+	 */
 	public Coordinate3D(int x, int y,int z){
 		super(3);
 		set(0,x);
 		set(1,y);
 		set(2,z);
 	}
-	
+	/**
+	 * Cosntructor de una coordenada3D
+	 * @param c coordenada que vamos a crear
+	 */
 	public Coordinate3D(Coordinate3D c) {
 		super(c);
 	}

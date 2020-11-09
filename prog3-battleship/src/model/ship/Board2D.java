@@ -9,17 +9,12 @@ public class Board2D extends Board {
 	
     /**
 	 * Constructor del tablero
-	 * @param size tamaño del tablero size * size
+	 * @param size tamaño del tablero size
 	 */
 	public Board2D(int size) {
 		
 		super(size);
 	}
-	/**
-	 * Comprueba si una coordenada dentro del tablero
-	 * @param c coordenada
-	 * @return true si esta dentro del tablero y false en caso contrario.
-	 */
 	
 	@Override
 	public boolean checkCoordinate(Coordinate c) throws IllegalArgumentException{
@@ -33,11 +28,7 @@ public class Board2D extends Board {
 			return false;
 		}
 	}
-	/**
-	 * 
-	 * @param unveil si es true devolvemos el tablero se muestra el tablero completo y false como lo veria el adversario
-	 * @return cadena de caracteres representando el tablero
-	 */
+
 	@Override
 	public String show(boolean unveil) {
 		

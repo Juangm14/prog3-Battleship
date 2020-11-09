@@ -3,7 +3,6 @@ package model.aircraft;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -12,13 +11,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import model.Coordinate;
-import model.CoordinateFactory;
 import model.Orientation;
 import model.ship.Coordinate2D;
 
-public class BomberPreTest {
+public class BomberTest {
 	Aircraft bomberN, bomberE, bomberS, bomberW;
-	static List<Coordinate> north;
+	static List<Coordinate> north, east, south, west;
 	static String sNorth, sEast, sSouth, sWest;
 	final static int shape[][] = new int[][] {
 	    { 0, 0, 0, 0, 0,
@@ -40,20 +38,31 @@ public class BomberPreTest {
 		  0, 0, 1, 0, 0,	
 		  0, 1, 1, 1, 1,	
 		  0, 0, 1, 0, 0,
-		  0, 0, 1, 1, 0}
-	}; 
+		  0, 0, 1, 1, 0}}; 
 		    
     
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 			north = new ArrayList<Coordinate>();
+			east = new ArrayList<Coordinate>();
+			south = new ArrayList<Coordinate>();
+			west = new ArrayList<Coordinate>();
 			for (int i=0; i < 5; i++) {
 				north.add(new Coordinate3D(i,2,0));	
+				east.add(new Coordinate3D(2,i,0));
+				south.add(new Coordinate3D(i,2,0));
+				west.add(new Coordinate3D(2,i,0));
 				if (i<4) {
 					north.add(new Coordinate3D(2,i+1,0));
+					east.add(new Coordinate3D(i,2,0));
+					south.add(new Coordinate3D(2,i,0));
+					west.add(new Coordinate3D(i+1,2,0));
 				}
 				if ((i==0)||(i==4)) {
 					north.add(new Coordinate3D(i,3,0));
+					east.add(new Coordinate3D(1,i,0));
+					south.add(new Coordinate3D(i,1,0));
+					west.add(new Coordinate3D(3,i,0));
 				}
 			}
 			sNorth = "Bomber (NORTH)\n"
@@ -89,7 +98,7 @@ public class BomberPreTest {
 					+ "|  ⇶  |\n"
 					+ "|  ⇶⇶ |\n"
 					+ " -----";
-	}		    
+			}		    
 		    
 		    
 		    
@@ -102,7 +111,6 @@ public class BomberPreTest {
 		
 	}
 
-	/* Comprobación de shape del alumno */
 	@Test
 	public void testGetShape() {
 		int [][] shapeAux = bomberN.getShape();
@@ -111,13 +119,8 @@ public class BomberPreTest {
 				assertEquals(shape[i][j],shapeAux[i][j]);
 	}
 
-	//TODO
-	/* Comprueba que las orientaciones de los Bomber creados en el setUp son 
-	 * correctas.
-	 */
 	@Test
 	public void testGetOrientation() {
-		//fail("Realiza el test");
 		assertEquals (Orientation.NORTH, bomberN.getOrientation());
 		assertEquals (Orientation.EAST, bomberE.getOrientation());
 		assertEquals (Orientation.SOUTH, bomberS.getOrientation());
@@ -127,47 +130,74 @@ public class BomberPreTest {
 	@Test
 	public void testGetSymbol() {
 		assertEquals('⇶', bomberN.getSymbol());
-		assertEquals('⇶', bomberE.getSymbol());
-		assertEquals('⇶', bomberS.getSymbol());
-		assertEquals('⇶', bomberW.getSymbol());
 	}
 
-	//TODO
-	/* Comprueba que las posiciones absolutas para la orientación NORTH a partir de
+	/* Se comprueba que las posiciones absolutas para la orientación NORTH a partir de
 	 * una Coordinate son correctas.
 	 */
 	@Test
 	public void testGetAbsolutePositionsNorth() {
-		//fail("Realiza el test");
-		Coordinate c1 = CoordinateFactory.createCoordinate(3,3);
-		Set<Coordinate> pos = new HashSet<Coordinate>();
-		Set<Coordinate> posCopia = new HashSet<Coordinate>();
-		posCopia = bomberN.getAbsolutePositions(c1);
-		pos.add(CoordinateFactory.createCoordinate(5,5));
-		pos.add(CoordinateFactory.createCoordinate(5,6));
-		pos.add(CoordinateFactory.createCoordinate(5,7));
-		pos.add(CoordinateFactory.createCoordinate(5,4));
-		pos.add(CoordinateFactory.createCoordinate(4,5));
-		pos.add(CoordinateFactory.createCoordinate(3,6));
-		pos.add(CoordinateFactory.createCoordinate(3,5));
-		pos.add(CoordinateFactory.createCoordinate(5,5));
-		pos.add(CoordinateFactory.createCoordinate(6,5));
-		pos.add(CoordinateFactory.createCoordinate(7,6));
-		pos.add(CoordinateFactory.createCoordinate(7,5));
-		assertEquals(pos, posCopia);
+			
+			Coordinate c1 = new Coordinate3D(13,27,5);
+			Set<Coordinate> pos = bomberN.getAbsolutePositions(c1);
+			for (Coordinate c: north)
+				assertTrue("Valores Absolutos posiciones c1+"+c, pos.contains(c.add(c1)));
 	}
 		
-	//TODO
-	/* Comprueba que toString() para cada Bomber creado en el setUp coincide con 
-	 * los correspondientes strings creados en setUpBeforeClass()
+	/* Se comprueba que las posiciones absolutas para la orientación EARTH a partir de
+	 * una Coordinate son correctas.
 	 */
 	@Test
-	public void testToString() {
-		//fail("Realiza el test");
-		assertEquals(sNorth,bomberN.toString());
-		assertEquals(sEast,bomberE.toString());
-		assertEquals(sWest,bomberW.toString());
-		assertEquals(sSouth,bomberS.toString());
+	public void testGetAbsolutePositionsEast() {
+		Coordinate c1 = new Coordinate3D(0,0,5);
+		Set<Coordinate> pos = bomberE.getAbsolutePositions(c1);
+		for (Coordinate c: east) {
+				assertTrue("Valores Absolutos posiciones East c1+"+c, pos.contains(c.add(c1)));
+		}
+	}
+		
+	/* Se comprueba que las posiciones absolutas para la orientación SOUTH a partir de
+	 * una Coordinate son correctas.
+	 */
+	@Test
+	public void testGetAbsolutePositionsSouth() {
+		Coordinate c1 = new Coordinate3D(300,700,5);
+		Set<Coordinate> pos = bomberS.getAbsolutePositions(c1);
+		for (Coordinate c: south)
+			assertTrue("Valores Absolutos posiciones South c1+"+c, pos.contains(c.add(c1)));
 	}
 
+	/* Se comprueba que las posiciones absolutas para la orientación WEST a partir de
+	 * una Coordinate son correctas.
+	 */
+	@Test
+	public void testGetAbsolutePositionsWest() {
+		Coordinate c1 = new Coordinate3D(-11,-11,5);
+		Set<Coordinate> pos = bomberW.getAbsolutePositions(c1);
+		for (Coordinate c: west) {
+				assertTrue("Valores Absolutos posiciones West c1+"+c, pos.contains(c.add(c1)));
+		}
+	}
+
+
+	@Test
+	public void testToString() {
+		compareLines(sNorth,bomberN.toString());
+		compareLines(sSouth,bomberS.toString());
+		compareLines(sEast,bomberE.toString());
+		compareLines(sWest,bomberW.toString());
+	}
+
+	/* ************************************************
+	 * FUNCIONES AUXILIARES
+	 **************************************************/
+	private void  compareLines(String expected, String result) {
+		String exp[]=expected.split("\n");
+		String res[]=result.split("\n");
+		if (exp.length!=res.length) 
+			fail("Cadena esperada de tamaño ("+exp.length+") distinto a la resultante ("+res.length+")");
+		for (int i=0; i<exp.length; i++) {
+			 				 assertEquals("linea "+i, exp[i],res[i]);
+		}
+	}
 }

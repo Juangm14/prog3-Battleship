@@ -1,5 +1,7 @@
+/**
+ * @author Juan García Martínez 20085694R
+ */
 package model;
-
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -25,6 +27,10 @@ public abstract class Board {
 	private Map<Coordinate,Craft> board = new HashMap<>();
 	private Set<Coordinate> seen = new HashSet<>();
 
+	/**
+	 * Construtor del tablero donde si se comprueba que el tamaño pasado esta dentro del rango del tablero
+	 * @param size Tamaño del tablero
+	 */
 	public Board(int size) {
 		
 		numCrafts = 0;
@@ -48,10 +54,15 @@ public abstract class Board {
 		return size;
 	}
 	
+	/**
+	 * Comprobamos si una coordenada 2D o 3D esta dentro del rango del tablero
+	 * @param c coordenada que vamos a evaluar
+	 * @return devuelve un booleano confirmando si esta dentro del rango
+	 */
 	abstract public boolean checkCoordinate(Coordinate c);
 	
 	/**
-	 * Añadimos un barco al tablero
+	 * Añadimos un barco 2D o 3D al tablero
 	 * @param ship barco
 	 * @param position coordenada del barco
 	 * @return true si se ha añadido correctamente y false en caso que no se haya podido añadir.
@@ -201,6 +212,11 @@ public abstract class Board {
 			return getNeighborhood(craft, craft.getPosition());	
 	}
 	
+	/**
+	 * Mostramos el tablero con los barcos por pantalla
+	 * @param unveil si esta en true lo vemos como si fuesemos enemigos y en false lo veriamos como si fuesemos aliados
+	 * @return devuelve el tablero por pantalla
+	 */
 	public abstract String show(boolean unveil);
 	
 	public String toString() {
