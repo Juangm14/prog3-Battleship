@@ -18,5 +18,6 @@ public class BattleshipIOExcepcion extends Exception{
 	public String getMessage() {
 		
 		return msg;
+		
 	}
 }
