@@ -7,7 +7,7 @@ import model.exceptions.*;
 
 public abstract class Craft {
 
-	private int BOUNDING_SQUARE_SIZE = 5;
+	public static int BOUNDING_SQUARE_SIZE = 5;
 	private int HIT_VALUE = -1;
 	private int CRAFT_VALUE = 1;
 	private char symbol;

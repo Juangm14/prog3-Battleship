@@ -1,6 +1,5 @@
 package model;
 
-import model.aircraft.Aircraft;
 import model.aircraft.Bomber;
 import model.aircraft.Fighter;
 import model.aircraft.Transport;

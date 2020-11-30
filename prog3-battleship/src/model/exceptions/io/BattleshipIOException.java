@@ -1,6 +1,6 @@
 package model.exceptions.io;
 
-public class BattleshipIOExcepcion extends Exception{
+public class BattleshipIOException extends Exception{
 
 	private static final long serialVersionUID = 1L;
 	private String msg;
@@ -8,7 +8,7 @@ public class BattleshipIOExcepcion extends Exception{
 	 * Constructor para los errores de entrada/salida
 	 * @param message que tiene que devolver la excepcion
 	 */
-	public BattleshipIOExcepcion(String message) {
+	public BattleshipIOException(String message) {
 		msg = message;
 	}
 	

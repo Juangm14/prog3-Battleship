@@ -26,7 +26,7 @@ public abstract class Board {
 	private int destroyedCrafts;
 	private Map<Coordinate,Craft> board = new HashMap<>();
 	private Set<Coordinate> seen = new HashSet<>();
-
+	
 	/**
 	 * Construtor del tablero donde si se comprueba que el tamaño pasado esta dentro del rango del tablero
 	 * @param size Tamaño del tablero
