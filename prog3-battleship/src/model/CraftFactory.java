@@ -7,7 +7,7 @@ import model.ship.Destroyer;
 
 public class CraftFactory{
 	
-	public Craft createCraft(String tipo, Orientation o) {
+	public static Craft createCraft(String tipo, Orientation o) {
 		
 		switch(tipo) {
 		
@@ -20,7 +20,7 @@ public class CraftFactory{
 			case  "Battleship":
 				return new Battleship(o);
 			default:
-					return null;
+				return null;
 		}
 	}
 }
