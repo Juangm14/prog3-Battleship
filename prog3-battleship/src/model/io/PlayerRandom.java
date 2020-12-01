@@ -106,12 +106,10 @@ public class PlayerRandom implements IPlayer {
 					maxCoordAleatorias++;
 				}
 			}while(notIn || maxCoordAleatorias == 100);
-
-			
 		}
 	}
 	
-	public Coordinate nextShoot(Board b) throws InvalidCoordinateException, CoordinateAlreadyHitException {
+	public Coordinate nextShoot(Board b) throws CoordinateAlreadyHitException, InvalidCoordinateException, CoordinateAlreadyHitException {
 		
 		Coordinate c = getRandomCoordinate(b,0);
 		

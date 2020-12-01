@@ -166,14 +166,14 @@ public class PlayerFile implements IPlayer{
 	}
 	
 	
-	public void nextShoot(Board b) throws BattleshipIOException, NullPointerException, IOException, InvalidCoordinateException, CoordinateAlreadyHitException{
+	public Coordinate nextShoot(Board b) throws CoordinateAlreadyHitException, BattleshipIOException, NullPointerException, IOException, InvalidCoordinateException, CoordinateAlreadyHitException{
 		
 		if(b == null) {
 			throw new NullPointerException();
 		}else {
 			String line;
 			
-			while(br.readLine() != null) {
+			if(br.readLine() != null) {
 				
 				line = br.readLine();
 				String[] result = line.split(" ");
@@ -228,14 +228,16 @@ public class PlayerFile implements IPlayer{
 		        	}
 		        	
 		        	b.hit(c);
+		        	
+		        	return c;
 		        }else if(palabras.get(0).equals("exit")) {
-		        	break;
+		        	return null;
 		        }else {
 		        	throw new BattleshipIOException("Comando disferente a shoot, exit");
 		        }
 			}
 		}
-
+		return null;
 	}	
 }
 

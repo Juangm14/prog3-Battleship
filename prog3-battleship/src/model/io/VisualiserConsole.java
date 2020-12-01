@@ -14,7 +14,7 @@ public class VisualiserConsole implements IVisualiser{
 	}
 	
 	public void show() {
-		
+		System.out.println(game.toString());
 	}
 	
 	
