@@ -105,7 +105,7 @@ public class PlayerRandom implements IPlayer {
 					notIn = true;
 					maxCoordAleatorias++;
 				}
-			}while(notIn || maxCoordAleatorias == 100);
+			}while(notIn && maxCoordAleatorias == 100);
 		}
 	}
 	
