@@ -1,32 +1,20 @@
 package mains;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 import model.Orientation;
+import model.io.PlayerFile;
+import model.io.PlayerRandom;
 
 public class prueba {
 
 	public static void main(String[] args) {
-        String[] valores = {"uno", ".", ".", "tres", ".", "cuatro", ".", ".", ".", "dos", "siete"};
-        ArrayList<String> tuPutaMadre= new ArrayList<>();
-        
-        
-        for (int i = 0; i < valores.length; i++) {
-        	//System.out.println("Valores " + valores[i]);
-        	
-        	if(valores[i] != ".") {
-        		tuPutaMadre.add(valores[i]);
-        	}
-        		
-        }
-        
-        for(String t:tuPutaMadre) {
-        	System.out.println(t);
-        }
+		
 	}
-        
         
 }

@@ -9,6 +9,10 @@ import model.CoordinateFactory;
 import model.Craft;
 import model.CraftFactory;
 import model.Orientation;
+import model.exceptions.CoordinateAlreadyHitException;
+import model.exceptions.InvalidCoordinateException;
+import model.exceptions.NextToAnotherCraftException;
+import model.exceptions.OccupiedCoordinateException;
 
 public class PlayerRandom implements IPlayer {
 
@@ -53,7 +57,7 @@ public class PlayerRandom implements IPlayer {
 	}
 	
 	
-	public void putCrafts(Board b) {
+	public void putCrafts(Board b) throws InvalidCoordinateException, OccupiedCoordinateException, NextToAnotherCraftException {
 		
 		Orientation o = null;
 		int offset = Craft.BOUNDING_SQUARE_SIZE;
@@ -88,8 +92,32 @@ public class PlayerRandom implements IPlayer {
 		
 		for(int i = 0; i < nombres.size(); i++) {
 			
-			b.addCraft(crafts.get(i), getRandomCoordinate());
+			Boolean notIn = false;
+			int maxCoordAleatorias = 0;
+			
+			do {
+				try {
+					Coordinate c = getRandomCoordinate(b,offset);
+					b.checkCoordinate(c);
+					b.addCraft(crafts.get(i), c);
+					notIn = false;
+				}catch(InvalidCoordinateException e) {
+					notIn = true;
+					maxCoordAleatorias++;
+				}
+			}while(notIn || maxCoordAleatorias == 100);
+
+			
 		}
+	}
+	
+	public Coordinate nextShoot(Board b) throws InvalidCoordinateException, CoordinateAlreadyHitException {
+		
+		Coordinate c = getRandomCoordinate(b,0);
+		
+		b.hit(c);
+		
+		return c;
 	}
 }
 
