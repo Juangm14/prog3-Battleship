@@ -9,10 +9,12 @@ import model.CoordinateFactory;
 import model.Craft;
 import model.CraftFactory;
 import model.Orientation;
+import model.aircraft.Board3D;
 import model.exceptions.CoordinateAlreadyHitException;
 import model.exceptions.InvalidCoordinateException;
 import model.exceptions.NextToAnotherCraftException;
 import model.exceptions.OccupiedCoordinateException;
+import model.ship.Board2D;
 
 public class PlayerRandom implements IPlayer {
 
@@ -57,7 +59,7 @@ public class PlayerRandom implements IPlayer {
 	}
 	
 	
-	public void putCrafts(Board b) throws InvalidCoordinateException, OccupiedCoordinateException, NextToAnotherCraftException {
+	public void putCrafts(Board b) {
 		
 		Orientation o = null;
 		int offset = Craft.BOUNDING_SQUARE_SIZE;
@@ -71,6 +73,12 @@ public class PlayerRandom implements IPlayer {
 		nombres.add("Bomber");
 		nombres.add("Fighter");
 		nombres.add("Transport");
+		
+		if(b instanceof Board2D) {
+			
+		}else if(b instanceof Board3D) {
+			
+		}
 			
 		for(int i = 0; i < nombres.size(); i++) {
 			
@@ -99,7 +107,12 @@ public class PlayerRandom implements IPlayer {
 				try {
 					Coordinate c = getRandomCoordinate(b,offset);
 					b.checkCoordinate(c);
-					b.addCraft(crafts.get(i), c);
+					try {
+						b.addCraft(crafts.get(i), c);
+					} catch (OccupiedCoordinateException  | NextToAnotherCraftException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					notIn = false;
 				}catch(InvalidCoordinateException e) {
 					notIn = true;
@@ -109,11 +122,16 @@ public class PlayerRandom implements IPlayer {
 		}
 	}
 	
-	public Coordinate nextShoot(Board b) throws CoordinateAlreadyHitException, InvalidCoordinateException, CoordinateAlreadyHitException {
+	public Coordinate nextShoot(Board b) {
 		
 		Coordinate c = getRandomCoordinate(b,0);
 		
-		b.hit(c);
+		try {
+			b.hit(c);
+		} catch (InvalidCoordinateException | CoordinateAlreadyHitException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return c;
 	}
