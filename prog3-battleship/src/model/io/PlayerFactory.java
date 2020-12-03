@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
+import model.exceptions.io.BattleshipIOException;
+
 public class PlayerFactory implements IPlayer{
 	
 	private static Boolean isLong(String s){
@@ -15,18 +17,23 @@ public class PlayerFactory implements IPlayer{
 		}
 	}
 	
-	public static IPlayer createPlayer(String name, String tipo) throws FileNotFoundException{
+	public static IPlayer createPlayer(String name, String tipo) throws BattleshipIOException{
 		
 		String a = "\\";
 				
 		if(tipo.contains(".") || tipo.contains("/") || tipo.contains(a.substring(0))) {
-			FileReader reader = new FileReader(tipo);
+			FileReader reader;
+			try {
+				reader = new FileReader(tipo);
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				throw new BattleshipIOException("Error: El archivo no se encuentra.");
+			}
 			BufferedReader br = new BufferedReader(reader);
 			return new PlayerFile(name, br);
 		}else if(isLong(tipo)){
 			return new PlayerRandom(name, Long.parseLong(tipo));
-		}else {
-			return null;
 		}
+		return null;
 	}
 }
