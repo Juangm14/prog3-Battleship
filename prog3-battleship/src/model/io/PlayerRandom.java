@@ -66,18 +66,15 @@ public class PlayerRandom implements IPlayer {
 		ArrayList<String> nombres = new ArrayList<>();
 		ArrayList<Craft> crafts = new ArrayList<>();
 		
-		nombres.add("Battleship");
-		nombres.add("Carrier");
-		nombres.add("Cruiser");
-		nombres.add("Destroyer");
-		nombres.add("Bomber");
-		nombres.add("Fighter");
-		nombres.add("Transport");
-		
 		if(b instanceof Board2D) {
-			
+			nombres.add("Battleship");
+			nombres.add("Carrier");
+			nombres.add("Cruiser");
+			nombres.add("Destroyer");
 		}else if(b instanceof Board3D) {
-			
+			nombres.add("Bomber");
+			nombres.add("Fighter");
+			nombres.add("Transport");
 		}
 			
 		for(int i = 0; i < nombres.size(); i++) {
