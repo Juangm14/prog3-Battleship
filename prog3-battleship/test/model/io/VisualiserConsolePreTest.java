@@ -19,7 +19,7 @@ import model.aircraft.Board3D;
 import model.ship.Board2D;
 
 public class VisualiserConsolePreTest {
-	final String DIRFILES="pre-test/files/";
+	final String DIRFILES="test/files/";
 	Game game,gamerr1, gamerr2;
 	IPlayer player1, player2; 
 	Board board1, board2;
@@ -37,9 +37,16 @@ public class VisualiserConsolePreTest {
 	 * lanza NullPointerException. 
 	 */
 	@Test
-	public void testVisualiserConsole()  {
-		fail("Realiza el test");
+	public void testVisualiserConsole(){
+		try {
+			new VisualiserConsole(null);
+			fail("falla");
+		}catch(NullPointerException e) {
+			
+		}
+		
 	}
+	
 
 	/* Se comprueba que show invoca a game.toString() y lo muestra en
 	 * pantalla para dos tableros, uno 2D y otro 3D, para una partida no empezada */

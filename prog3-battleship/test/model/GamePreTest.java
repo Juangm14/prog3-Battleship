@@ -22,7 +22,7 @@ import model.ship.Board2D;
 
 public class GamePreTest {
 
-	final String DIRFILES ="pre-test/files/";
+	final String DIRFILES ="test/files/";
 	Game game;
 	IPlayer player1, player2; 
 	Board board1, board2;

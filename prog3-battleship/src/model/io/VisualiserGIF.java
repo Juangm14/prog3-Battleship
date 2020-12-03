@@ -7,7 +7,7 @@ import model.exceptions.io.BattleshipIOException;
 import model.io.gif.AnimatedGIF;
 import model.io.gif.FrameGIF;
 
-public class VisualiserGIF {
+public class VisualiserGIF implements IVisualiser{
 
 	private Game game;
 	

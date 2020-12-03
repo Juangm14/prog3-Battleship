@@ -4,9 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
+import model.Board;
+import model.Coordinate;
 import model.exceptions.io.BattleshipIOException;
 
-public class PlayerFactory implements IPlayer{
+public class PlayerFactory {
 	
 	private static Boolean isLong(String s){
 		try {
@@ -36,4 +38,5 @@ public class PlayerFactory implements IPlayer{
 		}
 		return null;
 	}
+
 }

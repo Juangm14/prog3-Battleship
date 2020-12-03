@@ -4,7 +4,7 @@ public class VisualiserConsole implements IVisualiser{
 
 	private Game game;
 	
-	VisualiserConsole(Game game) throws NullPointerException{
+	public VisualiserConsole(Game game) throws NullPointerException{
 		
 		if(game != null) {
 			this.game = game;

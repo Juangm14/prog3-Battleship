@@ -14,7 +14,7 @@ public class Game {
 	private int shootCounter;
 	private int nextToShoot;
 
-	Game(Board b1, Board b2, IPlayer p1, IPlayer p2) throws NullPointerException{
+	public Game(Board b1, Board b2, IPlayer p1, IPlayer p2) throws NullPointerException{
 		if(b1 == null || b2 == null || p1 == null || p2 == null) {
 			throw new NullPointerException();
 		}else {
@@ -43,8 +43,8 @@ public class Game {
 	}
 	
 	public void start() throws BattleshipIOException {
-		jugador1.putCrafts();
-		jugador2.putCrafts();
+		jugador1.putCrafts(tablero1);
+		jugador2.putCrafts(tablero2);
 		gameStarted = true;
 		shootCounter = 0;
 		nextToShoot = 1;
@@ -61,21 +61,13 @@ public class Game {
 	public Boolean playNext() throws BattleshipIOException{
 		
 		if(nextToShoot == 1) {
-			try {
-				jugador1.nextShoot();
-			}catch(CoordinateAlreadyHitException e) {
-				System.out.println("Action by " + jugador1.getName() + e.getMessage());
-			}
+			jugador1.nextShoot(tablero2);
 			nextToShoot = 2;
 			shootCounter++;
 			return true;
 
 		}else if(nextToShoot == 2) {
-			try {
-				jugador2.nextShoot();
-			}catch(CoordinateAlreadyHitException e) {
-				System.out.println("Action by " + jugador2.getName() + e.getMessage());
-			}
+			jugador2.nextShoot(tablero1);
 			nextToShoot = 1;
 			shootCounter++;
 			return true;

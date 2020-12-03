@@ -25,7 +25,7 @@ import model.ship.Coordinate2D;
 
 public class  PlayerFilePreTest { 
 	
-	final static String DIRFILES = "pre-test/files/";
+	final static String DIRFILES = "test/files/";
 	final int SIZE = 6;
 	static String sboard0, sboard1;
 	Board board2d, board3d;

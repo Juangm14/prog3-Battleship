@@ -30,7 +30,10 @@ public class VisualiserFactoryPreTest {
 	 */
 	@Test
 	public void testCreateVisualiserConsole() throws BattleshipIOException {
-		fail("Realiza el test");
+		
+		IVisualiser ivC = VisualiserFactory.createVisualiser("Console", game);
+		
+		assertTrue(ivC instanceof VisualiserConsole);
 	}
 
 	//TODO
@@ -39,7 +42,9 @@ public class VisualiserFactoryPreTest {
 	 */
 	@Test
 	public void testCreateVisualiserGIF() throws BattleshipIOException {
-		fail("Realiza el test");
+		IVisualiser ivG = VisualiserFactory.createVisualiser("GIF", game);
+		
+		assertTrue(ivG instanceof VisualiserGIF);
 	}
 	
 }

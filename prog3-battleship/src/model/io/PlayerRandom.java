@@ -27,7 +27,7 @@ public class PlayerRandom implements IPlayer {
 	}
 	
 	public String getName() {
-		return this.name;
+		return this.name + " (PlayerRandom)";
 	}
 	
 	private int genRandomInt(int min, int max) { 

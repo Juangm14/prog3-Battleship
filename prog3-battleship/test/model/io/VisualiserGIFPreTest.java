@@ -29,7 +29,7 @@ import model.ship.Destroyer;
 
 public class VisualiserGIFPreTest {
 
-	final String DIRFILES = "pre-test/files/";
+	final String DIRFILES = "test/files/";
 	Game game;
 	IPlayer player1, player2; 
 	Board board1, board2;

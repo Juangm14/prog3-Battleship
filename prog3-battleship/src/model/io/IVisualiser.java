@@ -1,12 +1,10 @@
 package model.io;
 
+import model.exceptions.io.BattleshipIOException;
+
 public interface IVisualiser {
 
-	public default void show() {
-		
-	}
+	public void show() throws BattleshipIOException;
 	
-	public default void close() {
-		
-	}
+	public void close();
 }
