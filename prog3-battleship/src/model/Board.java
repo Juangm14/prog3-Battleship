@@ -32,7 +32,6 @@ public abstract class Board {
 	 * @param size Tamaño del tablero
 	 */
 	public Board(int size) {
-		
 		numCrafts = 0;
 		destroyedCrafts = 0;
 		board = new HashMap<>();

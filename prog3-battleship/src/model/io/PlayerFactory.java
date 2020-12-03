@@ -6,7 +6,7 @@ import java.io.FileReader;
 
 public class PlayerFactory implements IPlayer{
 	
-	private Boolean isLong(String s){
+	private static Boolean isLong(String s){
 		try {
 			Long.parseLong(s);
 			return true;
@@ -15,7 +15,7 @@ public class PlayerFactory implements IPlayer{
 		}
 	}
 	
-	public IPlayer createPlayer(String name, String tipo) throws FileNotFoundException{
+	public static IPlayer createPlayer(String name, String tipo) throws FileNotFoundException{
 		
 		String a = "\\";
 				
