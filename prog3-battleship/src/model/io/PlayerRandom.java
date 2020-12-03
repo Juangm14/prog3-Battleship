@@ -111,7 +111,7 @@ public class PlayerRandom implements IPlayer {
 						e.printStackTrace();
 					}
 					notIn = false;
-				}catch(InvalidCoordinateException e) {
+				}catch(InvalidCoordinateException | IllegalCoordinateException e) {
 					notIn = true;
 					maxCoordAleatorias++;
 				}

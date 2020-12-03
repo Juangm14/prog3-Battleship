@@ -53,7 +53,11 @@ public class VisualiserGIFPreTest {
 	 * */
 	@Test
 	public void testVisualiserGIF() throws Exception {
-		fail("Realiza el test");
+		try{
+			VisualiserFactory.createVisualiser("GIF", null);
+		}catch(NullPointerException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/* Se aplica show a un Game con 2 Board2D con el juego sin empezar.

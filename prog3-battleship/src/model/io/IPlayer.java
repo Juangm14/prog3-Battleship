@@ -11,6 +11,7 @@ import model.exceptions.io.BattleshipIOException;
 public interface IPlayer {
 
 	public void putCrafts(Board b) throws BattleshipIOException;
+	
 	public Coordinate nextShoot(Board b) throws BattleshipIOException;
 	
 	public String getName();

@@ -11,7 +11,7 @@ import model.exceptions.io.BattleshipIOException;
 
 public class PlayerFactoryPreTest {
 
-	final String DIRFILES = "pre-test/files/";
+	final String DIRFILES = "test/files/";
 	
 	/* Se crea un player a partir de un fichero y se comprueba que createPlayer ha creado
 	 * un PlayerFile.
