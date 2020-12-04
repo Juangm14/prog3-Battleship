@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import model.Board;
-import model.Game;
 import model.exceptions.io.BattleshipIOException;
 import model.ship.Board2D;
 
@@ -30,6 +29,7 @@ public class VisualiserFactoryPreTest {
 	 */
 	@Test
 	public void testCreateVisualiserConsole() throws BattleshipIOException {
+		
 		IVisualiser ivC = VisualiserFactory.createVisualiser("Console", game);
 		
 		assertTrue(ivC instanceof VisualiserConsole);

@@ -13,7 +13,6 @@ import org.junit.Test;
 
 import model.Board;
 import model.Craft;
-import model.Game;
 import model.Orientation;
 import model.exceptions.CoordinateAlreadyHitException;
 import model.exceptions.InvalidCoordinateException;
@@ -53,7 +52,11 @@ public class VisualiserGIFPreTest {
 	 * */
 	@Test
 	public void testVisualiserGIF() throws Exception {
-		fail("Realiza el test");
+		try{
+			VisualiserFactory.createVisualiser("GIF", null);
+		}catch(NullPointerException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/* Se aplica show a un Game con 2 Board2D con el juego sin empezar.

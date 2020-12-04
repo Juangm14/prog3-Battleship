@@ -19,7 +19,7 @@ public class Game {
 	private int shootCounter;
 	private int nextToShoot;
 
-	public Game(Board b1, Board b2, IPlayer p1, IPlayer p2) throws NullPointerException{
+	public Game(Board b1, Board b2, IPlayer p1, IPlayer p2){
 		if(b1 == null || b2 == null || p1 == null || p2 == null) {
 			throw new NullPointerException();
 		}else {
@@ -49,14 +49,17 @@ public class Game {
 	
 	public void start() throws BattleshipIOException {
 		
-		
-		jugador1.putCrafts(tablero1);
-		jugador2.putCrafts(tablero2);
-
-		
-		gameStarted = true;
-		shootCounter = 0;
-		nextToShoot = 1;
+		try {
+			jugador1.putCrafts(tablero1);
+			jugador2.putCrafts(tablero2);
+			
+			gameStarted = true;
+			shootCounter = 0;
+			nextToShoot = 1;
+		} catch (InvalidCoordinateException | OccupiedCoordinateException | NextToAnotherCraftException
+				| BattleshipIOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public Boolean gameEnded() {
@@ -70,13 +73,23 @@ public class Game {
 	public Boolean playNext() throws BattleshipIOException{
 		
 		if(nextToShoot == 1) {
-			jugador1.nextShoot(tablero2);
+			try {
+				jugador1.nextShoot(tablero2);
+			} catch (CoordinateAlreadyHitException | InvalidCoordinateException | BattleshipIOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			nextToShoot = 2;
 			shootCounter++;
 			return true;
 
 		}else if(nextToShoot == 2) {
-			jugador2.nextShoot(tablero1);
+			try {
+				jugador2.nextShoot(tablero1);
+			} catch (CoordinateAlreadyHitException | InvalidCoordinateException | BattleshipIOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			nextToShoot = 1;
 			shootCounter++;
 			return true;
@@ -97,16 +110,27 @@ public class Game {
 	}
 	
 	public void playGame(IVisualiser iv) throws BattleshipIOException {
-		
-		this.start();
+		try {
+			this.start();
 
-		iv.show();
-		
-		while(this.playNext() != false) {
-			iv.show();
+			try {
+				iv.show();
+			} catch (IOException e) {
+				throw new BattleshipIOException("Mensaje");
+			}
+			
+			while(this.playNext() != false) {
+				try {
+					iv.show();
+				} catch (IOException e) {
+					throw new BattleshipIOException("Mensaje");
+				}
+			}
+			
+			iv.close();
+		}catch(IllegalArgumentException e) {
 		}
-		
-		iv.close();
+
 	}
 
 	public String toString() {

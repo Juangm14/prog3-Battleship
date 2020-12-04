@@ -37,17 +37,15 @@ public class PlayerFile implements IPlayer{
 	}
 	
 	public void putCrafts(Board b) throws BattleshipIOException, InvalidCoordinateException, OccupiedCoordinateException, NextToAnotherCraftException{
-		
-		if(b == null) {
-			throw new NullPointerException();
-		}else {
-			String line = "";
-			Orientation o;
-			
-			try {
+		try {
+			if(b == null) {
+				throw new NullPointerException();
+			}else {
+				String line = "";
+				Orientation o;
 				try {
 					while(br.readLine() != null) {
-
+	
 						line= br.readLine();
 						
 						String[] result = line.split(" ");
@@ -113,15 +111,15 @@ public class PlayerFile implements IPlayer{
 					    	throw new BattleshipIOException("ERROR: Comando diferente a 'exit', 'endput' o 'put.'");
 					    }
 					}
-				} catch (IOException e) {
-					throw new BattleshipIOException("Se ha leido una linea de br.");
+				}catch(NullPointerException e) {
+					e.printStackTrace();
 				}
-			}catch(NullPointerException e) {
-				
 			}
-
+		}catch (IOException e) {
+			throw new BattleshipIOException("Se ha leido una linea de br.");
 		}
 	}
+
 	
 	
 	public Coordinate nextShoot(Board b) throws BattleshipIOException, InvalidCoordinateException,CoordinateAlreadyHitException{

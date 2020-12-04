@@ -39,20 +39,17 @@ public class PlayerRandom implements IPlayer {
 	
 	public Coordinate getRandomCoordinate(Board b, int offset) {
 		
-		int c0 = 0;
-		int c1 = 0;
-		int c2 = 0;
+		Coordinate c = null;
 		
-		Coordinate c = CoordinateFactory.createCoordinate(c0,c1);
-		
-		if(b.checkCoordinate(c)) {
-			c0 = genRandomInt(0-offset, b.getSize());
-			c1 = genRandomInt(0-offset, b.getSize());
-			c2 = genRandomInt(0-offset, b.getSize());
+		if(b instanceof Board3D) {
+			int c0 = genRandomInt(0-offset, b.getSize());
+			int c1 = genRandomInt(0-offset, b.getSize());
+			int c2 = genRandomInt(0-offset, b.getSize());
 			c = CoordinateFactory.createCoordinate(c0,c1,c2);
-		}else {
-			c0 = genRandomInt(0-offset, b.getSize());
-			c1 = genRandomInt(0-offset, b.getSize());
+			return c;
+		}else if(b instanceof Board2D){
+			int c0 = genRandomInt(0-offset, b.getSize());
+			int c1 = genRandomInt(0-offset, b.getSize());
 			c =  CoordinateFactory.createCoordinate(c0,c1);
 		}
 		
@@ -63,37 +60,40 @@ public class PlayerRandom implements IPlayer {
 	public void putCrafts (Board b) throws BattleshipIOException, InvalidCoordinateException, NextToAnotherCraftException, OccupiedCoordinateException {
 		
 		Orientation o = null;
+		int contador = 0;
 		
-		
-		
+		if(b instanceof Board3D) {
+			ArrayList<String> nomAircrafts = new ArrayList<>();
+			ArrayList<Craft> aircrafts = new ArrayList<>();
+			
+			
+		}else if(b instanceof Board2D) {
+			ArrayList<String> nomCrafts = new ArrayList<>();
+			ArrayList<Craft> crafts = new ArrayList<>();
+			nomCrafts.add("Battleship");
+			nomCrafts.add("Carrier");
+			nomCrafts.add("Cruiser");
+			nomCrafts.add("Destroyer");
+			
+			for(int i = 0; i < nomCrafts.size(); i++) {
+				do {
+					
+				}while(contador != 100);
+			}
+		}
+
 	}
 	
 	public Coordinate nextShoot(Board b) throws InvalidCoordinateException, IllegalArgumentException, CoordinateAlreadyHitException  {
 		
 		Coordinate c = getRandomCoordinate(b,0);
-		
-		b.hit(c);
+
+		try {
+			b.hit(c);
+		}catch(IllegalArgumentException e) {
+			
+		}
 
 		return c;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

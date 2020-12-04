@@ -3,6 +3,8 @@ package model.io;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import java.io.FileNotFoundException;
+
 import org.junit.Test;
 
 import model.exceptions.io.BattleshipIOException;
@@ -15,7 +17,7 @@ public class PlayerFactoryPreTest {
 	 * un PlayerFile.
 	 */
 	@Test
-	public void testCreatePlayerFile1() throws BattleshipIOException {			
+	public void testCreatePlayerFile1() throws BattleshipIOException, FileNotFoundException {			
 			IPlayer ip=PlayerFactory.createPlayer("Saul",DIRFILES+"testCreatePlayerFile1.in");
 			assertEquals("PlayerFile",ip.getClass().getSimpleName());
 	}
@@ -41,7 +43,7 @@ public class PlayerFactoryPreTest {
 	/* Cuando se pasa como segundo parámetro null, createPlayer debe lanzar NullPointerException
 	 */
 	@Test(expected=NullPointerException.class)
-	public void testCreatePlayerNullPointerException() throws BattleshipIOException {
+	public void testCreatePlayerNullPointerException() throws BattleshipIOException, FileNotFoundException {
 		     PlayerFactory.createPlayer("Laura",null);
 	}
 	
