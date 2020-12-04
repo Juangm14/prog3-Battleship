@@ -7,7 +7,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -75,15 +74,13 @@ public class  PlayerFilePreTest {
 	/* Crea un fichero vacío, donde indica la constante DIRFILES, y comprueba que putCrafts(board2d) deja a board2d invariable. 
 	 * El atributo sboard0 contiene el tablero vacío*/
 	@Test
-	public void testPutCraftsEmptyFile() throws BattleshipIOException, InvalidCoordinateException, NextToAnotherCraftException, OccupiedCoordinateException, IllegalArgumentException, IOException {
-		IPlayer ip = PlayerFactory.createPlayer("Console", DIRFILES + "CraftEmpty.in");
-		ip.putCrafts(board2d);
-		assertEquals(sboard0, board2d.show(true));
+	public void testPutCraftsEmptyFile() throws BattleshipIOException, InvalidCoordinateException, NextToAnotherCraftException, OccupiedCoordinateException {
+		fail("Realiza el test");
 	}
 	
 	/* Comprueba un fichero que solo contiene puts */
 	@Test
-	public void testPutCraftsOk1() throws BattleshipIOException, InvalidCoordinateException, NextToAnotherCraftException, OccupiedCoordinateException, IllegalArgumentException, IOException {
+	public void testPutCraftsOk1() throws BattleshipIOException, InvalidCoordinateException, NextToAnotherCraftException, OccupiedCoordinateException {
 		IPlayer ip = PlayerFactory.createPlayer("Saul",DIRFILES+"ShipsOk1.in");
 		ip.putCrafts(board2d);
 		assertEquals(sboard1, board2d.show(true));
@@ -108,7 +105,7 @@ public class  PlayerFilePreTest {
 	
 	/* Aparece al final el comando shoot sin que aparezca un endput antes*/
 	@Test
-	public void testPutCraftsWrong1() throws BattleshipIOException, InvalidCoordinateException, NextToAnotherCraftException, OccupiedCoordinateException, IllegalArgumentException, IOException {
+	public void testPutCraftsWrong1() throws BattleshipIOException, InvalidCoordinateException, NextToAnotherCraftException, OccupiedCoordinateException {
 		IPlayer ip = PlayerFactory.createPlayer("Saul",DIRFILES+"ShipsWrong1.in");
 		try {
 		   ip.putCrafts(board2d);

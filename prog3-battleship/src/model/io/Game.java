@@ -1,7 +1,12 @@
 package model.io;
 
+import java.io.IOException;
+
 import model.Board;
 import model.exceptions.CoordinateAlreadyHitException;
+import model.exceptions.InvalidCoordinateException;
+import model.exceptions.NextToAnotherCraftException;
+import model.exceptions.OccupiedCoordinateException;
 import model.exceptions.io.BattleshipIOException;
 
 public class Game {
@@ -43,8 +48,12 @@ public class Game {
 	}
 	
 	public void start() throws BattleshipIOException {
+		
+		
 		jugador1.putCrafts(tablero1);
 		jugador2.putCrafts(tablero2);
+
+		
 		gameStarted = true;
 		shootCounter = 0;
 		nextToShoot = 1;

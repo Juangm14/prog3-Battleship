@@ -1,18 +1,11 @@
 package model;
 
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-import model.aircraft.Bomber;
-import model.aircraft.Fighter;
-import model.aircraft.Transport;
 import model.ship.Battleship;
-import model.ship.Carrier;
-import model.ship.Cruiser;
-import model.ship.Destroyer;
 
 public class CraftFactoryPreTest {
 
@@ -24,24 +17,7 @@ public class CraftFactoryPreTest {
 		for (Orientation orient : Orientation.values()) {
 			craft = CraftFactory.createCraft("Battleship", orient);
 			assertTrue (craft instanceof Battleship );
-			
-			craft = CraftFactory.createCraft("Carrier", orient);
-			assertTrue (craft instanceof Carrier );
-			
-			craft = CraftFactory.createCraft("Cruiser", orient);
-			assertTrue (craft instanceof Cruiser );
-			
-			craft = CraftFactory.createCraft("Bomber", orient);
-			assertTrue (craft instanceof Bomber );
-			
-			craft = CraftFactory.createCraft("Transport", orient);
-			assertTrue (craft instanceof Transport );
-			
-			craft = CraftFactory.createCraft("Fighter", orient);
-			assertTrue (craft instanceof Fighter );
-			
-			craft = CraftFactory.createCraft("Destroyer", orient);
-			assertTrue (craft instanceof Destroyer );
+			fail("Completa el test");
 		}
 	}
 
@@ -49,6 +25,6 @@ public class CraftFactoryPreTest {
 	/* Comprueba que createCraft devuelve null si el Craft es desconocido */
 	@Test
 	public void testCreateCraftWrong() {
-		assertNull(CraftFactory.createCraft("Paco", Orientation.EAST));
+		fail("Realiza el test");
 	}
 }

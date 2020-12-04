@@ -14,6 +14,7 @@ import model.exceptions.CoordinateAlreadyHitException;
 import model.exceptions.InvalidCoordinateException;
 import model.exceptions.NextToAnotherCraftException;
 import model.exceptions.OccupiedCoordinateException;
+import model.exceptions.io.BattleshipIOException;
 import model.ship.Board2D;
 
 public class PlayerRandom implements IPlayer {
@@ -59,77 +60,20 @@ public class PlayerRandom implements IPlayer {
 	}
 	
 	
-	public void putCrafts(Board b) {
+	public void putCrafts (Board b) throws BattleshipIOException, InvalidCoordinateException, NextToAnotherCraftException, OccupiedCoordinateException {
 		
 		Orientation o = null;
-		int offset = Craft.BOUNDING_SQUARE_SIZE;
-		ArrayList<String> nombres = new ArrayList<>();
-		ArrayList<Craft> crafts = new ArrayList<>();
 		
-		if(b instanceof Board2D) {
-			nombres.add("Battleship");
-			nombres.add("Carrier");
-			nombres.add("Cruiser");
-			nombres.add("Destroyer");
-		}else if(b instanceof Board3D) {
-			nombres.add("Bomber");
-			nombres.add("Fighter");
-			nombres.add("Transport");
-		}
-			
-		for(int i = 0; i < nombres.size(); i++) {
-			
-			int pos = genRandomInt(0,4);
-			
-			switch(pos) {
-				case 0:
-					o = Orientation.NORTH;
-				case 1:
-					o = Orientation.EAST;
-				case 2:
-					o = Orientation.SOUTH;
-				case 3:
-					o = Orientation.WEST;
-			}
-			
-			crafts.add(CraftFactory.createCraft(nombres.get(i), o));
-		}
 		
-		for(int i = 0; i < nombres.size(); i++) {
-			
-			Boolean notIn = false;
-			int maxCoordAleatorias = 0;
-			
-			do {
-				try {
-					Coordinate c = getRandomCoordinate(b,offset);
-					b.checkCoordinate(c);
-					try {
-						b.addCraft(crafts.get(i), c);
-					} catch (OccupiedCoordinateException  | NextToAnotherCraftException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					notIn = false;
-				}catch(InvalidCoordinateException | IllegalCoordinateException e) {
-					notIn = true;
-					maxCoordAleatorias++;
-				}
-			}while(notIn && maxCoordAleatorias == 100);
-		}
+		
 	}
 	
-	public Coordinate nextShoot(Board b) {
+	public Coordinate nextShoot(Board b) throws InvalidCoordinateException, IllegalArgumentException, CoordinateAlreadyHitException  {
 		
 		Coordinate c = getRandomCoordinate(b,0);
 		
-		try {
-			b.hit(c);
-		} catch (InvalidCoordinateException | CoordinateAlreadyHitException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		b.hit(c);
+
 		return c;
 	}
 }

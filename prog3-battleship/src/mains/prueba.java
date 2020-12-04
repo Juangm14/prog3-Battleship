@@ -18,6 +18,7 @@ import model.exceptions.InvalidCoordinateException;
 import model.exceptions.NextToAnotherCraftException;
 import model.exceptions.OccupiedCoordinateException;
 import model.exceptions.io.BattleshipIOException;
+import model.io.IllegalCoordinateException;
 import model.io.PlayerFile;
 import model.io.PlayerRandom;
 import model.ship.Board2D;
@@ -26,138 +27,61 @@ public class prueba {
 
 	public static void main(String[] args) {
 		
-		if(b == null) {
-			throw new NullPointerException();
-		}else{
-			String line="";
-			Orientation o = null;
+		Orientation o = null;
+		int offset = Craft.BOUNDING_SQUARE_SIZE;
+		ArrayList<String> nombres = new ArrayList<>();
+		ArrayList<Craft> crafts = new ArrayList<>();
+		
+		if(b instanceof Board2D) {
+			nombres.add("Battleship");
+			nombres.add("Carrier");
+			nombres.add("Cruiser");
+			nombres.add("Destroyer");
+		}else if(b instanceof Board3D) {
+			nombres.add("Bomber");
+			nombres.add("Fighter");
+			nombres.add("Transport");
+		}
 			
-			try {
-				while(br.readLine() != null){
-					line= br.readLine();
-					String[] result = line.split(" ");
-					ArrayList<String> palabras = new ArrayList<>();
-					 
-				    for(String palabra:result) {	
-				    	if(!palabra.isEmpty()) {
-				    		palabra = palabra.replace("\n", "");
-				    		palabras.add(palabra);
-				    	}
-				    }
-				    
-				    Boolean es2D = false;
-				    String nombre = null;
-				    
-					if(palabras.get(0).equals("put")) {
-						
-						switch(palabras.get(1)) {
-					      case "Cruiser": 
-					    	  es2D = true;
-					    	  nombre = palabras.get(1);
-					    	  break;
-					      case "Destroyer":
-					    	  es2D = true;
-					    	  nombre = palabras.get(1);
-					    	  break;
-					       case "Carrier":
-					    	   es2D = true;
-					    	   nombre = palabras.get(1);
-					    	  break;
-					      case "Battleship":
-					    	  es2D = true;
-					    	  nombre = palabras.get(1);
-					    	  break;
-					      case "Bomber":
-					    	  nombre = palabras.get(1);
-					    	  break;
-					      case "Aircraft":
-					    	  nombre = palabras.get(1);
-					    	  break;
-					      case "Fighter":
-					    	  nombre = palabras.get(1);
-					    	  break;
-					      case "Transport":
-					    	  nombre = palabras.get(1);
-					    	  break;
-					      default:
-					    	  break;
-						}
-						
-						switch(palabras.get(2)) {
-					      case "NORTH": 
-					    	  o = Orientation.NORTH;
-					    	  break;
-					      case "SOUTH":
-					    	  o = Orientation.SOUTH;
-					    	  break;
-					       case "EAST":
-					    	  o = Orientation.EAST;
-					    	  break;
-					      case "WEST":
-					    	  o = Orientation.WEST;
-					    	  break;
-					      default:
-					    	  throw new BattleshipIOException("Error: La orientacion no es la esperada.");
-					    		  
-						}
-						
-						int c0 = 0;
-						int c1 = 0;
-						int c2 = 0;
-						Coordinate c = null;
-						Boolean isNumeric = true;
-						
-						if(palabras.size() < 4 || palabras.size() > 6) {
-							throw new BattleshipIOException("La cantidad de parametros es incorrecta");
-						}else if(es2D == true && b instanceof Board2D && palabras.size() == 5) {
-							try {
-				    			c0 = Integer.parseInt(palabras.get(3));
-				    			c1 = Integer.parseInt(palabras.get(4));
-							}catch(NumberFormatException e) {
-								isNumeric = false;
-							}
-							
-							if(isNumeric == true) {
-								c = CoordinateFactory.createCoordinate(c0,c1);
-							}else {
-								throw new BattleshipIOException("La cooodenada no es un numero");
-							}
-							
-							
-						}else if(es2D == false && b instanceof Board3D && palabras.size() == 6){
-							try {
-				    			c0 = Integer.parseInt(palabras.get(3));
-				    			c1 = Integer.parseInt(palabras.get(4));
-				    			c2 = Integer.parseInt(palabras.get(5));
-							}catch(NumberFormatException e) {
-								isNumeric = false;
-							}
-							
-							if(isNumeric == true) {
-								c = CoordinateFactory.createCoordinate(c0,c1,c2);
-							}else {
-								throw new BattleshipIOException("La cooodenada no es un numero");
-							}
-							
-						}
-						
-						Craft barco = CraftFactory.createCraft(nombre,o);
-						
-
-						b.addCraft(barco, c);
-
-						
-					}else if(palabras.get(0).equals("endput") || palabras.get(0).equals("exit")){
-						break;
-					}else {
-						throw new BattleshipIOException("Comando diferente a put, endput o exit");
-					}
-				}
-			} catch (IllegalArgumentException | InvalidCoordinateException | OccupiedCoordinateException
-					| NextToAnotherCraftException | IOException | BattleshipIOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		for(int i = 0; i < nombres.size(); i++) {
+			
+			int pos = genRandomInt(0,4);
+			
+			switch(pos) {
+				case 0:
+					o = Orientation.NORTH;
+				case 1:
+					o = Orientation.EAST;
+				case 2:
+					o = Orientation.SOUTH;
+				case 3:
+					o = Orientation.WEST;
 			}
+			
+			crafts.add(CraftFactory.createCraft(nombres.get(i), o));
+		}
+		
+		for(int i = 0; i < nombres.size(); i++) {
+			
+			Boolean notIn = false;
+			int maxCoordAleatorias = 0;
+			
+			do {
+				try {
+					Coordinate c = getRandomCoordinate(b,offset);
+					b.checkCoordinate(c);
+					try {
+						b.addCraft(crafts.get(i), c);
+					} catch (OccupiedCoordinateException  | NextToAnotherCraftException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					notIn = false;
+				}catch(InvalidCoordinateException | IllegalCoordinateException e) {
+					notIn = true;
+					maxCoordAleatorias++;
+				}
+			}while(notIn && maxCoordAleatorias == 100);
 		}
 	}
         
