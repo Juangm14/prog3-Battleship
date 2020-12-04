@@ -75,7 +75,9 @@ public class  PlayerFilePreTest {
 	 * El atributo sboard0 contiene el tablero vacío*/
 	@Test
 	public void testPutCraftsEmptyFile() throws BattleshipIOException, InvalidCoordinateException, NextToAnotherCraftException, OccupiedCoordinateException {
-		fail("Realiza el test");
+		IPlayer ip = PlayerFactory.createPlayer("Console", DIRFILES + "CraftEmpty.in");
+		ip.putCrafts(board2d);
+		assertEquals(sboard0, board2d.show(true));
 	}
 	
 	/* Comprueba un fichero que solo contiene puts */

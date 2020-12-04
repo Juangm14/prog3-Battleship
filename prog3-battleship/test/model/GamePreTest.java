@@ -48,7 +48,24 @@ public class GamePreTest {
 		  fail ("Error: se debió lanzar NullPointerException");
 		} catch (NullPointerException e) {
 		}
-		fail ("Completa el test");
+		
+		try {
+			  new Game(board1, null, player1, player2);
+			  fail ("Error: se debió lanzar NullPointerException");
+			} catch (NullPointerException e) {
+			}
+		
+		try {
+			  new Game(board1, board2, null, player2);
+			  fail ("Error: se debió lanzar NullPointerException");
+			} catch (NullPointerException e) {
+			}
+		
+		try {
+			  new Game(board1, board2, player1, null);
+			  fail ("Error: se debió lanzar NullPointerException");
+			} catch (NullPointerException e) {
+			}
 	}
 
 	/*Test de los getPlayers y su relación de asociación con Game */

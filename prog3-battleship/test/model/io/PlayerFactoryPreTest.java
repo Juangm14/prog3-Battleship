@@ -26,7 +26,7 @@ public class PlayerFactoryPreTest {
 	 */
 	@Test
 	public void testCreatePlayerRandom1() throws BattleshipIOException {
-		fail("Realiza el test");
+		PlayerFactory.createPlayer("Laura","50000");
 	}
 	
 	//TODO
@@ -35,7 +35,7 @@ public class PlayerFactoryPreTest {
 	 */
 	@Test
 	public void testCreatePlayerFileNotExist() throws BattleshipIOException {
-		fail("Realiza el test");
+		PlayerFactory.createPlayer("Laura","null");
 	}
 	
 	/* Cuando se pasa como segundo parámetro null, createPlayer debe lanzar NullPointerException
@@ -51,7 +51,7 @@ public class PlayerFactoryPreTest {
 	  debe devolver null*/
 	@Test
 	public void testCreatePlayerNull1() throws BattleshipIOException {
-		fail("Realiza el test");
+		PlayerFactory.createPlayer("Laura","patata");
 	}
 	
 }

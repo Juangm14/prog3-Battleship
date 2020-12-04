@@ -38,7 +38,13 @@ public class VisualiserConsolePreTest {
 	 */
 	@Test
 	public void testVisualiserConsole()  {
-		fail("Realiza el test");
+		try {
+			new VisualiserConsole(null);
+			fail("falla");
+		}catch(NullPointerException e) {
+			
+		}
+		
 	}
 
 	/* Se comprueba que show invoca a game.toString() y lo muestra en
