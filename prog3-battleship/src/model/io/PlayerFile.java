@@ -36,139 +36,81 @@ public class PlayerFile implements IPlayer{
 		return nombre + " (PlayerFile)"; 
 	}
 	
-	public void putCrafts(Board b) throws BattleshipIOException{
+	public void putCrafts(Board b) throws BattleshipIOException, IOException, InvalidCoordinateException, OccupiedCoordinateException, NextToAnotherCraftException, IllegalArgumentException{
 		
 		if(b == null) {
 			throw new NullPointerException();
-		}else{
-			String line="";
-			Orientation o = null;
+		}else {
+			String line = "";
+			Orientation o;
 			
-			try {
-				while(br.readLine() != null){
-					line= br.readLine();
-					String[] result = line.split(" ");
-					ArrayList<String> palabras = new ArrayList<>();
-					 
-				    for(String palabra:result) {	
-				    	if(!palabra.isEmpty()) {
-				    		palabra = palabra.replace("\n", "");
-				    		palabras.add(palabra);
+			while(br.readLine() != null) {
+
+				line= br.readLine();
+				
+				String[] result = line.split(" ");
+				ArrayList<String> palabras = new ArrayList<>();
+				 
+			    for(String palabra:result) {	
+			    	if(!palabra.isEmpty()) {
+			    		palabra = palabra.replace("\n", "");
+			    		palabras.add(palabra);
+			    	}
+			    }
+			    
+			    if(palabras.get(0).equals("put")) {
+			    	
+					switch(palabras.get(2)) {
+				      case "NORTH": 
+				    	  o = Orientation.NORTH;
+				    	  break;
+				      case "SOUTH":
+				    	  o = Orientation.SOUTH;
+				    	  break;
+				       case "EAST":
+				    	  o = Orientation.EAST;
+				    	  break;
+				      case "WEST":
+				    	  o = Orientation.WEST;
+				    	  break;
+				      default:
+				    	  throw new BattleshipIOException("Error: La orientacion no es la esperada.");
+					}
+					
+				    if(b instanceof Board3D) {
+				    	if(palabras.size() < 6 || palabras.size() > 6) {
+				    		throw new BattleshipIOException("Cantidad de parametros en el comando put NO es CORRECTA.");
+				    	}else {
+				    		try {
+				    			int c0 = Integer.parseInt(palabras.get(3));
+					    		int c1 = Integer.parseInt(palabras.get(4));
+					    		int c2 = Integer.parseInt(palabras.get(5));
+					    		Craft barco = CraftFactory.createCraft(palabras.get(1), o);
+					    		b.addCraft(barco, CoordinateFactory.createCoordinate(c0, c1, c2));
+				    		}catch(NumberFormatException e) {
+				    			throw new BattleshipIOException("ERROR: Un parametro de la coordenada no es un numero.");
+				    		}
+				    	}
+				    }else if(b instanceof Board2D) {
+				    	if(palabras.size() < 5 || palabras.size() > 5) {
+				    		throw new BattleshipIOException("Cantidad de parametros en el comando put NO es CORRECTA.");
+				    	}else {
+				    		try {
+				    			int c0 = Integer.parseInt(palabras.get(3));
+					    		int c1 = Integer.parseInt(palabras.get(4));
+					    		Craft barco = CraftFactory.createCraft(palabras.get(1), o);
+					    		b.addCraft(barco, CoordinateFactory.createCoordinate(c0, c1));
+				    		}catch(NumberFormatException e) {
+				    			throw new BattleshipIOException("ERROR: Un parametro de la coordenada no es un numero.");
+				    		}
 				    	}
 				    }
-				    
-				    Boolean es2D = false;
-				    String nombre = null;
-				    
-					if(palabras.get(0).equals("put")) {
-						
-						switch(palabras.get(1)) {
-					      case "Cruiser": 
-					    	  es2D = true;
-					    	  nombre = palabras.get(1);
-					    	  break;
-					      case "Destroyer":
-					    	  es2D = true;
-					    	  nombre = palabras.get(1);
-					    	  break;
-					       case "Carrier":
-					    	   es2D = true;
-					    	   nombre = palabras.get(1);
-					    	  break;
-					      case "Battleship":
-					    	  es2D = true;
-					    	  nombre = palabras.get(1);
-					    	  break;
-					      case "Bomber":
-					    	  nombre = palabras.get(1);
-					    	  break;
-					      case "Aircraft":
-					    	  nombre = palabras.get(1);
-					    	  break;
-					      case "Fighter":
-					    	  nombre = palabras.get(1);
-					    	  break;
-					      case "Transport":
-					    	  nombre = palabras.get(1);
-					    	  break;
-					      default:
-					    	  break;
-						}
-						
-						switch(palabras.get(2)) {
-					      case "NORTH": 
-					    	  o = Orientation.NORTH;
-					    	  break;
-					      case "SOUTH":
-					    	  o = Orientation.SOUTH;
-					    	  break;
-					       case "EAST":
-					    	  o = Orientation.EAST;
-					    	  break;
-					      case "WEST":
-					    	  o = Orientation.WEST;
-					    	  break;
-					      default:
-					    	  throw new BattleshipIOException("Error: La orientacion no es la esperada.");
-					    		  
-						}
-						
-						int c0 = 0;
-						int c1 = 0;
-						int c2 = 0;
-						Coordinate c = null;
-						Boolean isNumeric = true;
-						
-						if(palabras.size() < 4 || palabras.size() > 6) {
-							throw new BattleshipIOException("La cantidad de parametros es incorrecta");
-						}else if(es2D == true && b instanceof Board2D && palabras.size() == 5) {
-							try {
-				    			c0 = Integer.parseInt(palabras.get(3));
-				    			c1 = Integer.parseInt(palabras.get(4));
-							}catch(NumberFormatException e) {
-								isNumeric = false;
-							}
-							
-							if(isNumeric == true) {
-								c = CoordinateFactory.createCoordinate(c0,c1);
-							}else {
-								throw new BattleshipIOException("La cooodenada no es un numero");
-							}
-							
-							
-						}else if(es2D == false && b instanceof Board3D && palabras.size() == 6){
-							try {
-				    			c0 = Integer.parseInt(palabras.get(3));
-				    			c1 = Integer.parseInt(palabras.get(4));
-				    			c2 = Integer.parseInt(palabras.get(5));
-							}catch(NumberFormatException e) {
-								isNumeric = false;
-							}
-							
-							if(isNumeric == true) {
-								c = CoordinateFactory.createCoordinate(c0,c1,c2);
-							}else {
-								throw new BattleshipIOException("La cooodenada no es un numero");
-							}
-							
-						}
-						
-						Craft barco = CraftFactory.createCraft(nombre,o);
-						
+			    }else if(palabras.get(0).equals("exit") || palabras.get(0).equals("endput")){
+			    	break;
+			    }else {
+			    	throw new BattleshipIOException("ERROR: Comando diferente a 'exit', 'endput' o 'put.'");
+			    }
 
-						b.addCraft(barco, c);
-
-						
-					}else if(palabras.get(0).equals("endput") || palabras.get(0).equals("exit")){
-						break;
-					}else {
-						throw new BattleshipIOException("Comando diferente a put, endput o exit");
-					}
-				}
-			} catch (IllegalArgumentException | InvalidCoordinateException | OccupiedCoordinateException
-					| NextToAnotherCraftException | IOException | BattleshipIOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 		}
 	}
