@@ -58,7 +58,6 @@ public class Game {
 			nextToShoot = 1;
 		} catch (InvalidCoordinateException | OccupiedCoordinateException | NextToAnotherCraftException
 				| BattleshipIOException e) {
-			e.printStackTrace();
 		}
 	}
 	
@@ -76,8 +75,6 @@ public class Game {
 			try {
 				jugador1.nextShoot(tablero2);
 			} catch (CoordinateAlreadyHitException | InvalidCoordinateException | BattleshipIOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 			nextToShoot = 2;
 			shootCounter++;
@@ -87,8 +84,6 @@ public class Game {
 			try {
 				jugador2.nextShoot(tablero1);
 			} catch (CoordinateAlreadyHitException | InvalidCoordinateException | BattleshipIOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 			nextToShoot = 1;
 			shootCounter++;

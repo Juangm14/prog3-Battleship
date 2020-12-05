@@ -1,8 +1,11 @@
 package model;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import org.junit.Test;
+
+import model.ship.Coordinate2D;
 
 public class CoordinateFactoryPreTest {
 
@@ -14,7 +17,8 @@ public class CoordinateFactoryPreTest {
 	 */
 	@Test
 	public void testCreateCoordinateOk() {
-		fail ("Realiza el test");
+		Coordinate2D pepe = new Coordinate2D(1, 3);
+		assertEquals(pepe, CoordinateFactory.createCoordinate(1, 3));
 	}
 	
 	/* Comprueba que si a createCoordinate se le pasa una cantidad de argumentos enteros 
@@ -22,7 +26,14 @@ public class CoordinateFactoryPreTest {
 	 */
 	@Test
 	public void testCreateCoordinateException() {
-		fail ("Realiza el test");
+		try {
+			CoordinateFactory.createCoordinate(1);
+			fail();
+		} catch (IllegalArgumentException e) { }
+		try {
+			CoordinateFactory.createCoordinate(1, 2, 3, 4);
+			fail();
+		} catch (IllegalArgumentException e) { }
 	}
 
 }

@@ -36,7 +36,7 @@ public class PlayerFile implements IPlayer{
 		return nombre + " (PlayerFile)"; 
 	}
 	
-	public void putCrafts(Board b) throws BattleshipIOException, InvalidCoordinateException, OccupiedCoordinateException, NextToAnotherCraftException{
+	public void putCrafts(Board b) throws BattleshipIOException, IllegalArgumentException, InvalidCoordinateException, OccupiedCoordinateException, NextToAnotherCraftException{
 		try {
 			if(b == null) {
 				throw new NullPointerException();
@@ -44,15 +44,13 @@ public class PlayerFile implements IPlayer{
 				String line = "";
 				Orientation o;
 				try {
-					while(br.readLine() != null) {
-	
-						line= br.readLine();
+					while((line = br.readLine()) != null) {
 						
 						String[] result = line.split(" ");
 						ArrayList<String> palabras = new ArrayList<>();
 						 
 					    for(String palabra:result) {	
-					    	if(!palabra.isEmpty()) {
+					    	if(palabra.trim().length() > 0) {
 					    		palabra = palabra.replace("\n", "");
 					    		palabras.add(palabra);
 					    	}
@@ -78,13 +76,14 @@ public class PlayerFile implements IPlayer{
 							}
 							
 						    if(b instanceof Board3D) {
-						    	if(palabras.size() < 6 || palabras.size() > 6) {
+						    	if(palabras.size() < 6) {
 						    		throw new BattleshipIOException("Cantidad de parametros en el comando put NO es CORRECTA.");
 						    	}else {
 						    		try {
 						    			int c0 = Integer.parseInt(palabras.get(3));
 							    		int c1 = Integer.parseInt(palabras.get(4));
 							    		int c2 = Integer.parseInt(palabras.get(5));
+							    		b.checkCoordinate(CoordinateFactory.createCoordinate(c0,c1,c2));
 							    		Craft barco = CraftFactory.createCraft(palabras.get(1), o);
 							    		b.addCraft(barco, CoordinateFactory.createCoordinate(c0, c1, c2));
 						    		}catch(NumberFormatException e) {
@@ -92,12 +91,13 @@ public class PlayerFile implements IPlayer{
 						    		}
 						    	}
 						    }else if(b instanceof Board2D) {
-						    	if(palabras.size() < 5 || palabras.size() > 5) {
+						    	if(palabras.size() < 5) {
 						    		throw new BattleshipIOException("Cantidad de parametros en el comando put NO es CORRECTA.");
 						    	}else {
 						    		try {
 						    			int c0 = Integer.parseInt(palabras.get(3));
 							    		int c1 = Integer.parseInt(palabras.get(4));
+							    		b.checkCoordinate(CoordinateFactory.createCoordinate(c0,c1));
 							    		Craft barco = CraftFactory.createCraft(palabras.get(1), o);
 							    		b.addCraft(barco, CoordinateFactory.createCoordinate(c0, c1));
 						    		}catch(NumberFormatException e) {
@@ -130,77 +130,36 @@ public class PlayerFile implements IPlayer{
 			String line;
 			
 			try {
-				if(br.readLine() != null) {
+				while((line = br.readLine()) != null) {
 					
-					line = br.readLine();
 					String[] result = line.split(" ");
 					ArrayList<String> palabras = new ArrayList<>();
 					
 				    for(String palabra:result) {	
 				    	if(!palabra.isEmpty()) {
 				    		palabra = palabra.replace("\n", "");
-				    		palabras.add(palabra);
+			    			palabras.add(palabra);
 				    	}
 				    }
 				    
-				    if(palabras.get(0).equals("shoot")) {
-						
-				    	int c0 = 0;
-						int c1 = 0;
-						int c2 = 0;
-						Coordinate c = null;
-						Boolean isNumeric = true;
-						
-				    	if(palabras.size() < 3 || palabras.size() < 4) {
-				    		throw new BattleshipIOException("La cantidad de parametros es incorrecta.");
-				    	}else if(palabras.size() == 3) {
-				    		
-				    		try {
-				    			c0 = Integer.parseInt(palabras.get(1));
-				    			c1 = Integer.parseInt(palabras.get(2));
-				    		}catch(NumberFormatException e) {
-				    			isNumeric = false;
-				    		}
-				    		
-				    		if(isNumeric) {
-				    			c = CoordinateFactory.createCoordinate(c0,c1);
-				    		}else {
-				    			throw new BattleshipIOException("Las coordenadas no son parametros numericos.");
-				    		}
-				    	}else if(palabras.size() == 4) {
-				    		
-				    		try {
-				    			c0 = Integer.parseInt(palabras.get(2));
-				    			c1 = Integer.parseInt(palabras.get(2));
-				    			c2 = Integer.parseInt(palabras.get(2));
-				    		}catch(NumberFormatException e){
-				    			isNumeric = false;
-				    		}
-				    		
-				    		if(isNumeric) {
-				    			c = CoordinateFactory.createCoordinate(c0,c1,c2);
-				    		}else {
-				    			throw new BattleshipIOException("Las coordenadas no son parametros numericos.");
-				    		}
-				    	}
-				    	
-				    	b.hit(c);
-				    	
-				    	return c;
-				    }else if(palabras.get(0).equals("exit")) {
-				    	return null;
-				    }else {
-				    	throw new BattleshipIOException("Comando disferente a shoot, exit");
-				    }
+					if(b instanceof Board2D) {
+						if(!palabras.get(0).equals("shoot") && !palabras.get(0).equals("exit") && (palabras.size() < 3
+								|| palabras.size() > 3)) {
+							throw new BattleshipIOException("El comando no es admisible");
+						}else {
+							
+						}
+					}else if(b instanceof Board3D){
+							
+					}
 				}
-			} catch (IllegalArgumentException | InvalidCoordinateException | CoordinateAlreadyHitException | IOException
-					| BattleshipIOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			} catch (IOException e) {
+				throw new BattleshipIOException("Leemos linea del archivo.");
 			}
+		
+			return null;
 		}
-		return null;
-	}	
+	}
 }
 
 

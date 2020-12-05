@@ -57,28 +57,78 @@ public class PlayerRandom implements IPlayer {
 	}
 	
 	
-	public void putCrafts (Board b) throws BattleshipIOException, InvalidCoordinateException, NextToAnotherCraftException, OccupiedCoordinateException {
+	public void putCrafts (Board b) {
 		
 		Orientation o = null;
 		int contador = 0;
+		int offset = Craft.BOUNDING_SQUARE_SIZE;
+		Boolean repite = false;
 		
 		if(b instanceof Board3D) {
 			ArrayList<String> nomAircrafts = new ArrayList<>();
-			ArrayList<Craft> aircrafts = new ArrayList<>();
+			nomAircrafts.add("Bomber");
+			nomAircrafts.add("Fighter");
+			nomAircrafts.add("Transport");
 			
+			for(int i = 0; i < nomAircrafts.size(); i++) {
+				
+				int rndOrientation = genRandomInt(0,4);
+				
+				switch(rndOrientation) {
+				case 0:
+					o = Orientation.NORTH;
+				case 1:
+					o = Orientation.EAST;
+				case 2:
+					o = Orientation.SOUTH;
+				case 3:
+					o = Orientation.WEST;
+				}
+				do{
+					Craft cr = CraftFactory.createCraft(nomAircrafts.get(i), o);
+					Coordinate c = this.getRandomCoordinate(b, offset);
+					try {
+						b.addCraft(cr, c);
+						repite=false;
+					} catch (InvalidCoordinateException | OccupiedCoordinateException | NextToAnotherCraftException e) {
+						repite=true;
+					}
+					contador++;
+				}while(contador <= 100 && repite);
+			}
 			
 		}else if(b instanceof Board2D) {
 			ArrayList<String> nomCrafts = new ArrayList<>();
-			ArrayList<Craft> crafts = new ArrayList<>();
 			nomCrafts.add("Battleship");
 			nomCrafts.add("Carrier");
 			nomCrafts.add("Cruiser");
 			nomCrafts.add("Destroyer");
 			
 			for(int i = 0; i < nomCrafts.size(); i++) {
-				do {
-					
-				}while(contador != 100);
+				
+				int rndOrientation = genRandomInt(0,4);
+				
+				switch(rndOrientation) {
+				case 0:
+					o = Orientation.NORTH;
+				case 1:
+					o = Orientation.EAST;
+				case 2:
+					o = Orientation.SOUTH;
+				case 3:
+					o = Orientation.WEST;
+				}
+				do{
+					Craft cr = CraftFactory.createCraft(nomCrafts.get(i), o);
+					Coordinate c = this.getRandomCoordinate(b, offset);
+					try {
+						b.addCraft(cr, c);
+						repite=false;
+					} catch (InvalidCoordinateException | OccupiedCoordinateException | NextToAnotherCraftException e) {
+						repite=true;
+					}
+					contador++;
+				}while(contador <= 100 && repite);
 			}
 		}
 
@@ -88,11 +138,8 @@ public class PlayerRandom implements IPlayer {
 		
 		Coordinate c = getRandomCoordinate(b,0);
 
-		try {
-			b.hit(c);
-		}catch(IllegalArgumentException e) {
-			
-		}
+
+		b.hit(c);
 
 		return c;
 	}

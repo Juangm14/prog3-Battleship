@@ -12,7 +12,7 @@ import model.exceptions.io.BattleshipIOException;
 
 public interface IPlayer {
 
-	public void putCrafts(Board b) throws BattleshipIOException, InvalidCoordinateException, OccupiedCoordinateException, NextToAnotherCraftException;
+	public void putCrafts(Board b) throws IllegalArgumentException, BattleshipIOException, InvalidCoordinateException, OccupiedCoordinateException, NextToAnotherCraftException;
 	
 	public Coordinate nextShoot(Board b) throws BattleshipIOException, CoordinateAlreadyHitException, InvalidCoordinateException;
 	
