@@ -236,7 +236,7 @@ public class  PlayerFilePreTest {
 		for(int i =0; i<4; i++) {
 			try {
 				   ip.nextShoot(board2d);
-				   fail("Error: se debiÃ³ lanzar BattleshipIOException");
+				   fail("Error: se debe lanzar BattleshipIOException");
 				} catch (BattleshipIOException e) {
 					assertNotNull(e.getMessage());
 					assertTrue (e.getMessage().length()>1);
