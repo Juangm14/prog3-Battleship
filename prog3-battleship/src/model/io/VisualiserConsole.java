@@ -21,5 +21,4 @@ public class VisualiserConsole implements IVisualiser{
 	public void close() {
 		
 	}
-	
 }

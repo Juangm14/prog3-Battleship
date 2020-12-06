@@ -38,18 +38,14 @@ public class PlayerRandom implements IPlayer {
 	}
 	
 	public Coordinate getRandomCoordinate(Board b, int offset) {
-		
-		boolean x = false;
-		
+	
 		if(b instanceof Board3D) {
-			x = true;
 			int c0 = genRandomInt(0-offset, b.getSize());
 			int c1 = genRandomInt(0-offset, b.getSize());
 			int c2 = genRandomInt(0-offset, b.getSize());
 			Coordinate c = CoordinateFactory.createCoordinate(c0,c1,c2);
 			return c;
 		}else if(b instanceof Board2D){
-			x = true;
 			int c0 = genRandomInt(0-offset, b.getSize());
 			int c1 = genRandomInt(0-offset, b.getSize());
 			Coordinate c =  CoordinateFactory.createCoordinate(c0,c1);
@@ -122,6 +118,7 @@ public class PlayerRandom implements IPlayer {
 	}
 	
 	public Coordinate nextShoot(Board b) throws InvalidCoordinateException, CoordinateAlreadyHitException {
+		
 		Coordinate c = getRandomCoordinate(b,0);
 
 		b.hit(c);
