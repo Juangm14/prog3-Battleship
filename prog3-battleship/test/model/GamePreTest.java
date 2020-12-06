@@ -14,7 +14,6 @@ import org.junit.Test;
 
 import model.aircraft.Board3D;
 import model.exceptions.io.BattleshipIOException;
-import model.io.Game;
 import model.io.IPlayer;
 import model.io.IVisualiser;
 import model.io.PlayerFactory;

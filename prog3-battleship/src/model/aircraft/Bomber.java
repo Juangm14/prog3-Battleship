@@ -2,14 +2,19 @@ package model.aircraft;
 
 import model.Orientation;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Bomber.
+ */
 public class Bomber extends Aircraft{
 
 	private static char s = '⇶';
 	private static String n = "Bomber";
-	
+
 	/**
-	 * Creacion de una aeronabe pasandole su orientacion, simbolo y nombre.
-	 * @param o orientacion del barco
+	 * Instantiates a new bomber.
+	 *
+	 * @param o the o
 	 */
 	public Bomber(Orientation o) {
 

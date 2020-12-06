@@ -6,15 +6,19 @@ package model.ship;
 import model.Orientation;
 import model.Craft;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Ship.
+ */
 public abstract class Ship extends Craft{
-	
-	/**
-	 * Constructor donde se le asignan los valores a los atributos
-	 * @param o Orientacion del barco(ship)
-	 * @param s Symbolo para representar el barco en el tablero
-	 * @param n Nombre del barco
-	 */
-          
+
+    /**
+     * Instantiates a new ship.
+     *
+     * @param o the o
+     * @param s the s
+     * @param n the n
+     */
     public Ship(Orientation o, char s, String n) {
     	super(o,s,n);
     }

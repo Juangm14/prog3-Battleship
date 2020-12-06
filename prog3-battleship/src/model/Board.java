@@ -1,6 +1,3 @@
-/**
- * @author Juan García Martínez 20085694R
- */
 package model;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -13,13 +10,28 @@ import model.exceptions.InvalidCoordinateException;
 import model.exceptions.NextToAnotherCraftException;
 import model.exceptions.OccupiedCoordinateException;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Board.
+ */
 public abstract class Board {
 
+	/** The hit symbol. */
 	public static char HIT_SYMBOL = '•';
+	
+	/** The water symbol. */
 	public static char WATER_SYMBOL = ' ';
+	
+	/** The notseen symbol. */
 	public static char NOTSEEN_SYMBOL = '?';
+	
+	/** The Board SEPARATOR. */
 	public static char Board_SEPARATOR = '|';
+	
+	/** The max board size. */
 	public static int MAX_BOARD_SIZE = 20;
+	
+	/** The min board size. */
 	public static int MIN_BOARD_SIZE = 5;
 	private int size;
 	private int numCrafts;
@@ -27,9 +39,11 @@ public abstract class Board {
 	private Map<Coordinate,Craft> board = new HashMap<>();
 	private Set<Coordinate> seen = new HashSet<>();
 	
+
 	/**
-	 * Construtor del tablero donde si se comprueba que el tamaño pasado esta dentro del rango del tablero
-	 * @param size Tamaño del tablero
+	 * Instantiates a new board.
+	 *
+	 * @param size the size
 	 */
 	public Board(int size) {
 		numCrafts = 0;
@@ -46,27 +60,31 @@ public abstract class Board {
 	}
 
 	/**
-	 * 
-	 * @return tamaño del tablero
+	 * Gets the size.
+	 *
+	 * @return the size
 	 */
 	public int getSize() {
 		return size;
 	}
 	
 	/**
-	 * Comprobamos si una coordenada 2D o 3D esta dentro del rango del tablero
-	 * @param c coordenada que vamos a evaluar
-	 * @return devuelve un booleano confirmando si esta dentro del rango
+	 * Check coordinate.
+	 *
+	 * @param c the c
+	 * @return true, if successful
 	 */
 	abstract public boolean checkCoordinate(Coordinate c);
 	
 	/**
-	 * Añadimos un barco 2D o 3D al tablero
-	 * @param ship barco
-	 * @param position coordenada del barco
-	 * @return true si se ha añadido correctamente y false en caso que no se haya podido añadir.
-	 * @throws InvalidCoordinateException 
-	 * @throws OccupiedCoordinateException 
+	 * Adds the craft.
+	 *
+	 * @param craft the craft
+	 * @param position the position
+	 * @return true, if successful
+	 * @throws InvalidCoordinateException the invalid coordinate exception
+	 * @throws OccupiedCoordinateException the occupied coordinate exception
+	 * @throws NextToAnotherCraftException the next to another craft exception
 	 */
 	public boolean addCraft(Craft craft, Coordinate position) throws InvalidCoordinateException, OccupiedCoordinateException, NextToAnotherCraftException {
 		
@@ -105,19 +123,23 @@ public abstract class Board {
 		return true;	
 	}
 
+
 	/**
-	 * Metodo donde cogemos un barco con cierta coordenada
-	 * @param c coordenada
-	 * @return barco al que pertenece la coordenada que le hemos pasado
+	 * Gets the craft.
+	 *
+	 * @param c the c
+	 * @return the craft
 	 */
 	public Craft getCraft(Coordinate c) {	
 		return board.get(c);
 	}
 
+
 	/**
-	 * Metodo con el que vemos si cierta coordenada ha sido vista
-	 * @param c coordenada
-	 * @return si la coordenada que le pasamos ha sido vista devuelve true, sino false
+	 * Checks if is seen.
+	 *
+	 * @param c the c
+	 * @return true, if is seen
 	 */
 	public boolean isSeen(Coordinate c) {
 		if(seen.contains(c)) {
@@ -127,11 +149,12 @@ public abstract class Board {
 	}
 
 	/**
-	 * Simula el lanzamiento de un torpedo en una coordenada c del tablero
-	 * @param c coordenada
-	 * @return devuelve agua en caso de que no alcance un objetivo(barco), destroyed si era la ultima coordenada del barco
-	 * y hit si alcanza a una coordenada del barco pero no es la ultima.
-	 * @throws CoordinateAlreadyHitException 
+	 * Hit.
+	 *
+	 * @param c the c
+	 * @return the cell status
+	 * @throws InvalidCoordinateException the invalid coordinate exception
+	 * @throws CoordinateAlreadyHitException the coordinate already hit exception
 	 */
 	public CellStatus hit(Coordinate c) throws InvalidCoordinateException, CoordinateAlreadyHitException {
 		
@@ -164,9 +187,11 @@ public abstract class Board {
 		}	
 	}
 
+
 	/**
-	 * Comprobamos si todos los barcos han sido destruidos.
-	 * @return true si todos los barcos han sido destruidos y false en caso contrario
+	 * Are all crafts destroyed.
+	 *
+	 * @return true, if successful
 	 */
 	public boolean areAllCraftsDestroyed() {
 		if(destroyedCrafts == numCrafts) {
@@ -176,12 +201,13 @@ public abstract class Board {
 		return false;
 	}
 
+
 	/**
-	 * Metodo donde cogemos todos los vecinos de un barco, sin incluir las absolutas del barco y las que esten fuera del
-	 * rango del tablero
-	 * @param ship barco del que queremos coger los vecinos
-	 * @param position coordenada del barco
-	 * @return conjunto de coordenadas vecinas
+	 * Gets the neighborhood.
+	 *
+	 * @param craft the craft
+	 * @param position the position
+	 * @return the neighborhood
 	 */
 	public Set<Coordinate> getNeighborhood(Craft craft, Coordinate position) {
 		
@@ -203,21 +229,29 @@ public abstract class Board {
 	}
 
 	/**
-	 * Llamamos a la funcion getNeighborhood con la posicion del barco
-	 * @param ship barco
-	 * @return conjunto de coordenadas vecinas
+	 * Gets the neighborhood.
+	 *
+	 * @param craft the craft
+	 * @return the neighborhood
 	 */
 	public Set<Coordinate> getNeighborhood(Craft craft) {
 			return getNeighborhood(craft, craft.getPosition());	
 	}
 	
+
 	/**
-	 * Mostramos el tablero con los barcos por pantalla
-	 * @param unveil si esta en true lo vemos como si fuesemos enemigos y en false lo veriamos como si fuesemos aliados
-	 * @return devuelve el tablero por pantalla
+	 * Show.
+	 *
+	 * @param unveil the unveil
+	 * @return the string
 	 */
 	public abstract String show(boolean unveil);
 	
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	public String toString() {
 		String cadena = "Board " + size + ";"+ " crafts: " + numCrafts + "; destroyed: " + destroyedCrafts;
 		

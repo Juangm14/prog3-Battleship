@@ -1,5 +1,7 @@
 package model.io;
 
+import model.Game;
+
 public class VisualiserConsole implements IVisualiser{
 
 	private Game game;

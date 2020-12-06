@@ -5,12 +5,18 @@ import java.util.Set;
 import model.Coordinate;
 import model.CoordinateFactory;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Coordinate3D.
+ */
 public class Coordinate3D extends Coordinate{
+
 	/**
-	 * Constructor de una coordenada3D
-	 * @param x primera coordenada de la aeronave
-	 * @param y segunda coordenada de la aeronave
-	 * @param z tercera coordenada de la aeronave
+	 * Instantiates a new coordinate 3 D.
+	 *
+	 * @param x the x
+	 * @param y the y
+	 * @param z the z
 	 */
 	public Coordinate3D(int x, int y,int z){
 		super(3);
@@ -18,19 +24,31 @@ public class Coordinate3D extends Coordinate{
 		set(1,y);
 		set(2,z);
 	}
+
 	/**
-	 * Cosntructor de una coordenada3D
-	 * @param c coordenada que vamos a crear
+	 * Instantiates a new coordinate 3 D.
+	 *
+	 * @param c the c
 	 */
 	public Coordinate3D(Coordinate3D c) {
 		super(c);
 	}
 	
+	/**
+	 * Copy.
+	 *
+	 * @return the coordinate 3 D
+	 */
 	@Override
 	public Coordinate3D copy() {
 		return new Coordinate3D(this);
 	}
 	
+	/**
+	 * Adjacent coordinates.
+	 *
+	 * @return the sets the
+	 */
 	public Set<Coordinate> adjacentCoordinates() {
 		
 		Set<Coordinate> adyacentes = new HashSet<>();
@@ -49,6 +67,11 @@ public class Coordinate3D extends Coordinate{
 		return adyacentes;
 	}
 	
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	public final String toString(){
 		   
 		String concatenation = "";

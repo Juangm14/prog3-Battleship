@@ -108,8 +108,6 @@ public class PlayerFile implements IPlayer{
 			throw new BattleshipIOException("Se ha leido una linea de br.");
 		}
 	}
-
-	
 	
 	public Coordinate nextShoot(Board b) throws BattleshipIOException, InvalidCoordinateException,CoordinateAlreadyHitException{
 		

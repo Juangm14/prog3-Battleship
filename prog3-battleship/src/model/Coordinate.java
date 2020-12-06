@@ -4,29 +4,28 @@ import java.util.Set;
 import java.util.Objects;
 
 
+// TODO: Auto-generated Javadoc
 /**
- * 
- *@author Juan Garcia Martinez
- *
- * 
+ * The Class Coordinate.
  */
-
 public abstract class Coordinate {
 	
 	private int[] components;
 	
+
 	/**
-	 * Constructor de coordinate donde se le pasa las dimensiones de la coordenada
-	 * @param dimensiones
+	 * Instantiates a new coordinate.
+	 *
+	 * @param dimensiones the dimensiones
 	 */
 	protected Coordinate(int dimensiones){
 		components = new int[dimensiones];
 	}
+
 	/**
-	 * Constructor copia
-	 * 
-	 * @param c
-	 * Coordenada de la que se va a hacer una copia
+	 * Instantiates a new coordinate.
+	 *
+	 * @param c the c
 	 */
 	protected Coordinate(final Coordinate c) {
 		
@@ -36,15 +35,13 @@ public abstract class Coordinate {
 			components[i] = c.components[i];
 		}
 	}
+
 	/**
-	 * Coge un valor Coordenada de la posicion que tu elijas.
-	 * 
-	 * @param component
-	 * Posicion del elemento (x o y) que se quiere coger(entre 0 y 1) de una determinada Coordenada.
-	 * @return
-	 * Devuelve el valor x o y de la coordenada, en caso de estar fuera de rango salta un error 
-	 * y devueleve -1
-	 * 
+	 * Gets the.
+	 *
+	 * @param component the component
+	 * @return the int
+	 * @throws IllegalArgumentException the illegal argument exception
 	 */
 	public int get(int component) throws IllegalArgumentException{
 		
@@ -54,15 +51,13 @@ public abstract class Coordinate {
 			throw new IllegalArgumentException();
 		}
 	}
+
 	/**
-	 * Sustituye una de las componentes de Coordenadas con el valor que le pases
-	 * 
-	 * @param component
-	 * Posicion del elemento (x o y) que se quiere modificar y en caso de no entrar dentro del rango
-	 * de las coordenadas saltara un error.
-	 * @param value
-	 * Sustuira al elemento anteriormente selecciondo
-	 * 
+	 * Sets the.
+	 *
+	 * @param component the component
+	 * @param value the value
+	 * @throws IllegalArgumentException the illegal argument exception
 	 */
 	protected void set(int component,int value) throws IllegalArgumentException{
 	   
@@ -73,18 +68,27 @@ public abstract class Coordinate {
 			throw new IllegalArgumentException();
 		}
 	}
+
 	/**
-	 * 
-	 * @return coordenadas adyacentes a la coordenada que ha llamado a la funcion, es decir, this.
+	 * Adjacent coordinates.
+	 *
+	 * @return the sets the
 	 */
 	public abstract Set<Coordinate> adjacentCoordinates();
 	
 	/**
-	 * 
-	 * @return copia del constructor.
+	 * Copy.
+	 *
+	 * @return the coordinate
 	 */
 	public abstract Coordinate copy();
 	
+	/**
+	 * Equals.
+	 *
+	 * @param obj the obj
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean equals(final Object obj) {
 		if (this == obj) {
@@ -97,6 +101,11 @@ public abstract class Coordinate {
 		return Arrays.equals(components, other.components);
 	}	
 
+	/**
+	 * Hash code.
+	 *
+	 * @return the int
+	 */
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -105,15 +114,11 @@ public abstract class Coordinate {
 	}
 	
 	/**
-	 * 
-	 * Suma 2 coordenadas que indiques
-	 * 
-	 * @param c
-	 * Coordenada que se quiere sumar con la coordenada que llama al metodo.
-	 * @return
-	 * Devuelve la suma de ambas coordenadas
+	 * Adds the.
+	 *
+	 * @param c the c
+	 * @return the coordinate
 	 */
-	
 	public final Coordinate add(final Coordinate c) {
 		   
 		
@@ -129,14 +134,12 @@ public abstract class Coordinate {
 		return new_c;
 	}
 	
+
 	/**
-	 * 
-	 * Resta dos coordenadas que indiques
-	 * 
-	 * @param c
-	 * Coordenada que se quiere restar con la coordenada que llama al metodo
-	 * @return
-	 * Devuleve la resta de ambas coordenadas
+	 * Subtract.
+	 *
+	 * @param c the c
+	 * @return the coordinate
 	 */
 	public final Coordinate subtract(final Coordinate c){
 		   Coordinate new_c = this.copy(); 

@@ -2,13 +2,19 @@ package model.ship;
 
 import model.Orientation;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Cruiser.
+ */
 public class Cruiser extends Ship{
 	
 	private static char s = 'Ø';
 	private static String n = "Cruiser";
+
 	/**
-	 * Creacion del barco Cruiser
-	 * @param o orientacion del barco
+	 * Instantiates a new cruiser.
+	 *
+	 * @param o the o
 	 */
 	public Cruiser(Orientation o) {
 		super(o, s, n);

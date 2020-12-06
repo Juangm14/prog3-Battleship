@@ -2,13 +2,19 @@ package model.aircraft;
 
 import model.Orientation;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Transport.
+ */
 public class Transport extends Aircraft{
 
 	private static char s = '⇋';
 	private static String n = "Transport";
+
 	/**
-	 * Ceamos otro tipo de aeronave
-	 * @param o orientacion 
+	 * Instantiates a new transport.
+	 *
+	 * @param o the o
 	 */
 	public Transport(Orientation o) {
 		super(o, s, n);

@@ -1,5 +1,7 @@
 package model.io;
 
+import model.Game;
+
 public class VisualiserFactory {
 
 	public static IVisualiser createVisualiser(String nombre, Game game) {

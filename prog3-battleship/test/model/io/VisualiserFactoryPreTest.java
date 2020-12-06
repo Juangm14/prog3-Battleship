@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import model.Board;
+import model.Game;
 import model.exceptions.io.BattleshipIOException;
 import model.ship.Board2D;
 

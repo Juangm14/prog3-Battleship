@@ -5,15 +5,28 @@ import model.Coordinate;
 import model.CoordinateFactory;
 import model.Craft;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Board3D.
+ */
 public  class Board3D extends Board{
+
 	/**
-	 * Construrctor del tablero3D
-	 * @param size tamaño del tablero 3D
+	 * Instantiates a new board 3 D.
+	 *
+	 * @param size the size
 	 */
 	public Board3D(int size) {	
 		super(size);
 	}
 
+	/**
+	 * Check coordinate.
+	 *
+	 * @param c the c
+	 * @return true, if successful
+	 * @throws IllegalArgumentException the illegal argument exception
+	 */
 	@Override
 	public boolean checkCoordinate(Coordinate c) throws IllegalArgumentException{
         
@@ -28,6 +41,12 @@ public  class Board3D extends Board{
 		return false;
 	}
 
+	/**
+	 * Show.
+	 *
+	 * @param unveil the unveil
+	 * @return the string
+	 */
 	@Override
 	public String show(boolean unveil) {
 

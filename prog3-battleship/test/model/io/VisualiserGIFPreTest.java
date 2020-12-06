@@ -13,6 +13,7 @@ import org.junit.Test;
 
 import model.Board;
 import model.Craft;
+import model.Game;
 import model.Orientation;
 import model.exceptions.CoordinateAlreadyHitException;
 import model.exceptions.InvalidCoordinateException;

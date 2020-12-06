@@ -1,14 +1,19 @@
-package model.io;
+package model;
 
 import java.io.IOException;
 
-import model.Board;
 import model.exceptions.CoordinateAlreadyHitException;
 import model.exceptions.InvalidCoordinateException;
 import model.exceptions.NextToAnotherCraftException;
 import model.exceptions.OccupiedCoordinateException;
 import model.exceptions.io.BattleshipIOException;
+import model.io.IPlayer;
+import model.io.IVisualiser;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Game.
+ */
 public class Game {
 	
 	private Board tablero1;
@@ -19,6 +24,14 @@ public class Game {
 	private int shootCounter;
 	private int nextToShoot;
 
+	/**
+	 * Instantiates a new game.
+	 *
+	 * @param b1 the b 1
+	 * @param b2 the b 2
+	 * @param p1 the p 1
+	 * @param p2 the p 2
+	 */
 	public Game(Board b1, Board b2, IPlayer p1, IPlayer p2){
 		if(b1 == null || b2 == null || p1 == null || p2 == null) {
 			throw new NullPointerException();
@@ -31,22 +44,45 @@ public class Game {
 		}
 	}
 	
+	/**
+	 * Gets the board 1.
+	 *
+	 * @return the board 1
+	 */
 	public Board getBoard1() {
 		return tablero1;
 	}
 	
+	/**
+	 * Gets the board 2.
+	 *
+	 * @return the board 2
+	 */
 	public Board getBoard2() {
 		return tablero2;
 	}
 	
+	/**
+	 * Gets the player 1.
+	 *
+	 * @return the player 1
+	 */
 	public IPlayer getPlayer1() {
 		return jugador1;
 	}
 	
+	/**
+	 * Gets the player 2.
+	 *
+	 * @return the player 2
+	 */
 	public IPlayer getPlayer2() {
 		return jugador2;
 	}
 	
+	/**
+	 * Start.
+	 */
 	public void start() {
 		
 		try {
@@ -62,6 +98,11 @@ public class Game {
 		}
 	}
 	
+	/**
+	 * Game ended.
+	 *
+	 * @return the boolean
+	 */
 	public Boolean gameEnded() {
 		if((tablero1.areAllCraftsDestroyed() || tablero2.areAllCraftsDestroyed()) && gameStarted == true) {
 			return true;
@@ -70,6 +111,11 @@ public class Game {
 		}
 	}
 	
+	/**
+	 * Play next.
+	 *
+	 * @return the boolean
+	 */
 	public Boolean playNext(){
 		
 			if(nextToShoot == 1) {
@@ -98,6 +144,11 @@ public class Game {
 		return false;
 	}
 	
+	/**
+	 * Gets the player last shoot.
+	 *
+	 * @return the player last shoot
+	 */
 	public IPlayer getPlayerLastShoot() {
 		
 		if(nextToShoot == 1) {
@@ -109,6 +160,11 @@ public class Game {
 		}
 	}
 	
+	/**
+	 * Play game.
+	 *
+	 * @param iv the iv
+	 */
 	public void playGame(IVisualiser iv) {
 		
 		this.start();
@@ -131,6 +187,11 @@ public class Game {
 		
 	}
 
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	public String toString() {
 		
 		String game = "";

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.io.IOException;
 
 import model.Board;
+import model.Game;
 import model.exceptions.io.BattleshipIOException;
 import model.io.gif.AnimatedGIF;
 import model.io.gif.FrameGIF;

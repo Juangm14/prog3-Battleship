@@ -3,12 +3,18 @@ package model.aircraft;
 import model.Craft;
 import model.Orientation;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Aircraft.
+ */
 public abstract class Aircraft extends Craft{
+
 	/**
-	 * Constructor de la aeronave
-	 * @param o orientacion de la aeronave
-	 * @param s symbolo de la aeronave
-	 * @param n nombre de la aeronave
+	 * Instantiates a new aircraft.
+	 *
+	 * @param o the o
+	 * @param s the s
+	 * @param n the n
 	 */
 	public Aircraft(Orientation o, char s, String n) {
 		super(o, s, n);

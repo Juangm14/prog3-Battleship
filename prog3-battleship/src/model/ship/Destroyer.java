@@ -2,14 +2,19 @@ package model.ship;
 
 import model.Orientation;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Destroyer.
+ */
 public class Destroyer extends Ship{
 
 	private static char s = 'Ω';
 	private static String n = "Destroyer";
 	
 	/**
-	 * Creacion del barco Destroyer
-	 * @param o orientacion del barco
+	 * Instantiates a new destroyer.
+	 *
+	 * @param o the o
 	 */
 	public Destroyer(Orientation o) {
 		super(o, s, n);

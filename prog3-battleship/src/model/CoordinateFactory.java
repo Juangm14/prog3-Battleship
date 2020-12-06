@@ -2,13 +2,18 @@ package model;
 import model.ship.Coordinate2D;
 import model.aircraft.Coordinate3D;
 
+// TODO: Auto-generated Javadoc
+/**
+ * A factory for creating Coordinate objects.
+ */
 public class CoordinateFactory {
 
 	/**
-	 * Crea coordenadas 2D o 3D dependiendo del tamaño que se le pase
-	 * @param coords vector de ints para la creacion de la coordenada
-	 * @return la nueva coordenada creada
-	 * @throws IllegalArgumentException
+	 * Creates a new Coordinate object.
+	 *
+	 * @param coords the coords
+	 * @return the coordinate
+	 * @throws IllegalArgumentException the illegal argument exception
 	 */
 	public static Coordinate createCoordinate(int... coords) throws IllegalArgumentException{
 		

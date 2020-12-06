@@ -8,8 +8,19 @@ import model.ship.Carrier;
 import model.ship.Cruiser;
 import model.ship.Destroyer;
 
+// TODO: Auto-generated Javadoc
+/**
+ * A factory for creating Craft objects.
+ */
 public class CraftFactory{
 	
+	/**
+	 * Creates a new Craft object.
+	 *
+	 * @param tipo the tipo
+	 * @param o the o
+	 * @return the craft
+	 */
 	public static Craft createCraft(String tipo, Orientation o) {
 		
 		switch(tipo) {

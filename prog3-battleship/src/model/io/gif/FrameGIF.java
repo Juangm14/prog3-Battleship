@@ -11,10 +11,9 @@ import javax.imageio.ImageIO;
 
 import model.exceptions.io.BattleshipIOException;
 
+// TODO: Auto-generated Javadoc
 /**
- * It generates a GIF frame using GIF4J
- * @author drizo
- *
+ * The Class FrameGIF.
  */
 public class FrameGIF {
 
@@ -22,9 +21,15 @@ public class FrameGIF {
 	private int width;
 	private int heigh;
 
-	private Graphics2D ig2; // GIF4J
-	private BufferedImage bi; // GIF4J
+	private Graphics2D ig2;
+	private BufferedImage bi; 
 
+	/**
+	 * Instantiates a new frame GIF.
+	 *
+	 * @param w the w
+	 * @param h the h
+	 */
 	public FrameGIF(int w, int h) {
 		this.width = w;
 		this.heigh = h;
@@ -34,12 +39,14 @@ public class FrameGIF {
 	    ig2.fillRect(0, 0, w*PIXELS_SQUARE - 1, h*PIXELS_SQUARE - 1);
 	}
 	
+
 	/**
-	 * It prints a square in the given position
-	 * @param x column
-	 * @param y file
-	 * @param colour colour to be used
-	 * @throws BattleshipIOException if the positions is out of limits
+	 * Prints the square.
+	 *
+	 * @param x the x
+	 * @param y the y
+	 * @param colour the colour
+	 * @throws BattleshipIOException the battleship IO exception
 	 */
 	public void printSquare(int x, int y, Color colour) throws BattleshipIOException {
 		if (x<0 || x>=width || y<0 || y>=heigh) {
@@ -50,10 +57,21 @@ public class FrameGIF {
 		ig2.fill(new Rectangle(x*PIXELS_SQUARE, y*PIXELS_SQUARE, PIXELS_SQUARE, PIXELS_SQUARE));
 	}
 
+	/**
+	 * Gets the buffered image.
+	 *
+	 * @return the buffered image
+	 */
 	BufferedImage getBufferedImage() {
 		return bi;
 	}
 	
+	/**
+	 * Save file.
+	 *
+	 * @param file the file
+	 * @throws BattleshipIOException the battleship IO exception
+	 */
 	public void saveFile(File file) throws BattleshipIOException {
 	    try {
 			ImageIO.write(bi, "GIF", file);

@@ -2,13 +2,19 @@ package model.ship;
 
 import model.Orientation;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Battleship.
+ */
 public class Battleship extends Ship{
 
 	private static char s = 'O';
 	private static String n = "Battleship";
+
 	/**
-	 * Creacion del barco Battleship
-	 * @param o orientacion del barco
+	 * Instantiates a new battleship.
+	 *
+	 * @param o the o
 	 */
 	public Battleship(Orientation o) {
 		super(o, s, n);

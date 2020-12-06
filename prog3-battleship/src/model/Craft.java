@@ -5,8 +5,13 @@ import java.util.Objects;
 import java.util.Set;
 import model.exceptions.*;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Craft.
+ */
 public abstract class Craft {
 
+	/** The bounding square size. */
 	public static int BOUNDING_SQUARE_SIZE = 5;
 	private int HIT_VALUE = -1;
 	private int CRAFT_VALUE = 1;
@@ -16,13 +21,15 @@ public abstract class Craft {
 	private Orientation orientation;
 	private Coordinate position;
 	
+	/** The shape. */
 	protected int shape[][];
 
 	/**
-	 * Constructor de barcos
-	 * @param o orientacion del barco
-	 * @param s symbolo del barco
-	 * @param n nombre del barco
+	 * Instantiates a new craft.
+	 *
+	 * @param o the o
+	 * @param s the s
+	 * @param n the n
 	 */
 	public Craft(Orientation o, char s, String n) {
 		orientation = o;
@@ -32,17 +39,18 @@ public abstract class Craft {
 	}
 
 	/**
-	 * 
-	 * @return devolvemos el nombre del Barco
+	 * Gets the name.
+	 *
+	 * @return the name
 	 */
 	public String getName() {
 		return name;
 	}
 
 	/**
-	 * 
-	 * @return null, si no sabemos posicion porque no la hemos establecido
-	 * @return la coordenada, si ya hemos establecido una.
+	 * Gets the position.
+	 *
+	 * @return the position
 	 */
 	public Coordinate getPosition() {
 		if(position == null) {
@@ -53,40 +61,46 @@ public abstract class Craft {
 	}
 
 	/**
-	 * @return orientacion del barco(Norte, Sur, Este y Oeste)
+	 * Gets the orientation.
+	 *
+	 * @return the orientation
 	 */
 	public Orientation getOrientation() {
 		return orientation;
 	}
 
 	/**
-	 * 
-	 * @param position: Coordenada para establecer la posicion del barco.
+	 * Sets the position.
+	 *
+	 * @param position the new position
 	 */
 	public void setPosition(Coordinate position) {
 		this.position = position.copy();
 	}
 
 	/**
-	 * 
-	 * @return simbolo con el que mostraremos el barco en pantalla.
+	 * Gets the symbol.
+	 *
+	 * @return the symbol
 	 */
 	public char getSymbol() {
 		return symbol;
 	}
 
 	/**
-	 * 
-	 * @return vector del barco.
+	 * Gets the shape.
+	 *
+	 * @return the shape
 	 */
 	public int[][] getShape() {
 		return shape;
 	}
 
 	/**
-	 * 
-	 * @param c: Coordenada
-	 * @return calculo del valor de la coordenada que pertenece a shape
+	 * Gets the shape index.
+	 *
+	 * @param c the c
+	 * @return the shape index
 	 */
 	public int getShapeIndex(Coordinate c) {
 		
@@ -99,9 +113,10 @@ public abstract class Craft {
 	}
 
 	/**
-	 * 
-	 * @param c coordenada de la que se quieren coger las coordenadas absolutas del barco
-	 * @return coodenadas absolutas del barco
+	 * Gets the absolute positions.
+	 *
+	 * @param c the c
+	 * @return the absolute positions
 	 */
 	public Set<Coordinate> getAbsolutePositions(Coordinate c) {
 		
@@ -130,19 +145,20 @@ public abstract class Craft {
 	}
 
 	/**
-	 * 
-	 * @return coordenadas absolutas del barco, todas las coordenadas que ocupa el mismo. 
+	 * Gets the absolute positions.
+	 *
+	 * @return the absolute positions
 	 */
 	public Set<Coordinate> getAbsolutePositions() {
 		return getAbsolutePositions(position);
 	}
 
 	/**
-	 * Comprobamos si la coordenada que le pasamos esta entre las coordenadas absolutas del barco, en caso de estarlo,
-	 * sacamos la posicion del vector SHAPE y lo alcanzamos, y en caso de no estarla, no hacemos nada.
-	 * @param c coordenada
-	 * @return devolvemos true si la coordenada actual ha sido alcanzada y false en caso contrario.
-	 * @throws CoordinateAlreadyHitException
+	 * Hit.
+	 *
+	 * @param c the c
+	 * @return true, if successful
+	 * @throws CoordinateAlreadyHitException the coordinate already hit exception
 	 */
 	public boolean hit(Coordinate c) throws CoordinateAlreadyHitException{
 		
@@ -165,9 +181,9 @@ public abstract class Craft {
 	}
 
 	/**
-	 * Comprobamos si todas las coordenadas del barco(SHAPE) han sido alcanzadas.
-	 * 
-	 * @return true en caso de que este hundo el barco, y false en caso contrario.
+	 * Checks if is shot down.
+	 *
+	 * @return true, if is shot down
 	 */
 	public boolean isShotDown() {
 				
@@ -180,9 +196,10 @@ public abstract class Craft {
 	}
 
 	/**
-	 * Comprobamos si la coordenda que nos pasan ha sido alcanzada.
-	 * @param c coordenada
-	 * @return true si ha sido alcanzada y false en caso contrario.
+	 * Checks if is hit.
+	 *
+	 * @param c the c
+	 * @return true, if is hit
 	 */
 	public boolean isHit(Coordinate c) {
 		
@@ -200,6 +217,11 @@ public abstract class Craft {
 		return false;
 	}
 
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	public String toString() {
 		
 		String imprimirShip = name + " (" + orientation + ")\n";
