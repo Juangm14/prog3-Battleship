@@ -94,6 +94,8 @@ public class Game {
 			}catch(CoordinateAlreadyHitException e){
 				System.out.println("Action by " + jugador2.getName());
 			}
+			
+
 		}
 		
 		return false;
@@ -113,7 +115,7 @@ public class Game {
 	public void playGame(IVisualiser iv) throws BattleshipIOException {
 		
 	
-
+		
 	}
 
 	public String toString() {
@@ -133,15 +135,15 @@ public class Game {
 		
 		game += jugador1.getName() + "\n";
 		game += "==================================\n";
-		game += tablero1.show(true) + "\n";
+		game += tablero1.show(false) + "\n";
 		game += "==================================\n";
 		game += jugador2.getName() + "\n";
 		game += "==================================\n";
-		game += tablero2.show(true) + "\n";
+		game += tablero2.show(false) + "\n";
 		game += "==================================\n";
-		
+		game += "Number of shots: " + shootCounter;
 		if(gameEnded()) {
-			game += "Number of shots: " + shootCounter;
+			
 			if(tablero1.areAllCraftsDestroyed()) {
 				game += jugador1.getName() + " wins";
 			}else if(tablero2.areAllCraftsDestroyed()){

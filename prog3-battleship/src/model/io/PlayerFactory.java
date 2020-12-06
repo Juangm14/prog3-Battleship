@@ -28,7 +28,6 @@ public class PlayerFactory {
 			try {
 				reader = new FileReader(tipo);
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				throw new BattleshipIOException("Error: El archivo no se encuentra.");
 			}
 			BufferedReader br = new BufferedReader(reader);
@@ -36,6 +35,7 @@ public class PlayerFactory {
 		}else if(isLong(tipo)){
 			return new PlayerRandom(name, Long.parseLong(tipo));
 		}
+		
 		return null;
 	}
 
