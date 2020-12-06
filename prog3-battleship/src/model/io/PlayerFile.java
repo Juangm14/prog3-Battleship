@@ -51,14 +51,13 @@ public class PlayerFile implements IPlayer{
 						 
 					    for(String palabra:result) {	
 					    	if(palabra.trim().length() > 0) {
-					    		palabra = palabra.replace("\n", "");
 					    		palabras.add(palabra);
 					    	}
 					    }
 					    
 					    if(palabras.get(0).equals("put")) {
 					    	
-							switch(palabras.get(2)) {
+					    	switch(palabras.get(2)) {
 						      case "NORTH": 
 						    	  o = Orientation.NORTH;
 						    	  break;
@@ -105,6 +104,7 @@ public class PlayerFile implements IPlayer{
 						    		}
 						    	}
 						    }
+						    
 					    }else if(palabras.get(0).equals("exit") || palabras.get(0).equals("endput")){
 					    	break;
 					    }else {
@@ -119,8 +119,6 @@ public class PlayerFile implements IPlayer{
 			throw new BattleshipIOException("Se ha leido una linea de br.");
 		}
 	}
-
-	
 	
 	public Coordinate nextShoot(Board b) throws BattleshipIOException, InvalidCoordinateException,CoordinateAlreadyHitException{
 		
@@ -136,8 +134,7 @@ public class PlayerFile implements IPlayer{
 					ArrayList<String> palabras = new ArrayList<>();
 					
 				    for(String palabra:result) {	
-				    	if(!palabra.isEmpty()) {
-				    		palabra = palabra.replace("\n", "");
+				    	if(palabra.trim().length() > 0) {
 			    			palabras.add(palabra);
 				    	}
 				    }

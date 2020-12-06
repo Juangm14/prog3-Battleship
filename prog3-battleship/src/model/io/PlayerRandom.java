@@ -72,18 +72,10 @@ public class PlayerRandom implements IPlayer {
 			
 			for(int i = 0; i < nomAircrafts.size(); i++) {
 				
-				int rndOrientation = genRandomInt(0,4);
-				
-				switch(rndOrientation) {
-				case 0:
-					o = Orientation.NORTH;
-				case 1:
-					o = Orientation.EAST;
-				case 2:
-					o = Orientation.SOUTH;
-				case 3:
-					o = Orientation.WEST;
-				}
+				contador = 0;
+				repite = false;
+				o = Orientation.values()[genRandomInt(0,Orientation.values().length)];
+						
 				do{
 					Craft cr = CraftFactory.createCraft(nomAircrafts.get(i), o);
 					Coordinate c = this.getRandomCoordinate(b, offset);
@@ -106,18 +98,10 @@ public class PlayerRandom implements IPlayer {
 			
 			for(int i = 0; i < nomCrafts.size(); i++) {
 				
-				int rndOrientation = genRandomInt(0,4);
+				contador = 0;
+				repite = false;
+				o = Orientation.values()[genRandomInt(0,Orientation.values().length)];
 				
-				switch(rndOrientation) {
-				case 0:
-					o = Orientation.NORTH;
-				case 1:
-					o = Orientation.EAST;
-				case 2:
-					o = Orientation.SOUTH;
-				case 3:
-					o = Orientation.WEST;
-				}
 				do{
 					Craft cr = CraftFactory.createCraft(nomCrafts.get(i), o);
 					Coordinate c = this.getRandomCoordinate(b, offset);
