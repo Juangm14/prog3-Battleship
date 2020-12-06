@@ -130,7 +130,15 @@ public class PlayerFile implements IPlayer{
 				    
 				    if(b instanceof Board2D) {
 						if(palabras.get(0).equals("shoot") && palabras.size() == 3){
-							
+							try {
+								int x = Integer.parseInt(palabras.get(1));
+								int y = Integer.parseInt(palabras.get(2));
+								Coordinate c = CoordinateFactory.createCoordinate(x,y);
+								b.hit(c);
+								return c;
+							}catch(NumberFormatException e) {
+								throw new BattleshipIOException("Las coordenadas no son enteros");
+							}
 						}else if(palabras.get(0).equals("exit")) {
 							
 						}else {
@@ -140,7 +148,16 @@ public class PlayerFile implements IPlayer{
 						if(!palabras.get(0).equals("shoot") && !palabras.get(0).equals("exit")) {
 							throw new BattleshipIOException("El comando no es admisible");
 						}else {
-							
+							try {
+								int x = Integer.parseInt(palabras.get(1));
+								int y = Integer.parseInt(palabras.get(2));
+								int z = Integer.parseInt(palabras.get(3));
+								Coordinate c = CoordinateFactory.createCoordinate(x,y,z);
+								b.hit(c);
+								return c;
+							}catch(NumberFormatException e) {
+								throw new BattleshipIOException("Las coordenadas no son enteros");
+							}
 						}
 					}
 				}
