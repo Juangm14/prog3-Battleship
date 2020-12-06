@@ -22,7 +22,6 @@ public class Board2D extends Board {
 		if(!(c instanceof Coordinate2D)){
 			throw new IllegalArgumentException();
 		}else if((c.get(0) < this.getSize() &&  c.get(0) >= 0) && (c.get(1) >= 0 && c.get(1) < this.getSize())) {
-		
 			return true;
 		}else {
 			return false;

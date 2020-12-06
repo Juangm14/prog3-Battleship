@@ -37,7 +37,7 @@ public class PlayerFile implements IPlayer{
 		return nombre + " (PlayerFile)"; 
 	}
 	
-	public void putCrafts(Board b) throws BattleshipIOException, IllegalArgumentException, InvalidCoordinateException, OccupiedCoordinateException, NextToAnotherCraftException{
+	public void putCrafts(Board b) throws BattleshipIOException, InvalidCoordinateException, OccupiedCoordinateException, NextToAnotherCraftException, IllegalArgumentException{
 		try {
 			if(b == null) {
 				throw new NullPointerException();
@@ -75,36 +75,24 @@ public class PlayerFile implements IPlayer{
 						    	  throw new BattleshipIOException("Error: La orientacion no es la esperada.");
 							}
 							
-						    if(b instanceof Board3D) {
-						    	if(palabras.size() < 6) {
+						   if(palabras.size() < 5 ) {
 						    		throw new BattleshipIOException("Cantidad de parametros en el comando put NO es CORRECTA.");
-						    	}else {
-						    		try {
-						    			int c0 = Integer.parseInt(palabras.get(3));
-							    		int c1 = Integer.parseInt(palabras.get(4));
-							    		int c2 = Integer.parseInt(palabras.get(5));
-							    		b.checkCoordinate(CoordinateFactory.createCoordinate(c0,c1,c2));
-							    		Craft barco = CraftFactory.createCraft(palabras.get(1), o);
-							    		b.addCraft(barco, CoordinateFactory.createCoordinate(c0, c1, c2));
-						    		}catch(NumberFormatException e) {
-						    			throw new BattleshipIOException("ERROR: Un parametro de la coordenada no es un numero.");
-						    		}
-						    	}
-						    }else if(b instanceof Board2D) {
-						    	if(palabras.size() < 5) {
-						    		throw new BattleshipIOException("Cantidad de parametros en el comando put NO es CORRECTA.");
-						    	}else {
-						    		try {
-						    			int c0 = Integer.parseInt(palabras.get(3));
-							    		int c1 = Integer.parseInt(palabras.get(4));
-							    		b.checkCoordinate(CoordinateFactory.createCoordinate(c0,c1));
-							    		Craft barco = CraftFactory.createCraft(palabras.get(1), o);
-							    		b.addCraft(barco, CoordinateFactory.createCoordinate(c0, c1));
-						    		}catch(NumberFormatException e) {
-						    			throw new BattleshipIOException("ERROR: Un parametro de la coordenada no es un numero.");
-						    		}
-						    	}
-						    }
+						   }else if(palabras.size() == 6){
+							   	
+				    			int c0 = Integer.parseInt(palabras.get(3));
+					    		int c1 = Integer.parseInt(palabras.get(4));
+					    		int c2 = Integer.parseInt(palabras.get(5));
+					    		
+					    		Craft barco = CraftFactory.createCraft(palabras.get(1), o);
+					    		b.addCraft(barco, CoordinateFactory.createCoordinate(c0, c1, c2));
+						   }else if(palabras.size() == 5) {
+				    			int c0 = Integer.parseInt(palabras.get(3));
+					    		int c1 = Integer.parseInt(palabras.get(4));
+					    		
+					    		Craft barco = CraftFactory.createCraft(palabras.get(1), o);
+					    		b.addCraft(barco, CoordinateFactory.createCoordinate(c0, c1));
+						   }			
+						  
 						    
 					    }else if(palabras.get(0).equals("exit") || palabras.get(0).equals("endput")){
 					    	break;
