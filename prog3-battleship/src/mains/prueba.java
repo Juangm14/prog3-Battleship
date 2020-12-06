@@ -31,7 +31,49 @@ public class prueba {
 
 	public static void main(String[] args) {
 		
-		/*BUENISIMOOOOO PARA PURCRAFTS CON EL TRIM();
+		if(gameStarted == false) {
+			game += "=== GAME NOT STARTED ===\n";
+			game += "==================================\n";
+			game += jugador1.getName() + "\n";
+			game += "==================================\n";
+			game += tablero1.toString() + "\n";
+			game += "==================================\n";
+			game += jugador2.getName() + "\n";
+			game += "==================================\n";
+			game += tablero2.toString() + "\n";
+			game += "==================================\n";
+		}else if(gameEnded()) {
+			game += "=== GAME ENDED ===\n";
+			game += "==================================\n";
+			game += jugador1.getName() + "\n";
+			game += "==================================\n";
+			game += tablero1.toString();
+			game += "==================================\n";
+			game += jugador2.getName() + "\n";
+			game += "==================================\n";
+			game += tablero2.toString() + "\n";
+			game += "==================================\n";
+			game += "Number of shots: " + shootCounter;
+			if(tablero1.areAllCraftsDestroyed()) {
+				game += jugador1.getName() + " wins";
+			}else if(tablero2.areAllCraftsDestroyed()){
+				game += jugador2.getName() + " wins";
+			}
+			
+		}else if(this.gameStarted == true){
+			game += "=== ONGOING GAME ===\n";
+			game += "==================================\n";
+			game += jugador1.getName() + "\n";
+			game += "==================================\n";
+			game += tablero1.toString();
+			game += "==================================\n";
+			game += jugador2.getName() + "\n";
+			game += "==================================\n";
+			game += tablero2.toString();
+			game += "==================================\n";
+			game += "Number of shots: " + shootCounter;
+
+			/*BUENISIMOOOOO PARA PURCRAFTS CON EL TRIM();
 		 String ruta = "test/files/testPutCraftsWithSpaces.in";
 		FileReader f = null;
 		try {

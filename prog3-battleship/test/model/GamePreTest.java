@@ -105,7 +105,7 @@ public class GamePreTest {
 	 * iguales. Partida aleatoria.
 	 */
 	@Test
-	/*public void testPlayGame1() throws BattleshipIOException {
+	public void testPlayGame1() throws BattleshipIOException {
 		final String outFile = DIRFILES+"testPlayGame1.alu";
 		player1= PlayerFactory.createPlayer("Mary", "15");
 		player2= PlayerFactory.createPlayer("Raul", "15");
@@ -126,7 +126,7 @@ public class GamePreTest {
 		StringBuilder sbSolution=readFromFile(DIRFILES+"testPlayGame1.sol");
 		StringBuilder sbStudent=readFromFile(outFile);
 		compareLines(sbSolution.toString(),sbStudent.toString());	
-	}*/
+	}
 	
 	
 	/* Realiza más partidas combinando distinto tipos de Player. Puedes usar el esquema de testPlayGame1 */

@@ -58,6 +58,7 @@ public class Game {
 			nextToShoot = 1;
 		} catch (InvalidCoordinateException | OccupiedCoordinateException | NextToAnotherCraftException
 				| BattleshipIOException e) {
+			throw new RuntimeException();
 		}
 	}
 	
@@ -74,20 +75,25 @@ public class Game {
 		if(nextToShoot == 1) {
 			try {
 				jugador1.nextShoot(tablero2);
-			} catch (CoordinateAlreadyHitException | InvalidCoordinateException | BattleshipIOException e) {
+				nextToShoot = 2;
+				shootCounter++;
+				return true;
+			} catch (InvalidCoordinateException | BattleshipIOException e) {
+				throw new RuntimeException();
+			}catch(CoordinateAlreadyHitException e) {
+				System.out.println("Action by " + jugador1.getName());
 			}
-			nextToShoot = 2;
-			shootCounter++;
-			return true;
-
 		}else if(nextToShoot == 2) {
 			try {
 				jugador2.nextShoot(tablero1);
-			} catch (CoordinateAlreadyHitException | InvalidCoordinateException | BattleshipIOException e) {
+				nextToShoot = 1;
+				shootCounter++;
+				return true;
+			} catch (InvalidCoordinateException | BattleshipIOException e) {
+				throw new RuntimeException();
+			}catch(CoordinateAlreadyHitException e){
+				System.out.println("Action by " + jugador2.getName());
 			}
-			nextToShoot = 1;
-			shootCounter++;
-			return true;
 		}
 		
 		return false;
@@ -105,75 +111,43 @@ public class Game {
 	}
 	
 	public void playGame(IVisualiser iv) throws BattleshipIOException {
-		try {
-			this.start();
-
-			try {
-				iv.show();
-			} catch (IOException e) {
-				throw new BattleshipIOException("Mensaje");
-			}
-			
-			while(this.playNext() != false) {
-				try {
-					iv.show();
-				} catch (IOException e) {
-					throw new BattleshipIOException("Mensaje");
-				}
-			}
-			
-			iv.close();
-		}catch(IllegalArgumentException e) {
-		}
+		
+	
 
 	}
 
 	public String toString() {
 		
 		String game = "";
-		if(this.gameStarted == false) {
+		
+		if(gameStarted ==  false) {
 			game += "=== GAME NOT STARTED ===\n";
 			game += "==================================\n";
-			game += jugador1.getName() + "\n";
-			game += "==================================\n";
-			game += tablero1.toString() + "\n";
-			game += "==================================\n";
-			game += jugador2.getName() + "\n";
-			game += "==================================\n";
-			game += tablero2.toString() + "\n";
-			game += "==================================\n";
-		}else if(this.gameEnded()) {
+		}else if(gameEnded()){
 			game += "=== GAME ENDED ===\n";
 			game += "==================================\n";
-			game += jugador1.getName() + "\n";
+		}else if(gameStarted) {
+			game += "=== ONGOING GAME ===\n";
 			game += "==================================\n";
-			game += tablero1.toString() + "\n";
-			game += "==================================\n";
-			game += jugador2.getName() + "\n";
-			game += "==================================\n";
-			game += tablero2.toString() + "\n";
-			game += "==================================\n";
+		}
+		
+		game += jugador1.getName() + "\n";
+		game += "==================================\n";
+		game += tablero1.show(true) + "\n";
+		game += "==================================\n";
+		game += jugador2.getName() + "\n";
+		game += "==================================\n";
+		game += tablero2.show(true) + "\n";
+		game += "==================================\n";
+		
+		if(gameEnded()) {
 			game += "Number of shots: " + shootCounter;
 			if(tablero1.areAllCraftsDestroyed()) {
 				game += jugador1.getName() + " wins";
-			}else {
+			}else if(tablero2.areAllCraftsDestroyed()){
 				game += jugador2.getName() + " wins";
 			}
-			
-		}else if(this.gameStarted == true){
-			game += "=== ONGOING GAME ===\n";
-			game += "==================================\n";
-			game += jugador1.getName() + "\n";
-			game += "==================================\n";
-			game += tablero1.toString() + "\n";
-			game += "==================================\n";
-			game += jugador2.getName() + "\n";
-			game += "==================================\n";
-			game += tablero2.toString() + "\n";
-			game += "==================================\n";
-			game += "Number of shots: " + shootCounter;
 		}
-		
 		return game;
 	}
 }
