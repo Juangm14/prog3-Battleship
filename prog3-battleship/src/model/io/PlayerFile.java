@@ -29,6 +29,7 @@ public class PlayerFile implements IPlayer{
 		}else {
 			nombre = n;
 			br = buff;
+			
 		}
 	}
 	
@@ -119,6 +120,8 @@ public class PlayerFile implements IPlayer{
 			throw new BattleshipIOException("Se ha leido una linea de br.");
 		}
 	}
+
+	
 	
 	public Coordinate nextShoot(Board b) throws BattleshipIOException, InvalidCoordinateException,CoordinateAlreadyHitException{
 		
@@ -139,15 +142,20 @@ public class PlayerFile implements IPlayer{
 				    	}
 				    }
 				    
-					if(b instanceof Board2D) {
-						if(!palabras.get(0).equals("shoot") && !palabras.get(0).equals("exit") && (palabras.size() < 3
-								|| palabras.size() > 3)) {
+				    if(b instanceof Board2D) {
+						if(palabras.get(0).equals("shoot") && palabras.size() == 3){
+							
+						}else if(palabras.get(0).equals("exit")) {
+							
+						}else {
+							throw new BattleshipIOException("El comando no es admisible");
+						}
+					}else if(b instanceof Board3D){
+						if(!palabras.get(0).equals("shoot") && !palabras.get(0).equals("exit")) {
 							throw new BattleshipIOException("El comando no es admisible");
 						}else {
 							
 						}
-					}else if(b instanceof Board3D){
-							
 					}
 				}
 			} catch (IOException e) {
