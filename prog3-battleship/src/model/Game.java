@@ -122,6 +122,7 @@ public class Game {
 				nextToShoot = 2;
 				try {
 					jugador1.nextShoot(tablero2);
+					shootCounter++;
 				}catch(BattleshipIOException | InvalidCoordinateException | NullPointerException e) {
 					throw new RuntimeException();
 				}catch(CoordinateAlreadyHitException e) {
@@ -133,6 +134,7 @@ public class Game {
 				nextToShoot = 1;
 				try {
 					jugador2.nextShoot(tablero1);
+					shootCounter++;
 				}catch(BattleshipIOException | InvalidCoordinateException | NullPointerException e) {
 					throw new RuntimeException();
 				}catch(CoordinateAlreadyHitException e) {
