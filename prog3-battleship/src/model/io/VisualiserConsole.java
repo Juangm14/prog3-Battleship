@@ -20,7 +20,7 @@ public class VisualiserConsole implements IVisualiser{
 	}
 	
 	
-	public void close() {
+	public void close() {	
 		
 	}
 }

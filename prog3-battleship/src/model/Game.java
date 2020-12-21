@@ -95,7 +95,7 @@ public class Game {
 		
 		gameStarted = true;
 		shootCounter = 0;
-		nextToShoot = 0;
+		nextToShoot = 1;
 	}
 	
 	/**
@@ -129,7 +129,7 @@ public class Game {
 				jugador1.nextShoot(tablero2);
 				shootCounter++;
 
-			}catch(BattleshipIOException | InvalidCoordinateException  e) {
+			}catch(BattleshipIOException | InvalidCoordinateException | NullPointerException e) {
 				throw new RuntimeException();
 			}catch(CoordinateAlreadyHitException e) {
 				System.out.println("Action by "+ jugador1.getName() + e.getMessage());
@@ -142,15 +142,13 @@ public class Game {
 				jugador2.nextShoot(tablero1);
 				shootCounter++;
 
-			}catch(BattleshipIOException | InvalidCoordinateException  e) {
+			}catch(BattleshipIOException | InvalidCoordinateException | NullPointerException e) {
 				throw new RuntimeException();
 			}catch(CoordinateAlreadyHitException e) {
 				System.out.println("Action by "+ jugador2.getName() + e.getMessage());
 	            shootCounter++;
 	            return true;
 			}
-		}else if(nextToShoot == 0){
-			nextToShoot = 1;
 		}
 		
 	return false;
@@ -163,13 +161,18 @@ public class Game {
 	 */
 	public IPlayer getPlayerLastShoot() {
 		
-		if(nextToShoot == 1) {
-			return jugador1;
-		}else if(nextToShoot == 2) {
-			return jugador2;
+		if(shootCounter >  0) {
+			if(nextToShoot == 1) {
+				return jugador2;
+			}else if(nextToShoot == 2) {
+				return jugador1;
+			}else {
+				return null;
+			}
 		}else {
 			return null;
 		}
+
 	}
 	
 	/**
@@ -181,6 +184,12 @@ public class Game {
 		
 		this.start();
 		
+        try {
+			iv.show();
+		} catch (IOException e) {
+			throw new RuntimeException();
+		}
+        
         while(this.playNext() != false || gameEnded() != true) {
             try {
 				iv.show();
