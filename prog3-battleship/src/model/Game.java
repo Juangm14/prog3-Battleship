@@ -88,14 +88,14 @@ public class Game {
 		try {
 			jugador1.putCrafts(tablero1);
 			jugador2.putCrafts(tablero2);
-			
-			gameStarted = true;
-			shootCounter = 0;
-			nextToShoot = 0;
-		} catch (InvalidCoordinateException | OccupiedCoordinateException | NextToAnotherCraftException
-				| BattleshipIOException | NullPointerException e) {
+		} catch (IllegalArgumentException | BattleshipIOException | InvalidCoordinateException | 
+				OccupiedCoordinateException | NextToAnotherCraftException e) {
 			throw new RuntimeException();
 		}
+		
+		gameStarted = true;
+		shootCounter = 0;
+		nextToShoot = 0;
 	}
 	
 	/**
@@ -104,13 +104,16 @@ public class Game {
 	 * @return the boolean
 	 */
 	public Boolean gameEnded() {
-		if(tablero1.areAllCraftsDestroyed() && gameStarted == true) {
-			return true;
-		}else if(tablero2.areAllCraftsDestroyed() && gameStarted == true){   
-			return true;
+		if(gameStarted) {
+			if((tablero1.areAllCraftsDestroyed() || tablero2.areAllCraftsDestroyed()) && gameStarted) {
+				return true;
+			}else {
+				return false;
+			}
 		}else {
 			return false;
 		}
+
 	}
 	
 	/**
@@ -125,7 +128,8 @@ public class Game {
 			try {
 				jugador1.nextShoot(tablero2);
 				shootCounter++;
-			}catch(BattleshipIOException | InvalidCoordinateException | NullPointerException e) {
+
+			}catch(BattleshipIOException | InvalidCoordinateException  e) {
 				throw new RuntimeException();
 			}catch(CoordinateAlreadyHitException e) {
 				System.out.println("Action by "+ jugador1.getName() + e.getMessage());
@@ -137,7 +141,8 @@ public class Game {
 			try {
 				jugador2.nextShoot(tablero1);
 				shootCounter++;
-			}catch(BattleshipIOException | InvalidCoordinateException | NullPointerException e) {
+
+			}catch(BattleshipIOException | InvalidCoordinateException  e) {
 				throw new RuntimeException();
 			}catch(CoordinateAlreadyHitException e) {
 				System.out.println("Action by "+ jugador2.getName() + e.getMessage());
@@ -159,9 +164,9 @@ public class Game {
 	public IPlayer getPlayerLastShoot() {
 		
 		if(nextToShoot == 1) {
-			return jugador2;
-		}else if(nextToShoot == 2) {
 			return jugador1;
+		}else if(nextToShoot == 2) {
+			return jugador2;
 		}else {
 			return null;
 		}

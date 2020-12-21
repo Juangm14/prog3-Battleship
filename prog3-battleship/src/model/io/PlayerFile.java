@@ -144,7 +144,7 @@ public class PlayerFile implements IPlayer{
 				    }
 				    
 				    if(palabras.get(0).equals("exit")) {
-				    	break;
+				    	return null;
 				    }
 				    
 				    if(b instanceof Board2D) {
