@@ -93,7 +93,7 @@ public class Game {
 			shootCounter = 0;
 			nextToShoot = 0;
 		} catch (InvalidCoordinateException | OccupiedCoordinateException | NextToAnotherCraftException
-				| BattleshipIOException e) {
+				| BattleshipIOException | NullPointerException e) {
 			throw new RuntimeException();
 		}
 	}
@@ -120,35 +120,35 @@ public class Game {
 	 */
 	public Boolean playNext(){
 		
-			if(nextToShoot == 1) {
-				nextToShoot = 2;
-				try {
-					jugador1.nextShoot(tablero2);
-					shootCounter++;
-				}catch(BattleshipIOException | InvalidCoordinateException | NullPointerException e) {
-					throw new RuntimeException();
-				}catch(CoordinateAlreadyHitException e) {
-					System.out.println("Action by "+ jugador1.getName() + e.getMessage());
-		            shootCounter++;
-		            return true;
-				}
-			}else if(nextToShoot == 2) {
-				nextToShoot = 1;
-				try {
-					jugador2.nextShoot(tablero1);
-					shootCounter++;
-				}catch(BattleshipIOException | InvalidCoordinateException | NullPointerException e) {
-					throw new RuntimeException();
-				}catch(CoordinateAlreadyHitException e) {
-					System.out.println("Action by "+ jugador2.getName() + e.getMessage());
-		            shootCounter++;
-		            return true;
-				}
-			}else {
-				nextToShoot = 2;
+		if(nextToShoot == 1) {
+			nextToShoot = 2;
+			try {
+				jugador1.nextShoot(tablero2);
+				shootCounter++;
+			}catch(BattleshipIOException | InvalidCoordinateException | NullPointerException e) {
+				throw new RuntimeException();
+			}catch(CoordinateAlreadyHitException e) {
+				System.out.println("Action by "+ jugador1.getName() + e.getMessage());
+	            shootCounter++;
+	            return true;
 			}
-			
-		return false;
+		}else if(nextToShoot == 2) {
+			nextToShoot = 1;
+			try {
+				jugador2.nextShoot(tablero1);
+				shootCounter++;
+			}catch(BattleshipIOException | InvalidCoordinateException | NullPointerException e) {
+				throw new RuntimeException();
+			}catch(CoordinateAlreadyHitException e) {
+				System.out.println("Action by "+ jugador2.getName() + e.getMessage());
+	            shootCounter++;
+	            return true;
+			}
+		}else if(nextToShoot == 0){
+			nextToShoot = 1;
+		}
+		
+	return false;
 	}
 	
 	/**
@@ -175,20 +175,20 @@ public class Game {
 	public void playGame(IVisualiser iv) {
 		
 		this.start();
-
-        try {
-			iv.show();
-		} catch (IOException e) {
-
-		}
-
+		
         while(this.playNext() != false || gameEnded() != true) {
             try {
 				iv.show();
 			} catch (IOException e) {
-
+				throw new RuntimeException();
 			}
         }
+        
+        try {
+			iv.show();
+		} catch (IOException e) {
+			throw new RuntimeException();
+		}
 
         iv.close();
 		
@@ -226,9 +226,9 @@ public class Game {
 		
 		if(gameEnded()) {	
 			if(tablero1.areAllCraftsDestroyed()) {
-				game += jugador1.getName() + " wins";
+				game += "\n" + jugador2.getName() + " wins";
 			}else if(tablero2.areAllCraftsDestroyed()){
-				game += jugador2.getName() + " wins";
+				game += "\n" + jugador1.getName() + " wins";
 			}
 		}
 		return game;

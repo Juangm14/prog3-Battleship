@@ -31,26 +31,7 @@ Raul (PlayerRandom)
 ==================================
 ?????
 ?????
-?????
-?????
-?????
-==================================
-Number of shots: 0
-=== ONGOING GAME ===
-==================================
-Mary (PlayerRandom)
-==================================
-?????
-?????
 •????
-?????
-?????
-==================================
-Raul (PlayerRandom)
-==================================
-?????
-?????
-?????
 ?????
 ?????
 ==================================
@@ -82,7 +63,7 @@ Mary (PlayerRandom)
 ?????
 •????
 ?????
-??? ?
+?????
 ==================================
 Raul (PlayerRandom)
 ==================================
@@ -90,7 +71,7 @@ Raul (PlayerRandom)
 ?????
 •????
 ?????
-?????
+??? ?
 ==================================
 Number of shots: 3
 === ONGOING GAME ===
@@ -119,7 +100,7 @@ Mary (PlayerRandom)
 ?????
 ?????
 •????
-? ???
+?????
 ??? ?
 ==================================
 Raul (PlayerRandom)
@@ -127,7 +108,7 @@ Raul (PlayerRandom)
 ?????
 ?????
 •????
-?????
+? ???
 ??? ?
 ==================================
 Number of shots: 5
@@ -155,7 +136,7 @@ Number of shots: 6
 Mary (PlayerRandom)
 ==================================
 ?????
-????•
+?????
 •????
 ? ???
 ??? ?
@@ -163,7 +144,7 @@ Mary (PlayerRandom)
 Raul (PlayerRandom)
 ==================================
 ?????
-?????
+????•
 •????
 ? ???
 ??? ?
@@ -196,7 +177,7 @@ Mary (PlayerRandom)
 ????•
 •????
 ? ???
-??? •
+??? ?
 ==================================
 Raul (PlayerRandom)
 ==================================
@@ -204,7 +185,7 @@ Raul (PlayerRandom)
 ????•
 •????
 ? ???
-??? ?
+??? •
 ==================================
 Number of shots: 9
 === ONGOING GAME ===
@@ -232,7 +213,7 @@ Mary (PlayerRandom)
 ==================================
 ?????
 ????•
-•?•??
+•????
 ? ???
 ??? •
 ==================================
@@ -240,7 +221,7 @@ Raul (PlayerRandom)
 ==================================
 ?????
 ????•
-•????
+•?•??
 ? ???
 ??? •
 ==================================
@@ -268,18 +249,18 @@ Number of shots: 12
 ==================================
 Mary (PlayerRandom)
 ==================================
-  ???
-Ω ??•
-Ω •??
-  ???
-??? •
-==================================
-Raul (PlayerRandom)
-==================================
 ?????
 ????•
 •?•??
 ? ???
+??? •
+==================================
+Raul (PlayerRandom)
+==================================
+  ???
+Ω ??•
+Ω •??
+  ???
 ??? •
 ==================================
 Number of shots: 13
@@ -302,7 +283,7 @@ Raul (PlayerRandom)
 ??? •
 ==================================
 Number of shots: 14
-Action by Raul (PlayerRandom)La coordenada (0, 1) ha sido alcanzada en un intento anterior.
+Action by Mary (PlayerRandom)La coordenada (0, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -322,7 +303,7 @@ Raul (PlayerRandom)
 ??? •
 ==================================
 Number of shots: 15
-Action by Mary (PlayerRandom)La coordenada (0, 1) ha sido alcanzada en un intento anterior.
+Action by Raul (PlayerRandom)La coordenada (0, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -349,7 +330,7 @@ Mary (PlayerRandom)
   ???
 Ω ??•
 Ω •??
-  ??•
+  ???
 ??? •
 ==================================
 Raul (PlayerRandom)
@@ -357,7 +338,7 @@ Raul (PlayerRandom)
   ???
 Ω ??•
 Ω •??
-  ???
+  ??•
 ??? •
 ==================================
 Number of shots: 17
@@ -388,7 +369,7 @@ Mary (PlayerRandom)
 Ω ??•
 Ω •??
   ??•
-? ? •
+??? •
 ==================================
 Raul (PlayerRandom)
 ==================================
@@ -396,7 +377,7 @@ Raul (PlayerRandom)
 Ω ??•
 Ω •??
   ??•
-??? •
+? ? •
 ==================================
 Number of shots: 19
 === ONGOING GAME ===
@@ -502,7 +483,7 @@ Mary (PlayerRandom)
 Ω ??•
 Ω •??
   ??•
-  ? •
+? ? •
 ==================================
 Raul (PlayerRandom)
 ==================================
@@ -510,7 +491,7 @@ Raul (PlayerRandom)
 Ω ??•
 Ω •??
   ??•
-? ? •
+  ? •
 ==================================
 Number of shots: 25
 === ONGOING GAME ===
@@ -570,7 +551,7 @@ Raul (PlayerRandom)
   ? •
 ==================================
 Number of shots: 28
-Action by Raul (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
+Action by Mary (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -590,7 +571,7 @@ Raul (PlayerRandom)
   ? •
 ==================================
 Number of shots: 29
-Action by Mary (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
+Action by Raul (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -615,7 +596,7 @@ Number of shots: 30
 Mary (PlayerRandom)
 ==================================
   ???
-Ω •?•
+Ω ??•
 Ω •??
   ??•
   ? •
@@ -623,7 +604,7 @@ Mary (PlayerRandom)
 Raul (PlayerRandom)
 ==================================
   ???
-Ω ??•
+Ω •?•
 Ω •??
   ??•
   ? •
@@ -655,7 +636,7 @@ Mary (PlayerRandom)
   ???
 Ω •?•
 Ω •??
-  ? •
+  ??•
   ? •
 ==================================
 Raul (PlayerRandom)
@@ -663,7 +644,7 @@ Raul (PlayerRandom)
   ???
 Ω •?•
 Ω •??
-  ??•
+  ? •
   ? •
 ==================================
 Number of shots: 33
@@ -686,7 +667,7 @@ Raul (PlayerRandom)
   ? •
 ==================================
 Number of shots: 34
-Action by Raul (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
+Action by Mary (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -706,7 +687,7 @@ Raul (PlayerRandom)
   ? •
 ==================================
 Number of shots: 35
-Action by Mary (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
+Action by Raul (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -733,7 +714,7 @@ Mary (PlayerRandom)
   ???
 Ω •?•
 Ω •??
-    •
+  ? •
   ? •
 ==================================
 Raul (PlayerRandom)
@@ -741,7 +722,7 @@ Raul (PlayerRandom)
   ???
 Ω •?•
 Ω •??
-  ? •
+    •
   ? •
 ==================================
 Number of shots: 37
@@ -844,7 +825,7 @@ Number of shots: 42
 ==================================
 Mary (PlayerRandom)
 ==================================
-  ?? 
+  ???
 Ω •?•
 Ω •??
     •
@@ -852,7 +833,7 @@ Mary (PlayerRandom)
 ==================================
 Raul (PlayerRandom)
 ==================================
-  ???
+  ?? 
 Ω •?•
 Ω •??
     •
@@ -954,7 +935,7 @@ Raul (PlayerRandom)
   ? •
 ==================================
 Number of shots: 48
-Action by Raul (PlayerRandom)La coordenada (4, 3) ha sido alcanzada en un intento anterior.
+Action by Mary (PlayerRandom)La coordenada (4, 3) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -974,7 +955,7 @@ Raul (PlayerRandom)
   ? •
 ==================================
 Number of shots: 49
-Action by Mary (PlayerRandom)La coordenada (4, 3) ha sido alcanzada en un intento anterior.
+Action by Raul (PlayerRandom)La coordenada (4, 3) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -1000,7 +981,7 @@ Mary (PlayerRandom)
 ==================================
   ?? 
 Ω •?•
-Ω • ?
+Ω •??
     •
   ? •
 ==================================
@@ -1008,7 +989,7 @@ Raul (PlayerRandom)
 ==================================
   ?? 
 Ω •?•
-Ω •??
+Ω • ?
     •
   ? •
 ==================================
@@ -1032,7 +1013,7 @@ Raul (PlayerRandom)
   ? •
 ==================================
 Number of shots: 52
-Action by Raul (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
+Action by Mary (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -1052,7 +1033,7 @@ Raul (PlayerRandom)
   ? •
 ==================================
 Number of shots: 53
-Action by Mary (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
+Action by Raul (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -1110,26 +1091,6 @@ Raul (PlayerRandom)
   ? •
 ==================================
 Number of shots: 56
-Action by Raul (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
-=== ONGOING GAME ===
-==================================
-Mary (PlayerRandom)
-==================================
-  ?? 
-Ω •?•
-Ω • ?
-    •
-  ? •
-==================================
-Raul (PlayerRandom)
-==================================
-  ?? 
-Ω •?•
-Ω • ?
-    •
-  ? •
-==================================
-Number of shots: 57
 Action by Mary (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
@@ -1149,8 +1110,28 @@ Raul (PlayerRandom)
     •
   ? •
 ==================================
+Number of shots: 57
+Action by Raul (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
+=== ONGOING GAME ===
+==================================
+Mary (PlayerRandom)
+==================================
+  ?? 
+Ω •?•
+Ω • ?
+    •
+  ? •
+==================================
+Raul (PlayerRandom)
+==================================
+  ?? 
+Ω •?•
+Ω • ?
+    •
+  ? •
+==================================
 Number of shots: 58
-Action by Raul (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
+Action by Mary (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -1170,7 +1151,7 @@ Raul (PlayerRandom)
   ? •
 ==================================
 Number of shots: 59
-Action by Mary (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
+Action by Raul (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -1236,7 +1217,7 @@ Mary (PlayerRandom)
 Ω •?•
 Ω • ?
     •
-    •
+  ? •
 ==================================
 Raul (PlayerRandom)
 ==================================
@@ -1244,7 +1225,7 @@ Raul (PlayerRandom)
 Ω •?•
 Ω • ?
     •
-  ? •
+    •
 ==================================
 Number of shots: 63
 === ONGOING GAME ===
@@ -1266,7 +1247,7 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 64
-Action by Raul (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
+Action by Mary (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -1286,26 +1267,6 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 65
-Action by Mary (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
-=== ONGOING GAME ===
-==================================
-Mary (PlayerRandom)
-==================================
-  ?? 
-Ω •?•
-Ω • ?
-    •
-    •
-==================================
-Raul (PlayerRandom)
-==================================
-  ?? 
-Ω •?•
-Ω • ?
-    •
-    •
-==================================
-Number of shots: 66
 Action by Raul (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
@@ -1325,8 +1286,28 @@ Raul (PlayerRandom)
     •
     •
 ==================================
-Number of shots: 67
+Number of shots: 66
 Action by Mary (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
+=== ONGOING GAME ===
+==================================
+Mary (PlayerRandom)
+==================================
+  ?? 
+Ω •?•
+Ω • ?
+    •
+    •
+==================================
+Raul (PlayerRandom)
+==================================
+  ?? 
+Ω •?•
+Ω • ?
+    •
+    •
+==================================
+Number of shots: 67
+Action by Raul (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -1350,7 +1331,7 @@ Number of shots: 68
 ==================================
 Mary (PlayerRandom)
 ==================================
-  ?  
+  ?? 
 Ω •?•
 Ω • ?
     •
@@ -1358,7 +1339,7 @@ Mary (PlayerRandom)
 ==================================
 Raul (PlayerRandom)
 ==================================
-  ?? 
+  ?  
 Ω •?•
 Ω • ?
     •
@@ -1536,7 +1517,7 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 78
-Action by Raul (PlayerRandom)La coordenada (4, 3) ha sido alcanzada en un intento anterior.
+Action by Mary (PlayerRandom)La coordenada (4, 3) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -1556,7 +1537,7 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 79
-Action by Mary (PlayerRandom)La coordenada (4, 3) ha sido alcanzada en un intento anterior.
+Action by Raul (PlayerRandom)La coordenada (4, 3) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -1619,7 +1600,7 @@ Number of shots: 82
 Mary (PlayerRandom)
 ==================================
   ?  
-Ω • •
+Ω •?•
 Ω • ?
     •
     •
@@ -1627,7 +1608,7 @@ Mary (PlayerRandom)
 Raul (PlayerRandom)
 ==================================
   ?  
-Ω •?•
+Ω • •
 Ω • ?
     •
     •
@@ -1728,7 +1709,7 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 88
-Action by Raul (PlayerRandom)La coordenada (0, 2) ha sido alcanzada en un intento anterior.
+Action by Mary (PlayerRandom)La coordenada (0, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -1748,7 +1729,7 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 89
-Action by Mary (PlayerRandom)La coordenada (0, 2) ha sido alcanzada en un intento anterior.
+Action by Raul (PlayerRandom)La coordenada (0, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -1882,7 +1863,7 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 96
-Action by Raul (PlayerRandom)La coordenada (2, 1) ha sido alcanzada en un intento anterior.
+Action by Mary (PlayerRandom)La coordenada (2, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -1902,7 +1883,7 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 97
-Action by Mary (PlayerRandom)La coordenada (2, 1) ha sido alcanzada en un intento anterior.
+Action by Raul (PlayerRandom)La coordenada (2, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -1960,7 +1941,7 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 100
-Action by Raul (PlayerRandom)La coordenada (2, 1) ha sido alcanzada en un intento anterior.
+Action by Mary (PlayerRandom)La coordenada (2, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -1980,7 +1961,7 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 101
-Action by Mary (PlayerRandom)La coordenada (2, 1) ha sido alcanzada en un intento anterior.
+Action by Raul (PlayerRandom)La coordenada (2, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -2038,7 +2019,7 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 104
-Action by Raul (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
+Action by Mary (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -2058,7 +2039,7 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 105
-Action by Mary (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
+Action by Raul (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -2230,7 +2211,7 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 114
-Action by Raul (PlayerRandom)La coordenada (0, 2) ha sido alcanzada en un intento anterior.
+Action by Mary (PlayerRandom)La coordenada (0, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -2250,7 +2231,7 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 115
-Action by Mary (PlayerRandom)La coordenada (0, 2) ha sido alcanzada en un intento anterior.
+Action by Raul (PlayerRandom)La coordenada (0, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -2308,7 +2289,7 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 118
-Action by Raul (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
+Action by Mary (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -2328,7 +2309,7 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 119
-Action by Mary (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
+Action by Raul (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -2386,26 +2367,6 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 122
-Action by Raul (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
-=== ONGOING GAME ===
-==================================
-Mary (PlayerRandom)
-==================================
-  ?  
-Ω • •
-Ω • ?
-    •
-    •
-==================================
-Raul (PlayerRandom)
-==================================
-  ?  
-Ω • •
-Ω • ?
-    •
-    •
-==================================
-Number of shots: 123
 Action by Mary (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
@@ -2425,8 +2386,8 @@ Raul (PlayerRandom)
     •
     •
 ==================================
-Number of shots: 124
-Action by Raul (PlayerRandom)La coordenada (0, 1) ha sido alcanzada en un intento anterior.
+Number of shots: 123
+Action by Raul (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -2445,7 +2406,7 @@ Raul (PlayerRandom)
     •
     •
 ==================================
-Number of shots: 125
+Number of shots: 124
 Action by Mary (PlayerRandom)La coordenada (0, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
@@ -2465,8 +2426,28 @@ Raul (PlayerRandom)
     •
     •
 ==================================
+Number of shots: 125
+Action by Raul (PlayerRandom)La coordenada (0, 1) ha sido alcanzada en un intento anterior.
+=== ONGOING GAME ===
+==================================
+Mary (PlayerRandom)
+==================================
+  ?  
+Ω • •
+Ω • ?
+    •
+    •
+==================================
+Raul (PlayerRandom)
+==================================
+  ?  
+Ω • •
+Ω • ?
+    •
+    •
+==================================
 Number of shots: 126
-Action by Raul (PlayerRandom)La coordenada (0, 2) ha sido alcanzada en un intento anterior.
+Action by Mary (PlayerRandom)La coordenada (0, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -2486,7 +2467,7 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 127
-Action by Mary (PlayerRandom)La coordenada (0, 2) ha sido alcanzada en un intento anterior.
+Action by Raul (PlayerRandom)La coordenada (0, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -2810,7 +2791,7 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 144
-Action by Raul (PlayerRandom)La coordenada (0, 1) ha sido alcanzada en un intento anterior.
+Action by Mary (PlayerRandom)La coordenada (0, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -2830,26 +2811,6 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 145
-Action by Mary (PlayerRandom)La coordenada (0, 1) ha sido alcanzada en un intento anterior.
-=== ONGOING GAME ===
-==================================
-Mary (PlayerRandom)
-==================================
-  ?  
-Ω • •
-Ω • ?
-    •
-    •
-==================================
-Raul (PlayerRandom)
-==================================
-  ?  
-Ω • •
-Ω • ?
-    •
-    •
-==================================
-Number of shots: 146
 Action by Raul (PlayerRandom)La coordenada (0, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
@@ -2869,7 +2830,7 @@ Raul (PlayerRandom)
     •
     •
 ==================================
-Number of shots: 147
+Number of shots: 146
 Action by Mary (PlayerRandom)La coordenada (0, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
@@ -2889,8 +2850,28 @@ Raul (PlayerRandom)
     •
     •
 ==================================
+Number of shots: 147
+Action by Raul (PlayerRandom)La coordenada (0, 1) ha sido alcanzada en un intento anterior.
+=== ONGOING GAME ===
+==================================
+Mary (PlayerRandom)
+==================================
+  ?  
+Ω • •
+Ω • ?
+    •
+    •
+==================================
+Raul (PlayerRandom)
+==================================
+  ?  
+Ω • •
+Ω • ?
+    •
+    •
+==================================
 Number of shots: 148
-Action by Raul (PlayerRandom)La coordenada (0, 2) ha sido alcanzada en un intento anterior.
+Action by Mary (PlayerRandom)La coordenada (0, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -2910,7 +2891,7 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 149
-Action by Mary (PlayerRandom)La coordenada (0, 2) ha sido alcanzada en un intento anterior.
+Action by Raul (PlayerRandom)La coordenada (0, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -2968,7 +2949,7 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 152
-Action by Raul (PlayerRandom)La coordenada (4, 3) ha sido alcanzada en un intento anterior.
+Action by Mary (PlayerRandom)La coordenada (4, 3) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -2988,7 +2969,7 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 153
-Action by Mary (PlayerRandom)La coordenada (4, 3) ha sido alcanzada en un intento anterior.
+Action by Raul (PlayerRandom)La coordenada (4, 3) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -3084,26 +3065,6 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 158
-Action by Raul (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
-=== ONGOING GAME ===
-==================================
-Mary (PlayerRandom)
-==================================
-  ?  
-Ω • •
-Ω • ?
-    •
-    •
-==================================
-Raul (PlayerRandom)
-==================================
-  ?  
-Ω • •
-Ω • ?
-    •
-    •
-==================================
-Number of shots: 159
 Action by Mary (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
@@ -3123,8 +3084,28 @@ Raul (PlayerRandom)
     •
     •
 ==================================
+Number of shots: 159
+Action by Raul (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
+=== ONGOING GAME ===
+==================================
+Mary (PlayerRandom)
+==================================
+  ?  
+Ω • •
+Ω • ?
+    •
+    •
+==================================
+Raul (PlayerRandom)
+==================================
+  ?  
+Ω • •
+Ω • ?
+    •
+    •
+==================================
 Number of shots: 160
-Action by Raul (PlayerRandom)La coordenada (0, 2) ha sido alcanzada en un intento anterior.
+Action by Mary (PlayerRandom)La coordenada (0, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -3144,7 +3125,7 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 161
-Action by Mary (PlayerRandom)La coordenada (0, 2) ha sido alcanzada en un intento anterior.
+Action by Raul (PlayerRandom)La coordenada (0, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -3430,7 +3411,7 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 176
-Action by Raul (PlayerRandom)La coordenada (2, 1) ha sido alcanzada en un intento anterior.
+Action by Mary (PlayerRandom)La coordenada (2, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -3450,26 +3431,6 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 177
-Action by Mary (PlayerRandom)La coordenada (2, 1) ha sido alcanzada en un intento anterior.
-=== ONGOING GAME ===
-==================================
-Mary (PlayerRandom)
-==================================
-  ?  
-Ω • •
-Ω • ?
-    •
-    •
-==================================
-Raul (PlayerRandom)
-==================================
-  ?  
-Ω • •
-Ω • ?
-    •
-    •
-==================================
-Number of shots: 178
 Action by Raul (PlayerRandom)La coordenada (2, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
@@ -3489,8 +3450,28 @@ Raul (PlayerRandom)
     •
     •
 ==================================
-Number of shots: 179
+Number of shots: 178
 Action by Mary (PlayerRandom)La coordenada (2, 1) ha sido alcanzada en un intento anterior.
+=== ONGOING GAME ===
+==================================
+Mary (PlayerRandom)
+==================================
+  ?  
+Ω • •
+Ω • ?
+    •
+    •
+==================================
+Raul (PlayerRandom)
+==================================
+  ?  
+Ω • •
+Ω • ?
+    •
+    •
+==================================
+Number of shots: 179
+Action by Raul (PlayerRandom)La coordenada (2, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -3624,26 +3605,6 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 186
-Action by Raul (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
-=== ONGOING GAME ===
-==================================
-Mary (PlayerRandom)
-==================================
-  ?  
-Ω • •
-Ω • ?
-    •
-    •
-==================================
-Raul (PlayerRandom)
-==================================
-  ?  
-Ω • •
-Ω • ?
-    •
-    •
-==================================
-Number of shots: 187
 Action by Mary (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
@@ -3663,8 +3624,28 @@ Raul (PlayerRandom)
     •
     •
 ==================================
+Number of shots: 187
+Action by Raul (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
+=== ONGOING GAME ===
+==================================
+Mary (PlayerRandom)
+==================================
+  ?  
+Ω • •
+Ω • ?
+    •
+    •
+==================================
+Raul (PlayerRandom)
+==================================
+  ?  
+Ω • •
+Ω • ?
+    •
+    •
+==================================
 Number of shots: 188
-Action by Raul (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
+Action by Mary (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -3684,7 +3665,7 @@ Raul (PlayerRandom)
     •
 ==================================
 Number of shots: 189
-Action by Mary (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
+Action by Raul (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -3709,18 +3690,18 @@ Number of shots: 190
 Mary (PlayerRandom)
 ==================================
   ?  
-Ω • O
-Ω • O
-    O
-    O
-==================================
-Raul (PlayerRandom)
-==================================
-  ?  
 Ω • •
 Ω • ?
     •
     •
+==================================
+Raul (PlayerRandom)
+==================================
+  ?  
+Ω • O
+Ω • O
+    O
+    O
 ==================================
 Number of shots: 191
 === ONGOING GAME ===
@@ -3780,7 +3761,7 @@ Raul (PlayerRandom)
     O
 ==================================
 Number of shots: 194
-Action by Raul (PlayerRandom)La coordenada (4, 2) ha sido alcanzada en un intento anterior.
+Action by Mary (PlayerRandom)La coordenada (4, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -3800,7 +3781,7 @@ Raul (PlayerRandom)
     O
 ==================================
 Number of shots: 195
-Action by Mary (PlayerRandom)La coordenada (4, 2) ha sido alcanzada en un intento anterior.
+Action by Raul (PlayerRandom)La coordenada (4, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -3934,7 +3915,7 @@ Raul (PlayerRandom)
     O
 ==================================
 Number of shots: 202
-Action by Raul (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
+Action by Mary (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -3954,7 +3935,7 @@ Raul (PlayerRandom)
     O
 ==================================
 Number of shots: 203
-Action by Mary (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
+Action by Raul (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -4012,7 +3993,7 @@ Raul (PlayerRandom)
     O
 ==================================
 Number of shots: 206
-Action by Raul (PlayerRandom)La coordenada (4, 4) ha sido alcanzada en un intento anterior.
+Action by Mary (PlayerRandom)La coordenada (4, 4) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -4032,26 +4013,6 @@ Raul (PlayerRandom)
     O
 ==================================
 Number of shots: 207
-Action by Mary (PlayerRandom)La coordenada (4, 4) ha sido alcanzada en un intento anterior.
-=== ONGOING GAME ===
-==================================
-Mary (PlayerRandom)
-==================================
-  ?  
-Ω • O
-Ω • O
-    O
-    O
-==================================
-Raul (PlayerRandom)
-==================================
-  ?  
-Ω • O
-Ω • O
-    O
-    O
-==================================
-Number of shots: 208
 Action by Raul (PlayerRandom)La coordenada (4, 4) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
@@ -4071,8 +4032,28 @@ Raul (PlayerRandom)
     O
     O
 ==================================
-Number of shots: 209
+Number of shots: 208
 Action by Mary (PlayerRandom)La coordenada (4, 4) ha sido alcanzada en un intento anterior.
+=== ONGOING GAME ===
+==================================
+Mary (PlayerRandom)
+==================================
+  ?  
+Ω • O
+Ω • O
+    O
+    O
+==================================
+Raul (PlayerRandom)
+==================================
+  ?  
+Ω • O
+Ω • O
+    O
+    O
+==================================
+Number of shots: 209
+Action by Raul (PlayerRandom)La coordenada (4, 4) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -4130,26 +4111,6 @@ Raul (PlayerRandom)
     O
 ==================================
 Number of shots: 212
-Action by Raul (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
-=== ONGOING GAME ===
-==================================
-Mary (PlayerRandom)
-==================================
-  ?  
-Ω • O
-Ω • O
-    O
-    O
-==================================
-Raul (PlayerRandom)
-==================================
-  ?  
-Ω • O
-Ω • O
-    O
-    O
-==================================
-Number of shots: 213
 Action by Mary (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
@@ -4169,8 +4130,28 @@ Raul (PlayerRandom)
     O
     O
 ==================================
+Number of shots: 213
+Action by Raul (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
+=== ONGOING GAME ===
+==================================
+Mary (PlayerRandom)
+==================================
+  ?  
+Ω • O
+Ω • O
+    O
+    O
+==================================
+Raul (PlayerRandom)
+==================================
+  ?  
+Ω • O
+Ω • O
+    O
+    O
+==================================
 Number of shots: 214
-Action by Raul (PlayerRandom)La coordenada (0, 1) ha sido alcanzada en un intento anterior.
+Action by Mary (PlayerRandom)La coordenada (0, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -4190,7 +4171,7 @@ Raul (PlayerRandom)
     O
 ==================================
 Number of shots: 215
-Action by Mary (PlayerRandom)La coordenada (0, 1) ha sido alcanzada en un intento anterior.
+Action by Raul (PlayerRandom)La coordenada (0, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -4438,7 +4419,7 @@ Raul (PlayerRandom)
     O
 ==================================
 Number of shots: 228
-Action by Raul (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
+Action by Mary (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -4458,26 +4439,6 @@ Raul (PlayerRandom)
     O
 ==================================
 Number of shots: 229
-Action by Mary (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
-=== ONGOING GAME ===
-==================================
-Mary (PlayerRandom)
-==================================
-  ?  
-Ω • O
-Ω • O
-    O
-    O
-==================================
-Raul (PlayerRandom)
-==================================
-  ?  
-Ω • O
-Ω • O
-    O
-    O
-==================================
-Number of shots: 230
 Action by Raul (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
@@ -4497,8 +4458,28 @@ Raul (PlayerRandom)
     O
     O
 ==================================
-Number of shots: 231
+Number of shots: 230
 Action by Mary (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
+=== ONGOING GAME ===
+==================================
+Mary (PlayerRandom)
+==================================
+  ?  
+Ω • O
+Ω • O
+    O
+    O
+==================================
+Raul (PlayerRandom)
+==================================
+  ?  
+Ω • O
+Ω • O
+    O
+    O
+==================================
+Number of shots: 231
+Action by Raul (PlayerRandom)La coordenada (4, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -4708,7 +4689,7 @@ Raul (PlayerRandom)
     O
 ==================================
 Number of shots: 242
-Action by Raul (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
+Action by Mary (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -4728,7 +4709,7 @@ Raul (PlayerRandom)
     O
 ==================================
 Number of shots: 243
-Action by Mary (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
+Action by Raul (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -4862,7 +4843,7 @@ Raul (PlayerRandom)
     O
 ==================================
 Number of shots: 250
-Action by Raul (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
+Action by Mary (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -4882,7 +4863,7 @@ Raul (PlayerRandom)
     O
 ==================================
 Number of shots: 251
-Action by Mary (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
+Action by Raul (PlayerRandom)La coordenada (2, 2) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -5016,26 +4997,6 @@ Raul (PlayerRandom)
     O
 ==================================
 Number of shots: 258
-Action by Raul (PlayerRandom)La coordenada (2, 1) ha sido alcanzada en un intento anterior.
-=== ONGOING GAME ===
-==================================
-Mary (PlayerRandom)
-==================================
-  ?  
-Ω • O
-Ω • O
-    O
-    O
-==================================
-Raul (PlayerRandom)
-==================================
-  ?  
-Ω • O
-Ω • O
-    O
-    O
-==================================
-Number of shots: 259
 Action by Mary (PlayerRandom)La coordenada (2, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
@@ -5055,8 +5016,8 @@ Raul (PlayerRandom)
     O
     O
 ==================================
-Number of shots: 260
-Action by Raul (PlayerRandom)La coordenada (0, 1) ha sido alcanzada en un intento anterior.
+Number of shots: 259
+Action by Raul (PlayerRandom)La coordenada (2, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
 Mary (PlayerRandom)
@@ -5075,7 +5036,7 @@ Raul (PlayerRandom)
     O
     O
 ==================================
-Number of shots: 261
+Number of shots: 260
 Action by Mary (PlayerRandom)La coordenada (0, 1) ha sido alcanzada en un intento anterior.
 === ONGOING GAME ===
 ==================================
@@ -5095,4 +5056,44 @@ Raul (PlayerRandom)
     O
     O
 ==================================
+Number of shots: 261
+Action by Raul (PlayerRandom)La coordenada (0, 1) ha sido alcanzada en un intento anterior.
+=== ONGOING GAME ===
+==================================
+Mary (PlayerRandom)
+==================================
+  ?  
+Ω • O
+Ω • O
+    O
+    O
+==================================
+Raul (PlayerRandom)
+==================================
+  ?  
+Ω • O
+Ω • O
+    O
+    O
+==================================
 Number of shots: 262
+=== GAME ENDED ===
+==================================
+Mary (PlayerRandom)
+==================================
+  ?  
+Ω • O
+Ω • O
+    O
+    O
+==================================
+Raul (PlayerRandom)
+==================================
+  Ø  
+Ω Ø O
+Ω Ø O
+    O
+    O
+==================================
+Number of shots: 263
+Mary (PlayerRandom) wins
