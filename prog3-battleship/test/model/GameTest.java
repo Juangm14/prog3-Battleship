@@ -145,11 +145,13 @@ public class GameTest {
 	@Test(expected=RuntimeException.class)
 	public void testPlayNextWithExceptions() throws BattleshipIOException {
 		//Pone Craft en posición ocupada
-		player1= PlayerFactory.createPlayer("Julia", DIRFILES+"ShootOk1.in");
+		player1= PlayerFactory.createPlayer("Julia", DIRFILES+"ShootOk3.in");
 		player2= PlayerFactory.createPlayer("Raul", DIRFILES+"ShootWrong5.in");
 		game = new Game(board1, board2, player1, player2);
 
 		try {
+		  game.start();
+		  game.playNext();
 		  game.playNext();
 		  fail("Error, se debío lanzar RuntimeException");
 		} catch (RuntimeException e) {

@@ -91,7 +91,7 @@ public class Game {
 			
 			gameStarted = true;
 			shootCounter = 0;
-			nextToShoot = 1;
+			nextToShoot = 0;
 		} catch (InvalidCoordinateException | OccupiedCoordinateException | NextToAnotherCraftException
 				| BattleshipIOException e) {
 			throw new RuntimeException();
@@ -104,7 +104,9 @@ public class Game {
 	 * @return the boolean
 	 */
 	public Boolean gameEnded() {
-		if((tablero1.areAllCraftsDestroyed() || tablero2.areAllCraftsDestroyed()) && gameStarted == true) {
+		if(tablero1.areAllCraftsDestroyed() && gameStarted == true) {
+			return true;
+		}else if(tablero2.areAllCraftsDestroyed() && gameStarted == true){   
 			return true;
 		}else {
 			return false;
@@ -142,7 +144,10 @@ public class Game {
 		            shootCounter++;
 		            return true;
 				}
+			}else {
+				nextToShoot = 2;
 			}
+			
 		return false;
 	}
 	
@@ -174,14 +179,14 @@ public class Game {
         try {
 			iv.show();
 		} catch (IOException e) {
-			e.printStackTrace();
+
 		}
 
         while(this.playNext() != false || gameEnded() != true) {
             try {
 				iv.show();
 			} catch (IOException e) {
-				e.printStackTrace();
+
 			}
         }
 
@@ -229,6 +234,7 @@ public class Game {
 		return game;
 	}
 }
+
 
 
 

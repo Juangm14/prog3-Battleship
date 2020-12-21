@@ -14,11 +14,10 @@ import model.exceptions.CoordinateAlreadyHitException;
 import model.exceptions.InvalidCoordinateException;
 import model.exceptions.NextToAnotherCraftException;
 import model.exceptions.OccupiedCoordinateException;
-import model.exceptions.io.BattleshipIOException;
 import model.ship.Board2D;
 
 public class PlayerRandom implements IPlayer {
-
+	
 	private String name;
 	private Random rnd;
 	
@@ -37,7 +36,7 @@ public class PlayerRandom implements IPlayer {
 	    return rnd.nextInt(max-min) + min;
 	}
 	
-	public Coordinate getRandomCoordinate(Board b, int offset) {
+	public Coordinate genRandomCoordinate(Board b, int offset) {
 	
 		if(b instanceof Board3D) {
 			int c0 = genRandomInt(0-offset, b.getSize());
@@ -63,29 +62,39 @@ public class PlayerRandom implements IPlayer {
 		int offset = Craft.BOUNDING_SQUARE_SIZE;
 		Boolean repite = false;
 		
+		if(b == null) {
+			throw new NullPointerException();
+		}
+		
 		if(b instanceof Board3D) {
 			ArrayList<String> nomAircrafts = new ArrayList<>();
+			nomAircrafts.add("Battleship");
+			nomAircrafts.add("Carrier");
+			nomAircrafts.add("Cruiser");
+			nomAircrafts.add("Destroyer");
 			nomAircrafts.add("Bomber");
 			nomAircrafts.add("Fighter");
 			nomAircrafts.add("Transport");
 			
 			for(int i = 0; i < nomAircrafts.size(); i++) {
-				
 				contador = 0;
 				repite = false;
 				o = Orientation.values()[genRandomInt(0,Orientation.values().length)];
 						
+				Craft cr = CraftFactory.createCraft(nomAircrafts.get(i), o);
+				
 				do{
-					Craft cr = CraftFactory.createCraft(nomAircrafts.get(i), o);
-					Coordinate c = this.getRandomCoordinate(b, offset);
+					
+					Coordinate c = this.genRandomCoordinate(b, offset);
+						
 					try {
 						b.addCraft(cr, c);
-						repite=false;
+						repite = false;
 					} catch (InvalidCoordinateException | OccupiedCoordinateException | NextToAnotherCraftException e) {
-						repite=true;
+						contador++;
+						repite = true;
 					}
-					contador++;
-				}while(contador <= 100 && repite);
+				}while(contador != 100 && repite);
 			}
 			
 		}else if(b instanceof Board2D) {
@@ -103,7 +112,7 @@ public class PlayerRandom implements IPlayer {
 				
 				do{
 					Craft cr = CraftFactory.createCraft(nomCrafts.get(i), o);
-					Coordinate c = this.getRandomCoordinate(b, offset);
+					Coordinate c = this.genRandomCoordinate(b, offset);
 					try {
 						b.addCraft(cr, c);
 						repite=false;
@@ -111,15 +120,14 @@ public class PlayerRandom implements IPlayer {
 						repite=true;
 					}
 					contador++;
-				}while(contador <= 100 && repite);
+				}while(contador != 100 && repite);
 			}
 		}
-
 	}
 	
 	public Coordinate nextShoot(Board b) throws InvalidCoordinateException, CoordinateAlreadyHitException {
 		
-		Coordinate c = getRandomCoordinate(b,0);
+		Coordinate c = genRandomCoordinate(b,0);
 
 		b.hit(c);
 

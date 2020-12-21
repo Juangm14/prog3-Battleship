@@ -47,13 +47,21 @@ public class PlayerFile implements IPlayer{
 				try {
 					while((line = br.readLine()) != null) {
 						
-						String[] result = line.split(" ");
+						String[] result = line.split("\\s+");
 						ArrayList<String> palabras = new ArrayList<>();
-						 
+						
 					    for(String palabra:result) {	
 					    	if(palabra.trim().length() > 0) {
 					    		palabras.add(palabra);
 					    	}
+					    }
+					    
+					    if(palabras.get(0).equals("exit")) {
+					    	break;
+					    }
+					    
+					    if(palabras.size() < 5 && palabras.get(0).equals("put")) {
+					    	throw new BattleshipIOException("Cantidad de parametros en el comando put NO es CORRECTA.");
 					    }
 					    
 					    if(palabras.get(0).equals("put")) {
@@ -78,22 +86,29 @@ public class PlayerFile implements IPlayer{
 						   if(palabras.size() < 5 ) {
 						    		throw new BattleshipIOException("Cantidad de parametros en el comando put NO es CORRECTA.");
 						   }else if(palabras.size() == 6){
-							   	
-				    			int c0 = Integer.parseInt(palabras.get(3));
-					    		int c1 = Integer.parseInt(palabras.get(4));
-					    		int c2 = Integer.parseInt(palabras.get(5));
-					    		
-					    		Craft barco = CraftFactory.createCraft(palabras.get(1), o);
-					    		b.addCraft(barco, CoordinateFactory.createCoordinate(c0, c1, c2));
+							   	try {
+					    			int c0 = Integer.parseInt(palabras.get(3));
+						    		int c1 = Integer.parseInt(palabras.get(4));
+						    		int c2 = Integer.parseInt(palabras.get(5));
+						    		Craft barco = CraftFactory.createCraft(palabras.get(1), o);
+						    		b.addCraft(barco, CoordinateFactory.createCoordinate(c0, c1, c2));
+							   	}catch(NumberFormatException  e) {
+							   		throw new BattleshipIOException("Error: comando no valido");
+							   	}
 						   }else if(palabras.size() == 5) {
-				    			int c0 = Integer.parseInt(palabras.get(3));
-					    		int c1 = Integer.parseInt(palabras.get(4));
-					    		
-					    		Craft barco = CraftFactory.createCraft(palabras.get(1), o);
-					    		b.addCraft(barco, CoordinateFactory.createCoordinate(c0, c1));
-						   }			
-						  
-						    
+							   
+							   try {
+					    			int c0 = Integer.parseInt(palabras.get(3));
+						    		int c1 = Integer.parseInt(palabras.get(4));
+						    		
+						    		Craft barco = CraftFactory.createCraft(palabras.get(1), o);
+						    		b.addCraft(barco, CoordinateFactory.createCoordinate(c0, c1));
+							   }catch(NumberFormatException e) {
+							   		throw new BattleshipIOException("Error: comando no valido");
+							   }
+						   }else {
+							   throw new BattleshipIOException("Error: Comando no valido.");
+						   }
 					    }else if(palabras.get(0).equals("exit") || palabras.get(0).equals("endput")){
 					    	break;
 					    }else {
@@ -119,13 +134,17 @@ public class PlayerFile implements IPlayer{
 			try {
 				while((line = br.readLine()) != null) {
 					
-					String[] result = line.split(" ");
+					String[] result = line.split("\\s+");
 					ArrayList<String> palabras = new ArrayList<>();
 					
 				    for(String palabra:result) {	
 				    	if(palabra.trim().length() > 0) {
 			    			palabras.add(palabra);
 				    	}
+				    }
+				    
+				    if(palabras.get(0).equals("exit")) {
+				    	break;
 				    }
 				    
 				    if(b instanceof Board2D) {
