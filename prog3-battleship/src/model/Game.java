@@ -92,7 +92,6 @@ public class Game {
 				OccupiedCoordinateException | NextToAnotherCraftException e) {
 			throw new RuntimeException();
 		}
-		
 		gameStarted = true;
 		shootCounter = 0;
 		nextToShoot = 1;
@@ -104,16 +103,14 @@ public class Game {
 	 * @return the boolean
 	 */
 	public Boolean gameEnded() {
-		if(gameStarted) {
-			if((tablero1.areAllCraftsDestroyed() || tablero2.areAllCraftsDestroyed()) && gameStarted) {
-				return true;
-			}else {
-				return false;
-			}
+
+		if(tablero1.areAllCraftsDestroyed() && gameStarted) {
+			return true;
+		}else if(tablero2.areAllCraftsDestroyed() && gameStarted) {
+			return true;
 		}else {
 			return false;
 		}
-
 	}
 	
 	/**
@@ -124,33 +121,36 @@ public class Game {
 	public Boolean playNext(){
 		
 		if(nextToShoot == 1) {
-			nextToShoot = 2;
 			try {
-				jugador1.nextShoot(tablero2);
-				shootCounter++;
-
-			}catch(BattleshipIOException | InvalidCoordinateException | NullPointerException e) {
+				if(jugador1.nextShoot(tablero2) != null) {
+					shootCounter++;
+					nextToShoot = 2;
+					return true;
+				}
+			}catch(BattleshipIOException | InvalidCoordinateException e) {
 				throw new RuntimeException();
 			}catch(CoordinateAlreadyHitException e) {
 				System.out.println("Action by "+ jugador1.getName() + e.getMessage());
 	            shootCounter++;
+	            nextToShoot = 2;
 	            return true;
 			}
 		}else if(nextToShoot == 2) {
-			nextToShoot = 1;
 			try {
-				jugador2.nextShoot(tablero1);
-				shootCounter++;
-
-			}catch(BattleshipIOException | InvalidCoordinateException | NullPointerException e) {
+				if(jugador2.nextShoot(tablero1) != null) {
+					shootCounter++;
+					nextToShoot = 1;
+					return true;
+				}
+			}catch(BattleshipIOException | InvalidCoordinateException e) {
 				throw new RuntimeException();
 			}catch(CoordinateAlreadyHitException e) {
 				System.out.println("Action by "+ jugador2.getName() + e.getMessage());
 	            shootCounter++;
+	            nextToShoot = 1;
 	            return true;
 			}
 		}
-		
 	return false;
 	}
 	
@@ -161,7 +161,7 @@ public class Game {
 	 */
 	public IPlayer getPlayerLastShoot() {
 		
-		if(shootCounter >  0) {
+		if(shootCounter > 0) {
 			if(nextToShoot == 1) {
 				return jugador2;
 			}else if(nextToShoot == 2) {
@@ -172,7 +172,6 @@ public class Game {
 		}else {
 			return null;
 		}
-
 	}
 	
 	/**
@@ -190,7 +189,7 @@ public class Game {
 			throw new RuntimeException();
 		}
         
-        while(this.playNext() != false || gameEnded() != true) {
+        while(playNext() != false && gameEnded() != true) {
             try {
 				iv.show();
 			} catch (IOException e) {

@@ -31,56 +31,6 @@ public class prueba {
 
 	public static void main(String[] args) {
 		
-		
-		String line = "put    Carrier    SOUTH		 3 			0";
-		String[] result = line.split("\\s+");
-		ArrayList<String> palabras = new ArrayList<>();
-		
-	    for(String palabra:result) {	
-	    	if(palabra.trim().length() > 0) {
-    			palabras.add(palabra);
-	    	}
-	    	System.out.println(palabra);
-	    }
-	    
-    	if(palabras.get(2).equals("NORTH")) {
-    		System.out.println("Hola");
-    	}
 	}
-	
-	
-	if(nextToShoot == 1) {
-		try {
-			jugador1.nextShoot(tablero2);
-			nextToShoot = 2;
-			shootCounter++;
-		}catch (InvalidCoordinateException | BattleshipIOException e) {
-			throw new RuntimeException();
-		}catch(CoordinateAlreadyHitException e) {
-			System.out.println("Action by "+ jugador2.getName() + e.getMessage());
-            shootCounter++;
-            nextToShoot = 2;
-    		return true;
-		}
-		return true;
-	}else if(nextToShoot == 2) {
-		
-		try {
-			nextToShoot = 1;
-			jugador2.nextShoot(tablero1);
-			nextToShoot = 1;
-			shootCounter++;
-		} catch (InvalidCoordinateException | BattleshipIOException e) {
-			throw new RuntimeException();
-		}catch(CoordinateAlreadyHitException e) {
-			System.out.println("Action by "+ jugador2.getName() + e.getMessage());
-            shootCounter++;
-			nextToShoot = 1;
-			return true;
-		}
-		return true;
-	}
-		
-	return false;
 }
         
