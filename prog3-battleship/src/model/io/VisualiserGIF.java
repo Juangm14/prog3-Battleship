@@ -1,6 +1,7 @@
 package model.io;
 
 import java.awt.Color;
+import java.io.File;
 import java.io.IOException;
 
 import model.Board;
@@ -31,29 +32,33 @@ public class VisualiserGIF implements IVisualiser{
 		FrameGIF frame = new FrameGIF(this.game.getBoard1().getSize(), this.game.getBoard1().getSize()*2+1);
 		int contb1 = 0;
 		int contb2 = 0;
-		for(int i = 0; i < this.game.getBoard1().getSize() * 2; i++) {
-			if(tablero1.charAt(i) == Board.NOTSEEN_SYMBOL) {
-				try {
-					frame.printSquare(contb1,i, Color.LIGHT_GRAY);
-				}catch(BattleshipIOException e) {
-					e.printStackTrace();
-				}
-				
-			}else if(tablero1.charAt(i) == '\n') {
-				contb1++;
-			}else if(tablero1.charAt(i) == Board.WATER_SYMBOL) {
-				try {
-					frame.printSquare(contb1, i, Color.BLUE);
-				} catch (BattleshipIOException e) {
-					e.printStackTrace();
-				}
-			}else if(tablero1.charAt(i) == Board.HIT_SYMBOL) {
-				try {
-					frame.printSquare(contb1, i, Color.RED);
-				} catch (BattleshipIOException e) {
-					e.printStackTrace();
+		
+		for(int i = 0; i < this.game.getBoard1().getSize(); i++) {
+			for(int j = 0; j < this.game.getBoard1().getSize(); j++) {
+				if(tablero1.charAt(i) == Board.NOTSEEN_SYMBOL) {
+					try {
+						frame.printSquare(j,i, Color.LIGHT_GRAY);
+					}catch(BattleshipIOException e) {
+						e.printStackTrace();
+					}
+					
+				}else if(tablero1.charAt(i) == '\n') {
+					contb1++;
+				}else if(tablero1.charAt(i) == Board.WATER_SYMBOL) {
+					try {
+						frame.printSquare(contb1, i, Color.BLUE);
+					} catch (BattleshipIOException e) {
+						e.printStackTrace();
+					}
+				}else if(tablero1.charAt(i) == Board.HIT_SYMBOL) {
+					try {
+						frame.printSquare(contb1, i, Color.RED);
+					} catch (BattleshipIOException e) {
+						e.printStackTrace();
+					}
 				}
 			}
+
 		}
 		for(int i = 0; i < this.game.getBoard1().getSize(); i++) {
 			try {
@@ -71,29 +76,33 @@ public class VisualiserGIF implements IVisualiser{
 			}
 		}
 		
-		for(int i = this.game.getBoard1().getSize(); i < this.game.getBoard2().getSize() * 4; i++) {
-			if(tablero2.charAt(i) == Board.NOTSEEN_SYMBOL) {
-				try {
-					frame.printSquare(contb2,i, Color.LIGHT_GRAY);
-				} catch (BattleshipIOException e) {
-					e.printStackTrace();
-				}
-			}else if(tablero2.charAt(i) == '\n') {
-				contb2++;
-			}else if(tablero2.charAt(i) == Board.WATER_SYMBOL) {
-				try {
-					frame.printSquare(contb2, i, Color.BLUE);
-				} catch (BattleshipIOException e) {
-					e.printStackTrace();
-				}
-			}else if(tablero2.charAt(i) == Board.HIT_SYMBOL) {
-				try {
-					frame.printSquare(contb2, i, Color.RED);
-				} catch (BattleshipIOException e) {
-					e.printStackTrace();
+		for(int i = 0; i < this.game.getBoard2().getSize(); i++) {
+			for(int j = this.game.getBoard1().getSize(); j < this.game.getBoard2().getSize(); j++) {
+				if(tablero2.charAt(i) == Board.NOTSEEN_SYMBOL) {
+					try {
+						frame.printSquare(j,i, Color.LIGHT_GRAY);
+					}catch(BattleshipIOException e) {
+						e.printStackTrace();
+					}
+					
+				}else if(tablero2.charAt(i) == '\n') {
+					contb1++;
+				}else if(tablero2.charAt(i) == Board.WATER_SYMBOL) {
+					try {
+						frame.printSquare(contb1, i, Color.BLUE);
+					} catch (BattleshipIOException e) {
+						e.printStackTrace();
+					}
+				}else if(tablero2.charAt(i) == Board.HIT_SYMBOL) {
+					try {
+						frame.printSquare(contb1, i, Color.RED);
+					} catch (BattleshipIOException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}
+		
 		for(int i = 0; i < this.game.getBoard1().getSize(); i++) {
 			try {
 				frame.printSquare(this.game.getBoard1().getSize(), i, Color.ORANGE);
@@ -110,6 +119,10 @@ public class VisualiserGIF implements IVisualiser{
 	}
 	
 	public void close() {
-		
-	}
+        try {
+            agif.saveFile(new File("files/output.gif"));
+        } catch (BattleshipIOException e) {
+            throw new RuntimeException();
+        }
+    }
 }
