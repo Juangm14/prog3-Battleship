@@ -3,6 +3,8 @@ package model.io;
 import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
 
 import model.Board;
 import model.Game;
@@ -11,6 +13,7 @@ import model.exceptions.io.BattleshipIOException;
 import model.io.gif.AnimatedGIF;
 import model.io.gif.FrameGIF;
 import model.ship.Board2D;
+import model.ship.Coordinate2D;
 
 public class VisualiserGIF implements IVisualiser{
 
@@ -30,70 +33,82 @@ public class VisualiserGIF implements IVisualiser{
 
 		String tablero1 = this.game.getBoard1().show(false);
 		String tablero2 = this.game.getBoard2().show(false);
-		
-		
-		int contb1 = 0;
-		int contb2 = 0;
+
 		if(this.game.getBoard1() instanceof Board2D) {
+			tablero1 = tablero1.replace("\n", "");
+			tablero2 = tablero2.replace("\n", "");
+			System.err.println(tablero1.length());
 			
-			FrameGIF frame2d = new FrameGIF(this.game.getBoard1().getSize(), this.game.getBoard1().getSize()*2+1);
+			int tam = game.getBoard1().getSize();
 			
-			for(int i = 0; i < this.game.getBoard1().getSize(); i++) {
-				for(int j = 0; j < this.game.getBoard1().getSize(); j++) {
-					if(tablero1.charAt(i) == Board.NOTSEEN_SYMBOL) {
+			FrameGIF frame2d = new FrameGIF(tam, tam*2+1);
+			
+			for(int i = 0; i < tam; i++) {
+				for(int j = 0; j < tam; j++) {
+					if(tablero1.charAt(j+i*tam) == Board.NOTSEEN_SYMBOL) {
 						try {
 							frame2d.printSquare(j,i, Color.LIGHT_GRAY);
 						}catch(BattleshipIOException e) {
 							e.printStackTrace();
 						}
 						
-					}else if(tablero1.charAt(i) == '\n') {
-						contb1++;
-					}else if(tablero1.charAt(i) == Board.WATER_SYMBOL) {
+					}else if(tablero1.charAt(j+i*game.getBoard1().getSize()) == Board.WATER_SYMBOL) {
 						try {
-							frame2d.printSquare(contb1, i, Color.BLUE);
+							frame2d.printSquare(j, i, Color.BLUE);
 						} catch (BattleshipIOException e) {
 							e.printStackTrace();
 						}
-					}else if(tablero1.charAt(i) == Board.HIT_SYMBOL) {
+					}else if(tablero1.charAt(j+i*game.getBoard1().getSize()) == Board.HIT_SYMBOL) {
 						try {
-							frame2d.printSquare(contb1, i, Color.RED);
+							frame2d.printSquare(j, i, Color.RED);
+						} catch (BattleshipIOException e) {
+							e.printStackTrace();
+						}
+					}else if(tablero1.charAt(j+i*game.getBoard1().getSize()) == game.getBoard1().getCraft(new Coordinate2D(j,i)).getSymbol()) {
+						try {
+							frame2d.printSquare(j, i, Color.RED);
 						} catch (BattleshipIOException e) {
 							e.printStackTrace();
 						}
 					}
 				}
-
 			}
 			
-			for(int i = 0; i < this.game.getBoard1().getSize(); i++) {
+			for(int i = 0; i < tam; i++) {
 				try {
-					frame2d.printSquare(i, this.game.getBoard1().getSize(), Color.DARK_GRAY);
+					frame2d.printSquare(i, tam, Color.DARK_GRAY);
 				} catch (BattleshipIOException e) {
 					e.printStackTrace();
 				}
 			}
 			
-			for(int i = 0; i < this.game.getBoard2().getSize(); i++) {
-				for(int j = 0; j < this.game.getBoard2().getSize(); j++) {
-					if(tablero2.charAt(i) == Board.NOTSEEN_SYMBOL) {
+			for(int i = 0; i < tam; i++) {
+				for(int j = 0; j < tam; j++) {
+					
+					if(tablero2.charAt(j+i*tam) == Board.NOTSEEN_SYMBOL) {
 						try {
-							frame2d.printSquare(j,i + this.game.getBoard2().getSize()+1, Color.LIGHT_GRAY);
+							frame2d.printSquare(j,i+tam+1, Color.LIGHT_GRAY);
 						}catch(BattleshipIOException e) {
 							e.printStackTrace();
 						}
 						
-					}else if(tablero2.charAt(i) == '\n') {
-						contb1++;
-					}else if(tablero2.charAt(i) == Board.WATER_SYMBOL) {
+					}else if(tablero2.charAt(j+i*game.getBoard1().getSize()) == Board.WATER_SYMBOL) {
+
 						try {
-							frame2d.printSquare(contb1, i, Color.BLUE);
+							frame2d.printSquare(j, i+tam+1, Color.BLUE);
 						} catch (BattleshipIOException e) {
 							e.printStackTrace();
 						}
-					}else if(tablero2.charAt(i) == Board.HIT_SYMBOL) {
+
+					}else if(tablero2.charAt(j+i*game.getBoard2().getSize()) == Board.HIT_SYMBOL) {
 						try {
-							frame2d.printSquare(contb1, i, Color.RED);
+							frame2d.printSquare(j, i+tam+1, Color.RED);
+						} catch (BattleshipIOException e) {
+							e.printStackTrace();
+						}
+					}else if(tablero2.charAt(j+i*game.getBoard2().getSize()) == game.getBoard2().getCraft(new Coordinate2D(j,i)).getSymbol()) {
+						try {
+							frame2d.printSquare(j, i+tam+1, Color.RED);
 						} catch (BattleshipIOException e) {
 							e.printStackTrace();
 						}
@@ -108,50 +123,99 @@ public class VisualiserGIF implements IVisualiser{
 			}
 			
 		}else if (this.game.getBoard1() instanceof Board3D) {
+			int tam = game.getBoard1().getSize();
 			
-			FrameGIF frame3d = new FrameGIF(this.game.getBoard1().getSize()*this.game.getBoard1().getSize(), this.game.getBoard1().getSize()*2+1);
+			FrameGIF frame3d = new FrameGIF(tam*tam+tam-1, tam*2+1);
 			
-			for(int i = 0; i < this.game.getBoard1().getSize(); i++) {
-				for(int j = 0; j < this.game.getBoard1().getSize()*this.game.getBoard1().getSize(); j++) {
-						if(tablero1.charAt(i) == Board.NOTSEEN_SYMBOL) {
-							try {
-								frame3d.printSquare(j,i, Color.LIGHT_GRAY);
-							}catch(BattleshipIOException e) {
-								e.printStackTrace();
-							}
-							
-						}else if(tablero1.charAt(i) == '\n') {
-							contb1++;
-						}else if(tablero1.charAt(i) == Board.WATER_SYMBOL) {
-							try {
-								frame3d.printSquare(contb1, i, Color.BLUE);
-							} catch (BattleshipIOException e) {
-								e.printStackTrace();
-							}
-						}else if(tablero1.charAt(i) == Board.HIT_SYMBOL) {
-							try {
-								frame3d.printSquare(contb1, i, Color.RED);
-							} catch (BattleshipIOException e) {
-								e.printStackTrace();
-							}
+			
+			for(int i = 0; i < tam;i++) {
+				for(int j = 0; j < tam*tam+tam-1; j++) {
+					if(tablero1.charAt(j+i*(tam*tam+tam)) == Board.NOTSEEN_SYMBOL) {
+						try {
+							frame3d.printSquare(j,i, Color.LIGHT_GRAY);
+						}catch(BattleshipIOException e) {
+							e.printStackTrace();
+						}
+						
+					}else if(tablero1.charAt(j+i*(tam*tam+tam)) == Board.WATER_SYMBOL) {
+						try {
+							frame3d.printSquare(j, i, Color.BLUE);
+						} catch (BattleshipIOException e) {
+							e.printStackTrace();
+						}
+					}else if(tablero1.charAt(j+i*(tam*tam+tam)) == Board.HIT_SYMBOL) {
+						try {
+							frame3d.printSquare(j, i, Color.RED);
+						} catch (BattleshipIOException e) {
+							e.printStackTrace();
+						}
+					}else if(tablero1.charAt(j+i*(tam*tam+tam)) == Board.Board_SEPARATOR) {
+						try {
+							frame3d.printSquare(j, i, Color.ORANGE);
+						} catch (BattleshipIOException e) {
+							e.printStackTrace();
+						}
+					}else {
+						try {
+							frame3d.printSquare(j, i, Color.RED);
+						} catch (BattleshipIOException e) {
+							e.printStackTrace();
 						}
 					}
 				}
+			}
 			
-				for(int i = 0; i < this.game.getBoard1().getSize(); i++) {
-					try {
-						frame3d.printSquare(this.game.getBoard1().getSize(), i, Color.ORANGE);
-					} catch (BattleshipIOException e) {
-						e.printStackTrace();
+			for(int i = 0; i < tam*tam+tam-1; i++) {
+				try {
+					frame3d.printSquare(i, tam, Color.DARK_GRAY);
+				} catch (BattleshipIOException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			for(int i = 0; i < tam;i++) {
+				for(int j = 0; j < tam*tam+tam-1; j++) {
+					if(tablero2.charAt(j+i*(tam*tam+tam)) == Board.NOTSEEN_SYMBOL) {
+						try {
+							frame3d.printSquare(j,i+tam+1, Color.LIGHT_GRAY);
+						}catch(BattleshipIOException e) {
+							e.printStackTrace();
+						}
+						
+					}else if(tablero2.charAt(j+i*(tam*tam+tam)) == Board.WATER_SYMBOL) {
+						try {
+							frame3d.printSquare(j, i+tam+1, Color.BLUE);
+						} catch (BattleshipIOException e) {
+							e.printStackTrace();
+						}
+					}else if(tablero2.charAt(j+i*(tam*tam+tam)) == Board.HIT_SYMBOL) {
+						try {
+							frame3d.printSquare(j, i+tam+1, Color.RED);
+						} catch (BattleshipIOException e) {
+							e.printStackTrace();
+						}
+					}else if(tablero2.charAt(j+i*(tam*tam+tam)) == Board.Board_SEPARATOR) {
+						try {
+							frame3d.printSquare(j, i+tam+1, Color.ORANGE);
+						} catch (BattleshipIOException e) {
+							e.printStackTrace();
+						}
+					}else {
+						try {
+							frame3d.printSquare(j, i+tam+1, Color.RED);
+						} catch (BattleshipIOException e) {
+							e.printStackTrace();
+						}
 					}
 				}
+			}
 			
-
 			try {
 				agif.addFrame(frame3d);
 			} catch (BattleshipIOException e) {
 				e.printStackTrace();
 			}
+			
 		}
 				
 	}
