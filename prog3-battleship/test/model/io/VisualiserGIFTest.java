@@ -82,7 +82,7 @@ public class VisualiserGIFTest {
 		/* IMPORTANTE: Si el siguiente assert fuera erróneo, para comprobar ficheros de salida 
 		 * con la solución, ejecutar solo este test por separado y comprobar luego las diferencias.
 		 */
-		//assertTrue ("Ejecuta el test de forma aislada",compareFiles(DIRFILES+"emptyBoard2D.gif","files/output.gif"));
+		assertTrue ("Ejecuta el test de forma aislada",compareFiles(DIRFILES+"emptyBoard2D.gif","files/output.gif"));
 	}
 
 	/* Se aplica show a un Game con 2 Board3D con el juego sin empezar.
@@ -98,7 +98,7 @@ public class VisualiserGIFTest {
 		/* IMPORTANTE: Si el siguiente assert fuera erróneo, para comprobar ficheros de salida 
 		 * con la solución, ejecutar solo este test por separado y comprobar luego las diferencias.
 		 */
-		//assertTrue ("Ejecuta el test de forma aislada",compareFiles(DIRFILES+"emptyBoard3D.gif","files/output.gif"));
+		assertTrue ("Ejecuta el test de forma aislada",compareFiles(DIRFILES+"emptyBoard3D.gif","files/output.gif"));
 	}
 
 	/* Se crean tableros 2D con posicionamiento aleatorio de los Ships. Se disparan
@@ -145,7 +145,7 @@ public class VisualiserGIFTest {
 		/* IMPORTANTE: Si el siguiente assert fuera erróneo, para comprobar ficheros de salida 
 		 * con la solución, ejecutar solo este test por separado y comprobar luego las diferencias.
 		 */
-		//assertTrue (compareFiles(DIRFILES+"Show2D.gif","files/output.gif"));
+		assertTrue (compareFiles(DIRFILES+"Show2D.gif","files/output.gif"));
 	}
 
 /* Se crean tableros 3D con posicionamiento aleatorio de los Aircrafts. Se disparan
@@ -196,9 +196,7 @@ public class VisualiserGIFTest {
 		/* IMPORTANTE: Si el siguiente assert fuera erróneo, para comprobar ficheros de salida 
 		 * con la solución, ejecutar solo este test por separado y comprobar luego las diferencias.
 		 */
-		System.out.println(board1.show(false));
-		System.out.println(board1.show(false));
-		//assertTrue (compareFiles(DIRFILES+"Show3D.gif","files/output.gif"));
+		assertTrue (compareFiles(DIRFILES+"Show3D.gif","files/output.gif"));
 	}
 	
 	
@@ -317,7 +315,6 @@ public class VisualiserGIFTest {
 	}
 	
 	//Obtiene un atributo de una clase
-		@SuppressWarnings("unchecked")
 		Object getClassField(Object obj, String atribute) throws Exception {
 		
 			// Sacamos el atributo privado (seen) de la clase (Board) 

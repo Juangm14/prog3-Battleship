@@ -23,7 +23,17 @@ public class CraftFactory{
 	 */
 	public static Craft createCraft(String tipo, Orientation o) {
 		
-		switch(tipo) {
+		Class<? extends String> reflectCraft = tipo.getClass();
+
+		String craftName = reflectCraft.getName();
+
+		
+		
+		
+		return null;
+		
+
+		/*switch(tipo) {
 		
 			case "Carrier":
 				return new Carrier(o);
@@ -41,6 +51,6 @@ public class CraftFactory{
 				return new Transport(o);
 			default:
 				return null;
-		}
+		}*/
 	}
 }
