@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import model.Board;
+import model.CellStatus;
 import model.Coordinate;
 import model.CoordinateFactory;
 import model.Craft;
@@ -22,6 +23,7 @@ public class PlayerFile implements IPlayer{
 
 	private String nombre;
 	private BufferedReader br;
+	private CellStatus lastShotStatus;
 	
 	PlayerFile(String n, BufferedReader buff) throws NullPointerException{
 		if(buff == null) {
@@ -153,7 +155,7 @@ public class PlayerFile implements IPlayer{
 								int x = Integer.parseInt(palabras.get(1));
 								int y = Integer.parseInt(palabras.get(2));
 								Coordinate c = CoordinateFactory.createCoordinate(x,y);
-								b.hit(c);
+								lastShotStatus = b.hit(c);
 								return c;
 							}catch(NumberFormatException e) {
 								throw new BattleshipIOException("Las coordenadas no son enteros");
@@ -172,7 +174,7 @@ public class PlayerFile implements IPlayer{
 								int y = Integer.parseInt(palabras.get(2));
 								int z = Integer.parseInt(palabras.get(3));
 								Coordinate c = CoordinateFactory.createCoordinate(x,y,z);
-								b.hit(c);
+								lastShotStatus = b.hit(c);
 								return c;
 							}catch(NumberFormatException e) {
 								throw new BattleshipIOException("Las coordenadas no son enteros");
@@ -186,6 +188,12 @@ public class PlayerFile implements IPlayer{
 		
 			return null;
 		}
+	}
+
+	@Override
+	public CellStatus getLastShotStatus() {
+		
+		return lastShotStatus;
 	}
 }
 

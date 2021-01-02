@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import model.Board;
+import model.CellStatus;
 import model.Coordinate;
 import model.CoordinateFactory;
 import model.Craft;
@@ -20,6 +21,7 @@ public class PlayerRandom implements IPlayer {
 	
 	private String name;
 	private Random rnd;
+	private CellStatus lastShotStatus;
 	
 	
 	PlayerRandom(String name, long semilla){
@@ -128,9 +130,15 @@ public class PlayerRandom implements IPlayer {
 	public Coordinate nextShoot(Board b) throws InvalidCoordinateException, CoordinateAlreadyHitException {
 		
 		Coordinate c = genRandomCoordinate(b,0);
-
-		b.hit(c);
-
+		
+		lastShotStatus = b.hit(c);
+		
 		return c;
+	}
+
+	@Override
+	public CellStatus getLastShotStatus() {
+		
+		return lastShotStatus;
 	}
 }
