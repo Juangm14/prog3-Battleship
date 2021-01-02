@@ -257,5 +257,7 @@ public abstract class Craft {
 		
 		return imprimirShip;
 	}
+	
+	public abstract int getValue();
 
 }

@@ -68,13 +68,13 @@ public class PlayerRandom implements IPlayer {
 		
 		if(b instanceof Board3D) {
 			ArrayList<String> nomAircrafts = new ArrayList<>();
-			nomAircrafts.add("Battleship");
-			nomAircrafts.add("Carrier");
-			nomAircrafts.add("Cruiser");
-			nomAircrafts.add("Destroyer");
-			nomAircrafts.add("Bomber");
-			nomAircrafts.add("Fighter");
-			nomAircrafts.add("Transport");
+			nomAircrafts.add("ship.Battleship");
+			nomAircrafts.add("ship.Carrier");
+			nomAircrafts.add("ship.Cruiser");
+			nomAircrafts.add("ship.Destroyer");
+			nomAircrafts.add("aircraft.Bomber");
+			nomAircrafts.add("aircraft.Fighter");
+			nomAircrafts.add("aircraft.Transport");
 			
 			for(int i = 0; i < nomAircrafts.size(); i++) {
 				contador = 0;
@@ -99,10 +99,10 @@ public class PlayerRandom implements IPlayer {
 			
 		}else if(b instanceof Board2D) {
 			ArrayList<String> nomCrafts = new ArrayList<>();
-			nomCrafts.add("Battleship");
-			nomCrafts.add("Carrier");
-			nomCrafts.add("Cruiser");
-			nomCrafts.add("Destroyer");
+			nomCrafts.add("ship.Battleship");
+			nomCrafts.add("ship.Carrier");
+			nomCrafts.add("ship.Cruiser");
+			nomCrafts.add("ship.Destroyer");
 			
 			for(int i = 0; i < nomCrafts.size(); i++) {
 				

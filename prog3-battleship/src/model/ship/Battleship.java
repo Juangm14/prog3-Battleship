@@ -41,5 +41,9 @@ public class Battleship extends Ship{
 				0, 0, 0, 0, 0,
 				0, 0, 0, 0, 0}};
 	}
+	
+	public int getValue() {
+		return 6;
+	}
 
 }

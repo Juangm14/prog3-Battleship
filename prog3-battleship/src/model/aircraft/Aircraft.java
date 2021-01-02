@@ -21,4 +21,5 @@ public abstract class Aircraft extends Craft{
 
 	}
 
+
 }
