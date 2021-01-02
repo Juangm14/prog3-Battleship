@@ -20,12 +20,16 @@ public abstract class Score<T> implements Comparable<Score<T>>{
 	
 	public String toString() {
 		
-		return player.toString() + ": "+ score;
+		return player.getName().toString() + ": "+ score;
 	}
 
 	public int  compareTo(Score<T> sc1) {
 		
 		return this.compareTo(sc1);
+	}
+	
+	public int getScore() {
+		return score;
 	}
 }
 	

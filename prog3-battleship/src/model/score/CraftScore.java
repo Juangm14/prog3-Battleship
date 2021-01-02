@@ -6,7 +6,7 @@ import model.io.IPlayer;
 
 public class CraftScore extends Score<Craft> {
 
-	CraftScore(IPlayer ip){
+	public CraftScore(IPlayer ip){
 		super(ip);
 	}
 	

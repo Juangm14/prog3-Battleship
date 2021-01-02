@@ -9,6 +9,8 @@ import model.exceptions.OccupiedCoordinateException;
 import model.exceptions.io.BattleshipIOException;
 import model.io.IPlayer;
 import model.io.IVisualiser;
+import model.score.CraftScore;
+import model.score.HitScore;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -23,7 +25,11 @@ public class Game {
 	private Boolean gameStarted;
 	private int shootCounter;
 	private int nextToShoot;
-
+	private HitScore hitScore1;
+	private HitScore hitScore2;
+	private CraftScore craftScore1;
+	private CraftScore craftScore2;
+	
 	/**
 	 * Instantiates a new game.
 	 *
@@ -36,11 +42,16 @@ public class Game {
 		if(b1 == null || b2 == null || p1 == null || p2 == null) {
 			throw new NullPointerException();
 		}else {
+			
 			tablero1 = b1;
 			tablero2 = b2;
 			jugador1 = p1;
 			jugador2 = p2;
 			gameStarted = false;
+			hitScore1 = new HitScore(p1);
+			hitScore2 = new HitScore(p2);
+			craftScore1 = new CraftScore(p1);
+			craftScore2 = new CraftScore(p2);
 		}
 	}
 	
@@ -120,9 +131,16 @@ public class Game {
 	 */
 	public Boolean playNext(){
 		
+		CellStatus cellStatus;
+		Coordinate c;
 		if(nextToShoot == 1) {
 			try {
-				if(jugador1.nextShoot(tablero2) != null) {
+				if((c = jugador1.nextShoot(tablero2)) != null) {
+					cellStatus = jugador1.getLastShotStatus();
+					hitScore1.score(cellStatus);
+					if(cellStatus.equals(CellStatus.DESTROYED)) {
+						craftScore1.score(tablero2.getCraft(c));
+					}
 					shootCounter++;
 					nextToShoot = 2;
 					return true;
@@ -137,7 +155,12 @@ public class Game {
 			}
 		}else if(nextToShoot == 2) {
 			try {
-				if(jugador2.nextShoot(tablero1) != null) {
+				if((c = jugador2.nextShoot(tablero1)) != null) {
+					cellStatus = jugador2.getLastShotStatus();
+					hitScore2.score(cellStatus);
+					if(cellStatus.equals(CellStatus.DESTROYED)) {
+						craftScore2.score(tablero1.getCraft(c));
+					}
 					shootCounter++;
 					nextToShoot = 1;
 					return true;
@@ -245,6 +268,37 @@ public class Game {
 			}
 		}
 		return game;
+	}
+	
+	public HitScore getHitScorePlayer1() {
+		return hitScore1;
+	}
+	
+	public HitScore getHitScorePlayer2() {
+		return hitScore2;
+	}
+	
+	public CraftScore getCraftScorePlayer1() {
+		return craftScore1;
+	}
+	
+	public CraftScore getCraftScorePlayer2() {
+		return craftScore2;
+	}
+	
+	public String getScoreInfo() {
+		
+		String info = "";
+		
+		info += "Player 1\n";
+		info += "HitScore: " + getHitScorePlayer1().toString() + "\n";
+		info += "CraftScore: " + getCraftScorePlayer1().toString() + "\n";
+		info += "--------------\n";
+		info += "Player 2\n";
+		info += "HitScore: " + getHitScorePlayer2().toString() + "\n";
+		info += "CraftScore: " + getCraftScorePlayer2().toString();
+		
+		return info;
 	}
 }
 

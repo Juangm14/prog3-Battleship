@@ -5,7 +5,7 @@ import model.io.IPlayer;
 
 public class HitScore extends Score<CellStatus> {
 
-	HitScore(IPlayer ip) {
+	public HitScore(IPlayer ip) {
 		super(ip);
 	}
 	
