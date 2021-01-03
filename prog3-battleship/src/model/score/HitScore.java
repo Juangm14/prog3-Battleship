@@ -11,12 +11,8 @@ public class HitScore extends Score<CellStatus> {
 	
 	public void score(CellStatus cell) {
 		
-		if(cell.equals(CellStatus.HIT)) {
-			score++;
-		}else if(cell.equals(CellStatus.HIT)) {
+		if(cell == CellStatus.HIT || cell == CellStatus.DESTROYED) {
 			score++;
 		}
 	}
-	
-	
 }

@@ -1,7 +1,6 @@
 package model;
 
 import java.io.IOException;
-
 import model.exceptions.CoordinateAlreadyHitException;
 import model.exceptions.InvalidCoordinateException;
 import model.exceptions.NextToAnotherCraftException;

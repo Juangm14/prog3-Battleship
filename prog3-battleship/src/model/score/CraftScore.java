@@ -1,6 +1,5 @@
 package model.score;
 
-import model.CellStatus;
 import model.Craft;
 import model.io.IPlayer;
 
