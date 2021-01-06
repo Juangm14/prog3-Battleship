@@ -5,7 +5,7 @@ import model.Coordinate;
 /**
  * The Class OccupiedCoordinateException.
  */
-public class OccupiedCoordinateException extends BattleshipException {
+public class OccupiedCoordinateException extends CoordinateException {
 	
 	private static final long serialVersionUID = 1L;
 	private Coordinate c;

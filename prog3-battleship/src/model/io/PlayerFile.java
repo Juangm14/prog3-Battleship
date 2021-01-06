@@ -31,7 +31,7 @@ public class PlayerFile implements IPlayer{
 		}else {
 			nombre = n;
 			br = buff;
-			
+			lastShotStatus = null;
 		}
 	}
 	
@@ -127,6 +127,7 @@ public class PlayerFile implements IPlayer{
 	}
 	
 	public Coordinate nextShoot(Board b) throws BattleshipIOException, InvalidCoordinateException,CoordinateAlreadyHitException{
+		lastShotStatus = null;
 		
 		if(b == null) {
 			throw new NullPointerException();
@@ -185,14 +186,13 @@ public class PlayerFile implements IPlayer{
 			} catch (IOException e) {
 				throw new BattleshipIOException("Leemos linea del archivo.");
 			}
-		
+			
 			return null;
 		}
 	}
 
 	@Override
 	public CellStatus getLastShotStatus() {
-		
 		return lastShotStatus;
 	}
 }

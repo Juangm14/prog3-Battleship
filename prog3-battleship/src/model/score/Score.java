@@ -1,15 +1,10 @@
 package model.score;
-
-import java.util.Objects;
-
-import model.exceptions.BattleshipException;
 import model.io.IPlayer;
 
 public abstract class Score<T> implements Comparable<Score<T>>{   
 		
-		
 	protected int score;
-	protected IPlayer player;
+	private IPlayer player;
 	
 	Score(IPlayer ip) {
 		
@@ -21,6 +16,8 @@ public abstract class Score<T> implements Comparable<Score<T>>{
 		}	
 	}
 	
+	public abstract void score(T sc1);
+	
 	public String toString() {
 		
 		return player.getName().toString() + ": "+ score;
@@ -29,9 +26,9 @@ public abstract class Score<T> implements Comparable<Score<T>>{
 	public int compareTo(Score<T> sc1) {
 		
         if(score < sc1.getScore()) {
-            return -1;
+            return 1;
         }else if(score > sc1.getScore()) {
-            return 0;
+            return -1;
         }else{
             return player.getName().compareTo(sc1.player.getName());
         }
@@ -40,6 +37,8 @@ public abstract class Score<T> implements Comparable<Score<T>>{
 	public int getScore() {
 		return score;
 	}
+	
+	
 }
 	
 

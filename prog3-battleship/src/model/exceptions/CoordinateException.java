@@ -6,7 +6,7 @@ import model.Coordinate;
 /**
  * The Class CoordinateException.
  */
-public abstract class CoordinateException extends Exception{
+public abstract class CoordinateException extends BattleshipException {
 	
 	private static final long serialVersionUID = 1L;
 	private Coordinate c;

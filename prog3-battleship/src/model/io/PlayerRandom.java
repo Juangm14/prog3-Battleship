@@ -27,7 +27,7 @@ public class PlayerRandom implements IPlayer {
 	PlayerRandom(String name, long semilla){
 		this.name = name;
 		rnd = new Random(semilla);
-		
+		lastShotStatus = null;
 	}
 	
 	public String getName() {

@@ -1,6 +1,8 @@
 package model.exceptions.io;
 
-public class BattleshipIOException extends Exception{
+import model.exceptions.BattleshipException;
+
+public class BattleshipIOException extends BattleshipException{
 
 	private static final long serialVersionUID = 1L;
 	private String msg;

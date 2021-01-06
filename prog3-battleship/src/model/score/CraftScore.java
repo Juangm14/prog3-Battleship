@@ -9,6 +9,7 @@ public class CraftScore extends Score<Craft> {
 		super(ip);
 	}
 	
+	@Override
 	public void score(Craft nave) {
 		score+= nave.getValue();
 	}
