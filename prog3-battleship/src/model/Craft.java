@@ -259,5 +259,4 @@ public abstract class Craft {
 	}
 	
 	public abstract int getValue();
-
 }

@@ -18,4 +18,5 @@ public interface IPlayer {
 	public CellStatus getLastShotStatus();
 	
 	public String getName();
+	
 }

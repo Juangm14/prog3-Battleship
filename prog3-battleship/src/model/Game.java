@@ -299,6 +299,20 @@ public class Game {
 		
 		return info;
 	}
+
+	public Coordinate moveCrafts(Craft crf, Coordinate coor) {
+		if(!this.gameStarted) {
+			if(crf.getPosition() != coor) {
+				crf.setPosition(coor);
+				return coor;
+			}else {
+				return null;
+			}
+		}else {
+			System.out.println("El juego ha empezado no se puede mover la nave.");
+			return null;
+		}
+	}
 }
 
 

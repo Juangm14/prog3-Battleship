@@ -27,7 +27,6 @@ class Ranking<ScoreType extends Score<?>> {
 	}
 	
 	public SortedSet<ScoreType> getSortedRanking() {
-		
 		return scoreSet;
 	}
 }

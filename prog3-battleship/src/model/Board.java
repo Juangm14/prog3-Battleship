@@ -1,4 +1,6 @@
 package model;
+
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -256,6 +258,50 @@ public abstract class Board {
 		String cadena = "Board " + size + ";"+ " crafts: " + numCrafts + "; destroyed: " + destroyedCrafts;
 		
 		return cadena;
+	}
+	
+	//MIOS
+	
+
+	public void deleteCrafts(Coordinate coor) {
+		
+		Craft c = this.getCraft(coor);
+		
+		Set<Coordinate> conj = c.getAbsolutePositions();
+	
+		for(Coordinate crd:conj) {
+			c = board.remove(crd);
+		}
+		
+		if(c != null) {
+			numCrafts--;
+		}
+	}
+	
+	
+	public void deleteCrafts2(Craft crf) {
+		
+		Set<Coordinate> conjCoord= crf.getAbsolutePositions();
+		Craft c = null;
+		
+		for(Coordinate coord:conjCoord) {
+			c = board.remove(coord);
+		}
+		
+		if(c != null) {
+			numCrafts--;
+		}
+	}	
+	
+	public void deleteCraftsType(char symbol) {
+		
+		Collection<Craft> conjNaves = board.values();
+
+		for(Craft nave:conjNaves) {
+			if(nave.getSymbol() == symbol) {
+			}
+		}
+		
 	}
 
 }

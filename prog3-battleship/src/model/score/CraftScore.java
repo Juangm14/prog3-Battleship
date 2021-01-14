@@ -13,5 +13,4 @@ public class CraftScore extends Score<Craft> {
 	public void score(Craft nave) {
 		score+= nave.getValue();
 	}
-	
 }

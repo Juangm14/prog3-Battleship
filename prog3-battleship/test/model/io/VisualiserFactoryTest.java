@@ -37,7 +37,7 @@ public class VisualiserFactoryTest {
 		assertEquals("VisualiserGIF",iv.getClass().getSimpleName());
 	}
 
-	/* Comprueba que se crean visualizadores desconocidos en tiempo de compilaciÃ³n pero conocidos en tiempo de ejecuciÃ³n */
+	/* Comprueba que se crean visualizadores desconocidos en tiempo de compilación pero conocidos en tiempo de ejecución */
 	@Test
 	public void testCreateVisualiserQT()  {
 		IVisualiser iv=VisualiserFactory.createVisualiser("QT", game);
@@ -53,7 +53,9 @@ public class VisualiserFactoryTest {
 	  }
 	  catch(NoClassDefFoundError error) {
 		  // en algunos casos, puede que Class.forName lance este error y no la de ClassNotFoundException
-		  // lo capturamos aquÃ­ y damos por bueno el test si es el caso.
+		  // lo capturamos aquí y damos por bueno el test si es el caso.
 	  }
 	}
+
+
 }
